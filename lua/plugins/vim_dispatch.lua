@@ -1,1 +1,1 @@
-return { { "tpope/vim-dispatch", lazy = true }, { "radenling/vim-dispatch-neovim", lazy = true } }
+return { { "tpope/vim-dispatch", lazy = false }, { "radenling/vim-dispatch-neovim", lazy = false } }
