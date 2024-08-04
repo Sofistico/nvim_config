@@ -1,4 +1,4 @@
--- return {
+return {
 --     "iabdelkareem/csharp.nvim",
 --     dependencies = {
 --         "williamboman/mason.nvim", -- Required, automatically installs omnisharp
@@ -25,4 +25,4 @@
 --         --     desc = "Run C# Project",
 --         -- },
 --     },
--- }
+}
