@@ -20,23 +20,29 @@ return {
               action = 'Telescope find_files',
               key = 'f',
             },
-            -- {
-            --   desc = ' Apps',
-            --   group = 'DiagnosticHint',
-            --   action = 'Telescope app',
-            --   key = 'a',
-            -- },
             {
-              desc = ' config',
+              desc = ' Grep',
+              group = 'Label',
+              action = 'Telescope live_grep',
+              key = 'g',
+            },
+            {
+              desc = ' Config',
               group = 'Number',
               action = function()
                 local fk_opts = {
-                  cwd = vim.env.XDG_CONFIG_HOME,
+                  cwd = vim.fn.stdpath 'config',
                   results_title = 'Config',
                 }
                 require('telescope.builtin').find_files(fk_opts)
               end,
-              key = 'd',
+              key = 'c',
+            },
+            {
+              desc = '💤 Lazy',
+              group = 'Number',
+              action = 'Lazy',
+              key = 'l',
             },
             { desc = 'Quit', group = '@property', action = 'q', key = 'q' },
           },

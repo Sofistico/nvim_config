@@ -2,6 +2,8 @@ return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    lazy = true,
+    event = 'VeryLazy',
     opts = {
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
       -- Autoinstall languages that are not installed
@@ -32,6 +34,7 @@ return {
   -- Automatically add closing tags for HTML and JSX
   {
     'windwp/nvim-ts-autotag',
+    event = 'BufEnter *.*html',
     lazy = true,
     opts = {},
   },

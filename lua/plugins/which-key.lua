@@ -16,31 +16,40 @@
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').add {
-        { '<leader>c', group = '[C]ode' },
+    event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
+    opts_extend = { 'spec' },
+    opts = {
+      spec = {
+        mode = { 'n', 'v' },
+        { '<leader>c', group = 'code' },
         -- { '<leader>d', group = '[D]ocument' },
         -- { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = 'search' },
         -- { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader><tab>', group = 'Tabs', mode = { 'n' } },
-        { '<leader>b', group = '[B]uffers' },
-        { '<leader>g', group = '[G]it' },
-        { '<leader>q', group = '[Q]uit' },
-        { '<leader>x', group = '[X]Diagnostics' },
-        { '<leader>n', group = '[N]otification' },
+        { '<leader>t', group = 'toggle' },
+        -- { '<leader>h', group = 'git hunk'}
+        { '<leader><tab>', group = 'tabs' },
+        {
+          '<leader>b',
+          group = 'buffers',
+          expand = function()
+            return require('which-key.extras').expand.buf()
+          end,
+        },
+        { '<leader>g', group = 'git' },
+        { '<leader>q', group = 'quit' },
+        { '<leader>x', group = 'diagnostics' },
+        { '<leader>n', group = 'notification' },
         { '[', group = 'prev' },
         { ']', group = 'next' },
         { 'g', group = 'goto' },
         { 'gs', group = 'surround' },
         { 'z', group = 'fold' },
-      }
+      },
+    },
+    config = function(_, opts)
+      local wk = require 'which-key'
+      wk.setup(opts)
     end,
   },
 }

@@ -1,5 +1,5 @@
 return {
-  { 'Hoffs/omnisharp-extended-lsp.nvim', lazy = true },
+  { 'Hoffs/omnisharp-extended-lsp.nvim', lazy = true, event = 'VeryLazy' },
   {
     'nvim-treesitter/nvim-treesitter',
     opts = { ensure_installed = { 'c_sharp' } },
@@ -7,6 +7,8 @@ return {
   {
     'nvimtools/none-ls.nvim',
     optional = true,
+    lazy = true,
+    event = 'VeryLazy',
     opts = function(_, opts)
       local nls = require 'null-ls'
       opts.sources = opts.sources or {}
@@ -16,6 +18,8 @@ return {
   {
     'stevearc/conform.nvim',
     optional = true,
+    lazy = true,
+    event = 'VeryLazy',
     opts = {
       formatters_by_ft = {
         cs = { 'csharpier' },
@@ -34,6 +38,8 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    -- lazy = true,
+    -- event = 'BufEnter',
     opts = {
       servers = {
         omnisharp = {
@@ -60,6 +66,8 @@ return {
   },
   {
     'mfussenegger/nvim-dap',
+    lazy = true,
+    event = 'VeryLazy',
     optional = true,
     opts = function()
       local dap = require 'dap'
@@ -94,6 +102,8 @@ return {
   {
     'nvim-neotest/neotest',
     optional = true,
+    lazy = true,
+    event = 'VeryLazy',
     dependencies = {
       'Issafalcon/neotest-dotnet',
     },

@@ -1,6 +1,3 @@
 return {
-    { "tpope/vim-dispatch", lazy = false },
-    { "radenling/vim-dispatch-neovim", keys = {},
-    config = function()
-  end },
+  { 'radenling/vim-dispatch-neovim', lazy = true, event = 'BufAdd', dependencies = { 'tpope/vim-dispatch' } },
 }

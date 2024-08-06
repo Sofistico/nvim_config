@@ -2,6 +2,8 @@ return {
   -- Better `vim.notify()`
   {
     'rcarriga/nvim-notify',
+    lazy = false,
+    event = 'VeryLazy',
     keys = {
       {
         '<leader>nD',

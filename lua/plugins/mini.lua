@@ -1,6 +1,8 @@
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    lazy = true,
+    event = 'VeryLazy',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -10,7 +12,7 @@ return {
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      -- require('mini.surround').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -26,6 +28,9 @@ return {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+      statusline.section_fileinfo = function()
+        return ' ' .. os.date '%R'
+      end
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
@@ -33,6 +38,8 @@ return {
   },
   {
     'echasnovski/mini.ai',
+    lazy = true,
+    event = 'BufAdd',
     opts = function()
       local ai = require 'mini.ai'
       return {
@@ -50,8 +57,6 @@ return {
             { '%u[%l%d]+%f[^%l%d]', '%f[%S][%l%d]+%f[^%l%d]', '%f[%P][%l%d]+%f[^%l%d]', '^[%l%d]+%f[^%l%d]' },
             '^().*()$',
           },
-          -- i = LazyVim.mini.ai_indent, -- indent
-          -- g = LazyVim.mini.ai_buffer, -- buffer
           u = ai.gen_spec.function_call(), -- u for "Usage"
           U = ai.gen_spec.function_call { name_pattern = '[%w_]' }, -- without dot in function name
         },

@@ -70,6 +70,10 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
+vim.o.foldcolumn = '0' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 vim.g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
 vim.g.lazygit_config = true
@@ -77,6 +81,20 @@ vim.g.lazyvim_statuscolumn = {
   folds_open = false, -- show fold sign when fold is open
   folds_githl = false, -- highlight fold sign with git sign color
 }
+
+vim.opt.fillchars = {
+  foldopen = '',
+  foldclose = '',
+  fold = ' ',
+  foldsep = ' ',
+  diff = '╱',
+  eob = ' ',
+}
+
+vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
+
+vim.opt.foldmethod = 'indent'
+-- vim.opt.foldtext = '...'
 
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
