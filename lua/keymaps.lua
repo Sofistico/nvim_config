@@ -57,7 +57,7 @@ vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
-vim.keymap.set('n', '<leader>bd', '<cmd>:bd<cr>', { desc = 'Delete Buffer' })
+vim.keymap.set('n', '<leader>bd', '<cmd>:bd!<cr>', { desc = 'Delete Buffer' })
 
 -- save file
 vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
@@ -93,4 +93,8 @@ vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
+vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
+vim.keymap.set('n', '<leader>tS', '<cmd>lua vim.g.autoformat = not vim.g.autoformat<cr>', { desc = 'Toggle autoformat' })
+
+vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal' })
 -- vim: ts=2 sts=2 sw=2 et
