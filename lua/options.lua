@@ -100,4 +100,5 @@ vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
 vim.cmd 'language en_US'
 vim.g.autoformat = false
+
 -- vim: ts=2 sts=2 sw=2 et

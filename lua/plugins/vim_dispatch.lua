@@ -1,3 +1,3 @@
 return {
-  { 'radenling/vim-dispatch-neovim', lazy = true, event = 'BufAdd', dependencies = { 'tpope/vim-dispatch' } },
+  { 'radenling/vim-dispatch-neovim', lazy = true, cmd = "Dispatch", dependencies = { 'tpope/vim-dispatch' } },
 }

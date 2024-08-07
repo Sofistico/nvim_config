@@ -6,16 +6,17 @@ return {
     event = 'VeryLazy',
     keys = {
       {
-        '<leader>nD',
+        '<leader>nd',
         function()
           require('notify').dismiss { silent = true, pending = true }
         end,
         desc = 'Dismiss All Notifications',
       },
+      { '<leader>nh', '<cmd>Telescope notify<cr>', desc = 'Show Notification History' },
     },
     opts = {
       stages = 'static',
-      timeout = 3000,
+      timeout = 1500,
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
       end,
@@ -26,6 +27,9 @@ return {
         vim.api.nvim_win_set_config(win, { zindex = 100 })
       end,
     },
+    config = function()
+      vim.notify = require 'notify'
+    end,
   },
   -- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
   -- {
