@@ -35,7 +35,7 @@ return {
       autoformat = false,
     },
     keys = {
-      { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
+      {'<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info'}
     },
     config = function()
       -- Brief aside: **What is LSP?**

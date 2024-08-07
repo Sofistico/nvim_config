@@ -1,4 +1,5 @@
 local self_mini = require 'util.self_mini'
+local self_init = require 'util.self_init'
 return {
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -55,6 +56,8 @@ return {
             { '%u[%l%d]+%f[^%l%d]', '%f[%S][%l%d]+%f[^%l%d]', '%f[%P][%l%d]+%f[^%l%d]', '^[%l%d]+%f[^%l%d]' },
             '^().*()$',
           },
+          i = self_mini.ai_indent, -- indent
+          g = self_mini.ai_buffer, -- buffer
           u = ai.gen_spec.function_call(), -- u for "Usage"
           U = ai.gen_spec.function_call { name_pattern = '[%w_]' }, -- without dot in function name
         },
@@ -62,7 +65,7 @@ return {
     end,
     config = function(_, opts)
       require('mini.ai').setup(opts)
-      self_global.on_load('which-key.nvim', function()
+      self_init.on_load('which-key.nvim', function()
         vim.schedule(function()
           self_mini.ai_whichkey(opts)
         end)
