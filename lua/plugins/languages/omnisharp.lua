@@ -5,12 +5,14 @@ return {
     opts = { ensure_installed = { 'c_sharp' } },
   },
   {
+    -- this is something that in csharp is not working as expected, need to rework this configs
     'nvimtools/none-ls.nvim',
     optional = true,
     lazy = true,
+    cmd = "StartNone",
     opts = function(_, opts)
       local nls = require 'null-ls'
-      opts.sources = opts.sources or {}
+      opts.sources = opts.sources -- or {}
       table.insert(opts.sources, nls.builtins.formatting.csharpier)
     end,
   },
@@ -89,7 +91,9 @@ return {
               program = function()
                 return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/', 'file')
               end,
-              cwd = '${workspaceFolder}',
+              -- The error is here for my debug problems:
+              -- TODO: FIX THIS SHIT TO DEBUG!
+              cwd = '${workspaceFolder}/Bin',
             },
           }
         end

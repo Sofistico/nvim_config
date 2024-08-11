@@ -28,7 +28,7 @@ return {
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
-        return ' ' .. os.date '%R ' .. '%2l:%-2v'
+        return ' ' .. os.date '%R'
       end
 
       -- ... and there is more!

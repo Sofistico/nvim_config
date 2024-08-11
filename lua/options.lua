@@ -93,8 +93,9 @@ vim.opt.fillchars = {
 
 vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldmethod = 'indent'
+-- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 -- vim.opt.foldtext = '...'
 
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB

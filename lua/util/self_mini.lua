@@ -118,7 +118,7 @@ function M.ai_whichkey(opts)
     end
   end
   require('which-key').add(ret, { notify = false })
-  vim.notify("finished working on the whick-key mini.ai")
+  -- vim.notify("finished working on the whick-key mini.ai")
 end
 
 return M
