@@ -20,7 +20,7 @@ return {
     opts_extend = { 'spec' },
     opts = {
       spec = {
-        mode = { 'n', 'v' },
+        mode = { 'n', 'v', 'x' },
         { '<leader>c', group = 'code' },
         -- { '<leader>d', group = '[D]ocument' },
         -- { '<leader>r', group = '[R]ename' },
@@ -40,6 +40,7 @@ return {
         { '<leader>q', group = 'quit' },
         { '<leader>x', group = 'diagnostics' },
         { '<leader>n', group = 'notification' },
+        { '<leader>r', group = '+refactoring' },
         { '[', group = 'prev' },
         { ']', group = 'next' },
         { 'g', group = 'goto' },
