@@ -98,4 +98,5 @@ vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
 vim.keymap.set('n', '<leader>tS', '<cmd>lua vim.g.autoformat = not vim.g.autoformat<cr>', { desc = 'Toggle autoformat' })
 
 vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal' })
--- vim: ts=2 sts=2 sw=2 et
+vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', {desc = 'Show Nvim Messages'})
+

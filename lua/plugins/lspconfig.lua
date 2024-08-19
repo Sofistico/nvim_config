@@ -1,4 +1,5 @@
 -- LSP Plugins
+local self_init = require 'util.self_init'
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -35,7 +36,7 @@ return {
       autoformat = false,
     },
     keys = {
-      {'<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info'}
+      { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -154,6 +155,7 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
+          vim.notify 'lsp finished attaching'
         end,
       })
 
@@ -200,6 +202,16 @@ return {
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
+        },
+        omnisharp = {
+          handlers = {
+            ['textDocument/definition'] = function(...)
+              return require('omnisharp_extended').handler(...)
+            end,
+          },
+          enable_roslyn_analyzers = true,
+          organize_imports_on_format = true,
+          enable_import_completion = true,
         },
       }
 
