@@ -55,5 +55,8 @@ return {
       }
     end,
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    keys = {
+      {'<leader>sb', '<cmd>Dashboard<cr>', {desc = 'Show Dashboard'}}
+    }
   },
 }
