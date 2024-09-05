@@ -31,6 +31,7 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+      'Issafalcon/lsp-overloads.nvim',
     },
     opts = {
       autoformat = false,
@@ -155,7 +156,19 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle Inlay [H]ints')
           end
-          vim.notify 'lsp finished attaching'
+          --- Guard against servers without the signatureHelper capability
+          if client.server_capabilities.signatureHelpProvider then
+            require('lsp-overloads').setup(client, {})
+            -- vim.api.nvim_set_keymap(
+            --   { 'i', 'n' },
+            --   '<A-i>',
+            --   '<cmd>LspOverloadsSignature<CR>',
+            --   { noremap = true, silent = true, buffer = event.buf, desc = 'Show Signature' }
+            -- )
+            -- vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', {desc = 'Toggle Lsp Signature Auto'})
+          end
+
+          vim.notify 'lsp attached'
         end,
       })
 
@@ -205,9 +218,7 @@ return {
         },
         omnisharp = {
           handlers = {
-            ['textDocument/definition'] = function(...)
-              return require('omnisharp_extended').handler(...)
-            end,
+            ['textDocument/definition'] = require('omnisharp_extended').handler,
           },
           enable_roslyn_analyzers = true,
           organize_imports_on_format = true,
