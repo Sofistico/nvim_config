@@ -107,9 +107,13 @@ return {
           --  Similar to document symbols, except searches over your entire project.
           map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
 
+          map('<leader>cc', vim.lsp.codelens.run, "Run [c]odelens", {'n', 'v'})
+          map('<leader>cC', vim.lsp.codelens.refresh, "Refresh e Display [C]odelens")
+          map('<leader>cR', vim.lsp.rename_file, "[R]ename File")
+          --
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>cr', vim.lsp.buf.rename, '[R]ename')
+          map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
