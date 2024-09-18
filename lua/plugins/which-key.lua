@@ -47,6 +47,11 @@ return {
         { 'gs', group = 'surround' },
         { 'z', group = 'fold' },
       },
+      icons = {
+        rules = {
+          { pattern = 'home', icon = '', color = 'blue' },
+        },
+      },
     },
     config = function(_, opts)
       local wk = require 'which-key'

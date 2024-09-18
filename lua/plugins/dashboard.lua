@@ -11,7 +11,7 @@ return {
             enable = true,
           },
           shortcut = {
-            { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+            { icon = '󰊳 ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
             {
               icon = ' ',
               icon_hl = '@variable',
@@ -21,13 +21,17 @@ return {
               key = 'f',
             },
             {
-              desc = ' Grep',
+              icon = ' ',
+              icon_hl = '@variable',
+              desc = 'Grep',
               group = 'Label',
               action = 'Telescope live_grep',
               key = 'g',
             },
             {
-              desc = ' Config',
+              icon = ' ',
+              icon_hl = '@variable',
+              desc = 'Config',
               group = 'Number',
               action = function()
                 local fk_opts = {
@@ -39,7 +43,8 @@ return {
               key = 'c',
             },
             {
-              desc = '💤 Lazy',
+              icon = '💤 ',
+              desc = 'Lazy',
               group = 'Number',
               action = 'Lazy',
               key = 'l',
@@ -56,7 +61,7 @@ return {
     end,
     dependencies = { { 'nvim-tree/nvim-web-devicons' } },
     keys = {
-      { '<leader>h', '<cmd>Go To Home<cr>', { desc = 'Show Dashboard' } },
+      { '<leader>h', '<cmd>Dashboard<cr>', desc = 'Go To Home' },
     },
   },
 }
