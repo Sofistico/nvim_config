@@ -109,7 +109,7 @@ return {
 
           map('<leader>cc', vim.lsp.codelens.run, "Run [c]odelens", {'n', 'v'})
           map('<leader>cC', vim.lsp.codelens.refresh, "Refresh e Display [C]odelens")
-          map('<leader>cR', vim.lsp.rename_file, "[R]ename File")
+          map('<leader>cR', vim.lsp.util.rename, "[R]ename File")
           --
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
