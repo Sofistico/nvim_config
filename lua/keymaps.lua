@@ -98,6 +98,8 @@ vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
 vim.keymap.set('n', '<leader>tS', '<cmd>lua vim.g.autoformat = not vim.g.autoformat<cr>', { desc = 'Toggle autoformat' })
 
 vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal' })
-vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', {desc = 'Show Nvim Messages'})
+vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', { desc = 'Show Nvim Messages' })
 
-vim.keymap.set({'n', 'i'}, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {desc = 'Show Signature'})
+vim.keymap.set({ 'n', 'i' }, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = 'Show Signature' })
+
+vim.keymap.set({ 'n' }, '<leader>gp', '<cmd>!git pull<cr>', { desc = 'Git Pull' })
