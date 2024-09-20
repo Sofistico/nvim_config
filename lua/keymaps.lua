@@ -102,4 +102,6 @@ vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', { desc = 'Show Nvim Messa
 
 vim.keymap.set({ 'n', 'i' }, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = 'Show Signature' })
 
-vim.keymap.set({ 'n' }, '<leader>gp', '<cmd>!git pull<cr>', { desc = 'Git Pull' })
+vim.keymap.set({ 'n' }, '<leader>gp', '<cmd>!git pull<cr>', { desc = 'Git Pull', silent = true })
+vim.keymap.set({ 'n' }, '<leader>gt', '<cmd>!git status<cr>', { desc = 'Git S[t]atus', silent = true })
+
