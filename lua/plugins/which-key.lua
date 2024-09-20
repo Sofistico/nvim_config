@@ -41,6 +41,7 @@ return {
         { '<leader>x', group = 'diagnostics' },
         { '<leader>n', group = 'notification' },
         { '<leader>r', group = '+refactoring' },
+        { '<leader>d', group = '+debug' },
         { '[', group = 'prev' },
         { ']', group = 'next' },
         { 'g', group = 'goto' },

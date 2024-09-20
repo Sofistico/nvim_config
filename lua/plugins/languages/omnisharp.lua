@@ -101,4 +101,19 @@ return {
       },
     },
   },
+  {
+    'iabdelkareem/csharp.nvim',
+    dependencies = {
+      'williamboman/mason.nvim', -- Required, automatically installs omnisharp
+      'mfussenegger/nvim-dap',
+      'Tastyep/structlog.nvim', -- Optional, but highly recommended for debugging
+    },
+    event = 'BufEnter *.cs',
+    config = function()
+      require('mason').setup() -- Mason setup must run before csharp, only if you want to use omnisharp
+      local cs = require 'csharp'
+      cs.setup()
+      vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp' })
+    end,
+  },
 }
