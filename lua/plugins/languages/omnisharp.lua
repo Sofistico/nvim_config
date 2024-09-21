@@ -112,7 +112,9 @@ return {
     config = function()
       require('mason').setup() -- Mason setup must run before csharp, only if you want to use omnisharp
       local cs = require 'csharp'
-      cs.setup()
+      cs.setup {
+        lsp = { enable = false },
+      }
       vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp' })
     end,
   },
