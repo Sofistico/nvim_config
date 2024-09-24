@@ -118,4 +118,24 @@ return {
       vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp' })
     end,
   },
+  {
+    'MoaidHathot/dotnet.nvim',
+    event = 'BufEnter *.cs',
+    cmd = 'DotnetUI',
+    keys = {
+      { '<leader>cn', '<cmd>DotnetUI new_item<cr>', desc = 'New Dotnet item', silent = true },
+      {
+        '<leader>cN',
+        '<cmd>DotnetUI file bootstrap<cr>',
+        desc = 'Bootstrap new file',
+        silent = true,
+      },
+      {
+        '<leader>cp',
+        '<cmd>DotnetUI project package add<cr>',
+        desc = 'Add new nuget package',
+        silent = true,
+      },
+    },
+  },
 }
