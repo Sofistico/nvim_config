@@ -120,7 +120,6 @@ return {
   },
   {
     'MoaidHathot/dotnet.nvim',
-    event = 'BufEnter *.cs',
     cmd = 'DotnetUI',
     keys = {
       { '<leader>cn', '<cmd>DotnetUI new_item<cr>', desc = 'New Dotnet item', silent = true },
