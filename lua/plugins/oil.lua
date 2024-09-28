@@ -29,7 +29,17 @@ return {
       ['<C-k>'] = 'actions.select',
     },
   },
+  -- config = function ()
+  --   require("oil").setup()
+  -- end,
   keys = {
     { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
+    {
+      '<leader>_',
+      function()
+        require('oil').toggle_float()
+      end,
+      desc = 'Open floating parent direc',
+    },
   },
 }
