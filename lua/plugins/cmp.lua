@@ -30,6 +30,7 @@ return {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
+
           -- table.insert(cmp.sources, { name = 'luasnip' }),
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
@@ -98,6 +99,13 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
         },
+        formatting = {
+          format = function (_, list)
+            local icons = require('local-icons')
+            list.kind = (icons.kinds[list.kind] or 'Foo') .. list.kind
+            return list
+          end,
+        }
       }
     end,
   },

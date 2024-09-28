@@ -9,6 +9,9 @@
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+
+local lazy_options = require 'lazy-config'
+
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   -- NOTE: Plugins can also be added by using a table,
@@ -16,30 +19,6 @@ require('lazy').setup({
   -- keys can be used to configure plugin behavior/loading/etc.
   --
   -- Use `opts = {}` to force a plugin to be loaded.
-  --
-
-  -- modular approach: using `require 'path/name'` will
-  -- include a plugin definition from file lua/path/name.lua
-  --
-  -- require 'plugins/gitsigns',
-  --
-  -- require 'plugins/which-key',
-  --
-  -- require 'plugins/telescope',
-  --
-  -- require 'plugins/lspconfig',
-  --
-  -- require 'plugins/conform',
-  --
-  -- require 'plugins/cmp',
-  --
-  -- require 'plugins/tokyonight',
-  --
-  -- require 'plugins/todo-comments',
-  --
-  -- require 'plugins/mini',
-  --
-  -- require 'plugins/treesitter',
 
   { import = 'plugins' },
   { import = 'plugins/languages' },
@@ -59,85 +38,6 @@ require('lazy').setup({
       },
     },
   },
-}, {
-  ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-      dap = {
-        Stopped = { '󰁕 ', 'DiagnosticWarn', 'DapStoppedLine' },
-        Breakpoint = ' ',
-        BreakpointCondition = ' ',
-        BreakpointRejected = { ' ', 'DiagnosticError' },
-        LogPoint = '.>',
-      },
-      diagnostics = {
-        Error = ' ',
-        Warn = ' ',
-        Hint = ' ',
-        Info = ' ',
-      },
-      git = {
-        added = ' ',
-        modified = ' ',
-        removed = ' ',
-      },
-      kinds = {
-        Array = ' ',
-        Boolean = '󰨙 ',
-        Class = ' ',
-        Codeium = '󰘦 ',
-        Color = ' ',
-        Control = ' ',
-        Collapsed = ' ',
-        Constant = '󰏿 ',
-        Constructor = ' ',
-        Copilot = ' ',
-        Enum = ' ',
-        EnumMember = ' ',
-        Event = ' ',
-        Field = ' ',
-        File = ' ',
-        Folder = ' ',
-        Function = '󰊕 ',
-        Interface = ' ',
-        Key = ' ',
-        Keyword = ' ',
-        Method = '󰊕 ',
-        Module = ' ',
-        Namespace = '󰦮 ',
-        Null = ' ',
-        Number = '󰎠 ',
-        Object = ' ',
-        Operator = ' ',
-        Package = ' ',
-        Property = ' ',
-        Reference = ' ',
-        Snippet = ' ',
-        String = ' ',
-        Struct = '󰆼 ',
-        TabNine = '󰏚 ',
-        Text = ' ',
-        TypeParameter = ' ',
-        Unit = ' ',
-        Value = ' ',
-        Variable = '󰀫 ',
-      },
-    },
-  },
-})
+}, lazy_options)
 
 -- vim: ts=2 sts=2 sw=2 et
