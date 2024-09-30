@@ -119,7 +119,7 @@ return {
     event = 'BufAdd',
     lazy = true,
     opts = {
-      max_lines = 3,
+      max_lines = 6,
     },
     keys = {
       {
