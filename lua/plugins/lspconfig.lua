@@ -234,6 +234,8 @@ return {
             },
             RoslynExtensionsOptions = {
               EnableImportCompletion = true,
+              -- Enables support for roslyn analyzers, code fixes and rulesets.
+              EnableAnalyzersSupport = true,
             },
           },
           enable_roslyn_analyzers = true,

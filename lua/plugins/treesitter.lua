@@ -118,6 +118,9 @@ return {
     'nvim-treesitter/nvim-treesitter-context',
     event = 'BufAdd',
     lazy = true,
+    opts = {
+      max_lines = 3,
+    },
     keys = {
       {
         '[t',
