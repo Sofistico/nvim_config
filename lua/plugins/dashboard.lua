@@ -11,9 +11,9 @@ return {
             enable = true,
           },
           shortcut = {
-            { icon = '󰊳 ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
+            { icon = '󰚰 ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
             {
-              icon = ' ',
+              icon = ' ',
               icon_hl = '@variable',
               desc = 'Files',
               group = 'Label',
@@ -29,7 +29,7 @@ return {
               key = 'g',
             },
             {
-              icon = ' ',
+              icon = ' ',
               icon_hl = '@variable',
               desc = 'Config',
               group = 'Number',
@@ -49,13 +49,8 @@ return {
               action = 'Lazy',
               key = 'l',
             },
-            { desc = 'Quit', group = '@property', action = 'q', key = 'q' },
+            { icon = '󰿅 ', desc = 'Quit', group = '@property', action = 'q', key = 'q' },
           },
-          -- footer = function()
-          --   local stats = require('lazy').stats()
-          --   local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          --   return { '⚡ Neovim loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms' }
-          -- end,
         },
       }
     end,
