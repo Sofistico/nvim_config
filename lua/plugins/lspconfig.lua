@@ -86,6 +86,7 @@ return {
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          -- map('<F12>', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition', {'n', 'i'})
 
           -- Find references for the word under your cursor.
           map('gr', function()
@@ -206,7 +207,6 @@ return {
         -- But for many setups, the LSP (`tsserver`) will work just fine
         -- tsserver = {},
         --
-
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -224,10 +224,22 @@ return {
         omnisharp = {
           handlers = {
             ['textDocument/definition'] = require('omnisharp_extended').handler,
+            ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
+            ['textDocument/references'] = require('omnisharp_extended').references_handler,
+            ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
+          },
+          settings = {
+            FormattingOptions = {
+              OrganizeImports = true,
+            },
+            RoslynExtensionsOptions = {
+              EnableImportCompletion = true,
+            },
           },
           enable_roslyn_analyzers = true,
           organize_imports_on_format = true,
           enable_import_completion = true,
+          enable_decompilation_support = true,
         },
       }
 
@@ -247,6 +259,11 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = true,
+        lineFoldingOnly = true,
+      }
+
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
@@ -259,17 +276,13 @@ return {
           end,
         },
       }
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      }
-      local language_servers = require('lspconfig').util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-      for _, ls in ipairs(language_servers) do
-        require('lspconfig')[ls].setup {
-          capabilities = capabilities,
-          -- you can add other fields for setting up lsp server in this table
-        }
-      end
+      -- local language_servers = require('lspconfig').util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+      -- for _, ls in ipairs(language_servers) do
+      --   require('lspconfig')[ls].setup {
+      --     capabilities = capabilities,
+      --     -- you can add other fields for setting up lsp server in this table
+      --   }
+      -- end
     end,
   },
 }

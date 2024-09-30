@@ -5,11 +5,20 @@ return {
     event = 'BufEnter *.cs',
     keys = {
       {
+        '<F12>',
+        function()
+          require('omnisharp_extended').telescope_lsp_definitions()
+        end,
+        desc = 'Goto Definition in Origin',
+        mode = { 'n', 'i' },
+      },
+      {
         'go',
         function()
           require('omnisharp_extended').telescope_lsp_definitions()
         end,
         desc = 'Goto Definition in Origin',
+        mode = { 'n', 'i' },
       },
     },
   },
@@ -109,9 +118,9 @@ return {
       'Tastyep/structlog.nvim', -- Optional, but highly recommended for debugging
     },
     event = 'BufEnter *.cs',
-    opts = {
-      lsp = { enable = false },
-    },
+    -- opts = {
+    --   lsp = { enable = false },
+    -- },
     -- config = function()
     --   require('mason').setup() -- Mason setup must run before csharp, only if you want to use omnisharp
     --   local cs = require 'csharp'
