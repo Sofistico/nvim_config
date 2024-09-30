@@ -82,7 +82,6 @@ return {
     'windwp/nvim-ts-autotag',
     event = 'BufEnter *.*html',
     lazy = true,
-    opts = {},
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -114,6 +113,20 @@ return {
         end
       end
     end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    event = 'BufAdd',
+    lazy = true,
+    keys = {
+      {
+        '[t',
+        function()
+          require('treesitter-context').go_to_context(vim.v.count1)
+        end,
+        desc = 'Go to context',
+      },
+    },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
