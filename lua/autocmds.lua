@@ -2,8 +2,19 @@ require('nvim-treesitter.install').compilers = { 'clang' }
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = { '*.cs' },
-  command = 'comp dotnet',
+  callback = function()
+    vim.cmd 'comp dotnet'
+
+    local cs = require 'csharp'
+
+    vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp', buffer = true })
+
+    vim.keymap.set('n', '<leader>cn', '<cmd>DotnetUI new_item<cr>', { desc = 'New Dotnet item', silent = true, buffer = true })
+    vim.keymap.set('n', '<leader>cN', '<cmd>DotnetUI file bootstrap<cr>', { desc = 'Bootstrap new file', silent = true, buffer = true })
+    vim.keymap.set('n', '<leader>cp', '<cmd>DotnetUI project package add<cr>', { desc = 'Add new nuget package', silent = true, buffer = true })
+  end,
 })
+
 local function augroup(name)
   return vim.api.nvim_create_augroup('kickstart_' .. name, { clear = true })
 end
