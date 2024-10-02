@@ -1,4 +1,4 @@
-require('nvim-treesitter.install').compilers = { 'clang' }
+--require('nvim-treesitter.install').compilers = { 'clang' }
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = { '*.cs' },
