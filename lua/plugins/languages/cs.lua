@@ -133,7 +133,11 @@ return {
   {
     'MoaidHathot/dotnet.nvim',
     event = 'BufEnter *.cs',
-    opts = { auto_bootstrap = false },
+    opts = {
+      bootstrap = {
+        auto_bootstrap = false, -- Automatically call "bootstrap" when creating a new file, adding a namespace and a class to the files
+      },
+    },
     -- keys = {
     --   { '<leader>cn', '<cmd>DotnetUI new_item<cr>', desc = 'New Dotnet item', silent = true },
     --   {
