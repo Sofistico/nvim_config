@@ -16,7 +16,7 @@ return {
         end,
         desc = 'Save Oil Buffer',
       },
-      ['<leader>sf'] = {
+      ['<leader>sF'] = {
         function()
           require('telescope.builtin').find_files {
             cwd = require('oil').get_current_dir(),
