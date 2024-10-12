@@ -118,9 +118,9 @@ return {
       'Tastyep/structlog.nvim', -- Optional, but highly recommended for debugging
     },
     event = 'BufEnter *.cs',
-    -- opts = {
-    --   lsp = { enable = false },
-    -- },
+    opts = {
+      lsp = { enable = false },
+    },
     -- config = function()
     --   require('mason').setup() -- Mason setup must run before csharp, only if you want to use omnisharp
     --   local cs = require 'csharp'
@@ -138,20 +138,5 @@ return {
         auto_bootstrap = false, -- Automatically call "bootstrap" when creating a new file, adding a namespace and a class to the files
       },
     },
-    -- keys = {
-    --   { '<leader>cn', '<cmd>DotnetUI new_item<cr>', desc = 'New Dotnet item', silent = true },
-    --   {
-    --     '<leader>cN',
-    --     '<cmd>DotnetUI file bootstrap<cr>',
-    --     desc = 'Bootstrap new file',
-    --     silent = true,
-    --   },
-    --   {
-    --     '<leader>cp',
-    --     '<cmd>DotnetUI project package add<cr>',
-    --     desc = 'Add new nuget package',
-    --     silent = true,
-    --   },
-    -- },
   },
 }
