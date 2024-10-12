@@ -7,6 +7,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
     local cs = require 'csharp'
 
+    vim.keymap.set('n', '<C-F5>', cs.run_project, { desc = 'Run csharp', buffer = true })
     vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp', buffer = true })
 
     vim.keymap.set('n', '<leader>cn', '<cmd>DotnetUI new_item<cr>', { desc = 'New Dotnet item', silent = true, buffer = true })
