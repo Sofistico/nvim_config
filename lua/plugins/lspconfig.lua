@@ -113,6 +113,7 @@ return {
 
           map('<leader>cc', vim.lsp.codelens.run, 'Run [c]odelens', { 'n', 'v' })
           map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh e Display [C]odelens')
+          -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
           map('<leader>cR', vim.lsp.util.rename, '[R]ename File')
           --
           -- Rename the variable under your cursor.
