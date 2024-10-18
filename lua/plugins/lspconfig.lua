@@ -161,14 +161,11 @@ return {
           -- code, if the language server you are using supports them
           --
           -- This may be unwanted, since they displace some of your code
-          -- if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          --   map('<leader>th', function()
-          --     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          --   end, '[T]oggle Inlay [H]ints')
-          -- end
-          map('<leader>th', function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, '[T]oggle Inlay [H]ints')
+          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            map('<leader>th', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            end, '[T]oggle Inlay [H]ints')
+          end
 
           --- Guard against servers without the signatureHelper capability
           if client.server_capabilities.signatureHelpProvider then

@@ -6,16 +6,6 @@ return {
     lazy = true,
     event = 'VeryLazy',
     config = function()
-      -- Better Around/Inside textobjects
-      --
-
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      -- require('mini.surround').setup()
-
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
@@ -90,6 +80,25 @@ return {
         return package.loaded['nvim-web-devicons']
       end
     end,
+  },
+  {
+    'echasnovski/mini.surround',
+    lazy = true,
+    event = 'BufAdd',
+    opts = {
+      mappings = {
+        add = 'gsa', -- Add surrounding in Normal and Visual modes
+        delete = 'gsd', -- Delete surrounding
+        find = 'gsf', -- Find surrounding (to the right)
+        find_left = 'gsF', -- Find surrounding (to the left)
+        highlight = 'gsh', -- Highlight surrounding
+        replace = 'gsr', -- Replace surrounding
+        update_n_lines = 'gsn', -- Update `n_lines`
+
+        suffix_last = 'l', -- Suffix to search with "prev" method
+        suffix_next = 'n', -- Suffix to search with "next" method
+      },
+    },
   },
   { 'MunifTanjim/nui.nvim', lazy = true },
 }
