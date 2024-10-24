@@ -234,6 +234,9 @@ return {
           settings = {
             FormattingOptions = {
               OrganizeImports = true,
+              -- Enables support for reading code style, naming convention and analyzer
+              -- settings from .editorconfig.
+              EnableEditorConfigSupport = true,
             },
             RoslynExtensionsOptions = {
               EnableImportCompletion = true,
