@@ -78,6 +78,35 @@ return {
       end,
       desc = 'Debug: See last session result.',
     },
+    {
+      '<leader>dp',
+      function()
+        require('dap').pause()
+      end,
+      desc = 'Pause',
+    },
+    {
+      '<leader>dt',
+      function()
+        require('dap').terminate()
+      end,
+      desc = 'Terminate',
+    },
+    {
+      '<leader>de',
+      function()
+        require('dapui').eval()
+      end,
+      desc = 'Eval',
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>du',
+      function()
+        require('dapui').toggle {}
+      end,
+      desc = 'Dap UI',
+    },
   },
   config = function()
     local dap = require 'dap'
