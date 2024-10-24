@@ -107,6 +107,48 @@ return {
       end,
       desc = 'Dap UI',
     },
+    {
+      '<leader>dc',
+      function()
+        require('dap').clear_breakpoints()
+      end,
+      desc = 'Clear Breakpoints',
+    },
+    {
+      '<leader>dl',
+      function()
+        require('dap').list_breakpoints()
+      end,
+      desc = 'List Breakpoints',
+    },
+    {
+      '<leader>dk',
+      function()
+        require('dap').up()
+      end,
+      desc = 'Up Stacktrace',
+    },
+    {
+      '<leader>dj',
+      function()
+        require('dap').down()
+      end,
+      desc = 'Down Stacktrace',
+    },
+    {
+      '<leader>dg',
+      function()
+        require('dap').goto_()
+      end,
+      desc = 'Goto Line in Debug (skip)',
+    },
+    {
+      '<leader>dC',
+      function()
+        require('dap').run_to_cursor()()
+      end,
+      desc = 'Continue to cursor in Debug (execute)',
+    },
   },
   config = function()
     local dap = require 'dap'
