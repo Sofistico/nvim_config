@@ -16,17 +16,7 @@ return -- snippets
     },
     config = function()
       require('refactoring').setup {}
-      -- vim.keymap.set('x', '<leader>re', ':Refactor extract ')
-      -- vim.keymap.set('x', '<leader>rf', ':Refactor extract_to_file ')
-      --
-      -- vim.keymap.set('x', '<leader>rv', ':Refactor extract_var ')
-      --
-      -- vim.keymap.set({ 'n', 'x' }, '<leader>ri', ':Refactor inline_var')
-      --
-      -- vim.keymap.set('n', '<leader>rI', ':Refactor inline_func')
-      --
-      -- vim.keymap.set('n', '<leader>rb', ':Refactor extract_block')
-      -- vim.keymap.set('n', '<leader>rbf', ':Refactor extract_block_to_file')
+      require("telescope").load_extension("refactoring")
     end,
     keys = {
       { '<leader>re', ':Refactor extract ', desc = 'Extract' },
@@ -36,6 +26,14 @@ return -- snippets
       { '<leader>rI', ':Refactor inline_func', desc = 'Inline Function' },
       { '<leader>rb', ':Refactor extract_block', desc = 'Extract Block' },
       { '<leader>rbf', ':Refactor extract_block_to_file', desc = 'Extract Block to File' },
+      {
+        '<leader>rr',
+        function()
+          require('telescope').extensions.refactoring.refactors()
+        end,
+        desc = 'Refactor Select',
+        mode = { 'n', 'x' },
+      },
     },
   },
 }
