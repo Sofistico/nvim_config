@@ -31,8 +31,6 @@ return {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end,
-
-          -- table.insert(cmp.sources, { name = 'luasnip' }),
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
 

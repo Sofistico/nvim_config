@@ -18,6 +18,8 @@ return {
       end,
     }
     table.insert(opts.sources, { name = 'snippets' })
+    local cmp = require 'cmp'
+    table.insert(cmp.sources, { name = 'luasnip' })
   end,
   keys = {
     {
