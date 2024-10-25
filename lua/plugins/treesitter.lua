@@ -119,6 +119,7 @@ return {
     event = 'BufAdd',
     lazy = true,
     opts = {
+      mode = 'cursor',
       max_lines = 6,
     },
     keys = {
