@@ -16,7 +16,7 @@ return -- snippets
     },
     config = function()
       require('refactoring').setup {}
-      require("telescope").load_extension("refactoring")
+      require('telescope').load_extension 'refactoring'
     end,
     keys = {
       { '<leader>re', ':Refactor extract ', desc = 'Extract' },
@@ -33,6 +33,53 @@ return -- snippets
         end,
         desc = 'Refactor Select',
         mode = { 'n', 'x' },
+      },
+    },
+  },
+  {
+    'rmagatti/goto-preview',
+    lazy = true,
+    config = true,
+    keys = {
+      {
+        '<leader>pd',
+        function()
+          require('goto-preview').goto_preview_definition()
+        end,
+        desc = 'Preview Definition',
+        silent = true,
+      },
+      {
+        '<leader>pt',
+        function()
+          require('goto-preview').goto_preview_type_definition()
+        end,
+        desc = 'Preview Type Definition',
+        silent = true,
+      },
+      {
+        '<leader>pi',
+        function()
+          require('goto-preview').goto_preview_type_definition()
+        end,
+        desc = 'Preview Implementation',
+        silent = true,
+      },
+      {
+        '<leader>pr',
+        function()
+          require('goto-preview').goto_preview_references()
+        end,
+        desc = 'Preview References',
+        silent = true,
+      },
+      {
+        '<leader>pc',
+        function()
+          require('goto-preview').close_all_win()
+        end,
+        desc = 'Close Previews',
+        silent = true,
       },
     },
   },
