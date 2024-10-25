@@ -48,6 +48,7 @@ return {
         { 'g', group = 'goto' },
         { 'gs', group = 'surround' },
         { 'z', group = 'fold' },
+        { 'gq', group = 'Builtin Formatter' },
       },
       icons = {
         rules = {
