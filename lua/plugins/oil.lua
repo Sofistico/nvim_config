@@ -10,9 +10,9 @@ return {
       show_hidden = true,
     },
     lsp_file_methods = {
-      enabled = true,
-      timeout_ms = 300,
-      autosave_changes = true,
+      enabled = false,
+      -- timeout_ms = 300,
+      -- autosave_changes = true,
     },
     keymaps = {
       ['gw'] = {
