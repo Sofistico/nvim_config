@@ -26,19 +26,19 @@ return {
     'nvim-treesitter/nvim-treesitter',
     opts = { ensure_installed = { 'c_sharp' } },
   },
-  {
-    -- this is something that in csharp is not working as expected, need to rework this configs
-    'nvimtools/none-ls.nvim',
-    optional = true,
-    lazy = true,
-    -- cmd = 'StartNone',
-    event = 'BufEnter *.cs',
-    opts = function(_, opts)
-      local nls = require 'null-ls'
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, nls.builtins.formatting.csharpier)
-    end,
-  },
+  -- {
+  --   -- this is something that in csharp is not working as expected, need to rework this configs
+  --   'nvimtools/none-ls.nvim',
+  --   optional = true,
+  --   lazy = true,
+  --   -- cmd = 'StartNone',
+  --   event = 'BufEnter *.cs',
+  --   opts = function(_, opts)
+  --     local nls = require 'null-ls'
+  --     opts.sources = opts.sources or {}
+  --     table.insert(opts.sources, nls.builtins.formatting.csharpier)
+  --   end,
+  -- },
   {
     'stevearc/conform.nvim',
     optional = true,
