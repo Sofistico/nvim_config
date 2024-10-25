@@ -42,7 +42,7 @@ return -- snippets
     config = true,
     keys = {
       {
-        '<leader>pd',
+        'gpd',
         function()
           require('goto-preview').goto_preview_definition()
         end,
@@ -50,7 +50,7 @@ return -- snippets
         silent = true,
       },
       {
-        '<leader>pt',
+        'gpt',
         function()
           require('goto-preview').goto_preview_type_definition()
         end,
@@ -58,7 +58,7 @@ return -- snippets
         silent = true,
       },
       {
-        '<leader>pi',
+        'gpi',
         function()
           require('goto-preview').goto_preview_type_definition()
         end,
@@ -66,7 +66,7 @@ return -- snippets
         silent = true,
       },
       {
-        '<leader>pr',
+        'gpr',
         function()
           require('goto-preview').goto_preview_references()
         end,
@@ -74,7 +74,7 @@ return -- snippets
         silent = true,
       },
       {
-        '<leader>pc',
+        'gpc',
         function()
           require('goto-preview').close_all_win()
         end,

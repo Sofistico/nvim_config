@@ -42,7 +42,7 @@ return {
         { '<leader>n', group = 'notification' },
         { '<leader>r', group = '+refactoring' },
         { '<leader>d', group = '+debug' },
-        { '<leader>p', group = 'preview' },
+        { 'gp', group = 'preview' },
         { '[', group = 'prev' },
         { ']', group = 'next' },
         { 'g', group = 'goto' },
