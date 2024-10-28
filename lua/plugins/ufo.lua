@@ -2,11 +2,6 @@ return {
   {
     'kevinhwang91/nvim-ufo',
     event = 'BufAdd',
-    -- opts = {
-    --   provider_selector = function(bufnr, filetype, buftype)
-    --     return { 'treesitter', 'indent' }
-    --   end,
-    -- },
     dependencies = 'kevinhwang91/promise-async',
     keys = {
       {
@@ -72,8 +67,5 @@ return {
         return { 'lsp', 'indent' }
       end,
     },
-    -- keys={
-    --   {'n', 'zR', }
-    -- }
   },
 }

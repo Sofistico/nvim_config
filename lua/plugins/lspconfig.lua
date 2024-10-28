@@ -38,6 +38,7 @@ return {
     },
     keys = {
       { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
+      { '<leader>tl', '<cmd>LspRestart<cr>', desc = 'Restart Lsp' },
     },
     config = function()
       -- Brief aside: **What is LSP?**

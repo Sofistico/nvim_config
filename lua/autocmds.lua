@@ -1,5 +1,3 @@
---require('nvim-treesitter.install').compilers = { 'clang' }
-
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = { '*.cs' },
   callback = function()
@@ -20,6 +18,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 local function augroup(name)
   return vim.api.nvim_create_augroup('kickstart_' .. name, { clear = true })
 end
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup 'close_with_q',
@@ -85,6 +84,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ':p:h'), 'p')
   end,
 })
+
 vim.filetype.add {
   pattern = {
     ['.*'] = {
