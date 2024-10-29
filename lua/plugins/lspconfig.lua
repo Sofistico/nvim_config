@@ -171,12 +171,6 @@ return {
           --- Guard against servers without the signatureHelper capability
           if client.server_capabilities.signatureHelpProvider then
             require('lsp-overloads').setup(client, {})
-            -- vim.api.nvim_set_keymap(
-            --   { 'i', 'n' },
-            --   '<A-i>',
-            --   '<cmd>LspOverloadsSignature<CR>',
-            --   { noremap = true, silent = true, buffer = event.buf, desc = 'Show Signature' }
-            -- )
             -- vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', {desc = 'Toggle Lsp Signature Auto'})
           end
         end,
@@ -285,13 +279,6 @@ return {
           end,
         },
       }
-      -- local language_servers = require('lspconfig').util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-      -- for _, ls in ipairs(language_servers) do
-      --   require('lspconfig')[ls].setup {
-      --     capabilities = capabilities,
-      --     -- you can add other fields for setting up lsp server in this table
-      --   }
-      -- end
     end,
   },
 }
