@@ -170,8 +170,18 @@ return {
 
           --- Guard against servers without the signatureHelper capability
           if client.server_capabilities.signatureHelpProvider then
-            require('lsp-overloads').setup(client, {})
-            -- vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', {desc = 'Toggle Lsp Signature Auto'})
+            require('lsp-overloads').setup(client, {
+              keymaps = {
+                close_signature = '<A-i>',
+              },
+            })
+            vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', { desc = 'Toggle Lsp Signature Auto' })
+            vim.keymap.set(
+              { 'i', 'n' },
+              '<A-i>',
+              '<cmd>LspOverloadsSignature<CR>',
+              { noremap = true, buffer = event.buf, desc = 'Show Signature' }
+            )
           end
         end,
       })
