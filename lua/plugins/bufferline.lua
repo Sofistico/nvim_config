@@ -19,7 +19,7 @@ return {
     },
     opts = {
       options = {
-        diagnostics = 'nvim_lsp',
+        diagnostics = false,
         always_show_bufferline = false,
         diagnostics_indicator = function(_, _, diag)
           local icons = require('local-icons').diagnostics

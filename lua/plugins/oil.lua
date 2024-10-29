@@ -9,11 +9,11 @@ return {
     view_options = {
       show_hidden = true,
     },
-    lsp_file_methods = nil,
-    --   enabled = false,
-    --   -- timeout_ms = 300,
-    --   -- autosave_changes = true,
-    -- },
+    lsp_file_methods = {
+      enabled = false,
+      timeout_ms = 1,
+      -- autosave_changes = true,
+    },
     keymaps = {
       ['gw'] = {
         function()
