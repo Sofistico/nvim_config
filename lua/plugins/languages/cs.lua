@@ -22,10 +22,6 @@ return {
       },
     },
   },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    opts = { ensure_installed = { 'c_sharp' } },
-  },
   -- {
   --   -- this is something that in csharp is not working as expected, need to rework this configs
   --   'nvimtools/none-ls.nvim',
@@ -54,10 +50,6 @@ return {
         },
       },
     },
-  },
-  {
-    'williamboman/mason.nvim',
-    opts = { ensure_installed = { 'csharpier', 'netcoredbg', 'omnisharp' } },
   },
   {
     'mfussenegger/nvim-dap',
