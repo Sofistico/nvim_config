@@ -100,7 +100,7 @@ vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', '
 
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
-if vim.fn.has 'win32' then
+if vim.fn.has 'win32' == 1 then
   vim.cmd 'language en_US'
 end
 
