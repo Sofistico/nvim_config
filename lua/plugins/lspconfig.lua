@@ -265,7 +265,7 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed, automatic_installation = true, }
 
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = true,
@@ -284,7 +284,6 @@ return {
           end,
         },
         automatic_installation = true,
-        ensure_installed = ensure_installed
       }
     end,
   },
