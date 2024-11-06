@@ -3,24 +3,6 @@ return {
     'Hoffs/omnisharp-extended-lsp.nvim',
     lazy = true,
     event = 'BufEnter *.cs',
-    keys = {
-      {
-        '<F12>',
-        function()
-          require('omnisharp_extended').telescope_lsp_definitions()
-        end,
-        desc = 'Goto Definition in Origin',
-        mode = { 'n', 'i' },
-      },
-      {
-        'go',
-        function()
-          require('omnisharp_extended').telescope_lsp_definitions()
-        end,
-        desc = 'Goto Definition in Origin',
-        mode = { 'n', 'i' },
-      },
-    },
   },
   -- {
   --   -- this is something that in csharp is not working as expected, need to rework this configs

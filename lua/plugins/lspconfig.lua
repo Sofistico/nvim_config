@@ -1,5 +1,5 @@
 -- LSP Plugins
-local self_init = require 'util.self_init'
+local server_keys = require("util.self_lsp")
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -70,6 +70,7 @@ return {
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -80,14 +81,13 @@ return {
           -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
-            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-          -- map('<F12>', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition', {'n', 'i'})
 
           -- Find references for the word under your cursor.
           map('gr', function()
@@ -135,48 +135,63 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-              buffer = event.buf,
-              group = highlight_augroup,
-              callback = vim.lsp.buf.document_highlight,
-            })
+          if client then
+            if client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+              local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+              vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+                buffer = event.buf,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.document_highlight,
+              })
 
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf,
-              group = highlight_augroup,
-              callback = vim.lsp.buf.clear_references,
-            })
+              vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                buffer = event.buf,
+                group = highlight_augroup,
+                callback = vim.lsp.buf.clear_references,
+              })
 
-            vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
-              callback = function(event2)
-                vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
-              end,
-            })
-          end
+              vim.api.nvim_create_autocmd('LspDetach', {
+                group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+                callback = function(event2)
+                  vim.lsp.buf.clear_references()
+                  vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                end,
+              })
+            end
 
-          -- The following code creates a keymap to toggle inlay hints in your
-          -- code, if the language server you are using supports them
-          --
-          -- This may be unwanted, since they displace some of your code
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
-          end
+            -- The following code creates a keymap to toggle inlay hints in your
+            -- code, if the language server you are using supports them
+            --
+            -- This may be unwanted, since they displace some of your code
+            if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+              map('<leader>th', function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              end, '[T]oggle Inlay [H]ints')
+            end
 
-          --- Guard against servers without the signatureHelper capability
-          if client.server_capabilities.signatureHelpProvider then
-            require('lsp-overloads').setup(client, {
-              keymaps = {
-                close_signature = '<A-i>',
-              },
-            })
-            vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', { desc = 'Toggle Lsp Signature Auto' })
-            vim.keymap.set({ 'i', 'n' }, '<A-i>', '<cmd>LspOverloadsSignature<CR>', { noremap = true, buffer = event.buf, desc = 'Show Signature' })
+            --- Guard against servers without the signatureHelper capability
+            if client.server_capabilities.signatureHelpProvider then
+              require('lsp-overloads').setup(client, {
+                keymaps = {
+                  close_signature = '<A-i>',
+                },
+              })
+              vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', { desc = 'Toggle Lsp Signature Auto' })
+              vim.keymap.set({ 'i', 'n' }, '<A-i>', '<cmd>LspOverloadsSignature<CR>', { noremap = true, buffer = event.buf, desc = 'Show Signature' })
+            end
+
+            if server_keys[client.name] ~= nil then
+              local keys = server_keys[client.name]
+              for _, k in ipairs(keys) do
+                if type(k.key) == 'table' then
+                  for _, kl in ipairs(k.key) do
+                    map(kl, k.func, k.desc, k.mode)
+                  end
+                else
+                  map(k.key, k.func, k.desc, k.mode)
+                end
+              end
+            end
           end
         end,
       })
@@ -265,7 +280,7 @@ return {
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed, automatic_installation = true, }
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed, automatic_installation = true }
 
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = true,
