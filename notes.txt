@@ -1,0 +1,11 @@
+future plugins to implement:
+	- toggleterm
+	- guess-indent.nvim
+	- neural (Maybe)
+	- dooku.nvim
+	- vim-fugitive
+	- render-markdown.nvim
+	- dressing.nvim
+	- nvim-lightbulb
+	- kulala.nvim
+	- better-escape.nvim
