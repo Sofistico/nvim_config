@@ -32,6 +32,7 @@ return {
         desc = 'Find files in the current oil directory',
       },
       ['<C-k>'] = 'actions.select',
+      ['gS'] = 'actions.change_sort',
     },
   },
   -- config = function ()
