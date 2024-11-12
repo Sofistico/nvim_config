@@ -177,7 +177,7 @@ return {
                 },
               })
               vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', { desc = 'Toggle Lsp Signature Auto' })
-              vim.keymap.set({ 'i', 'n' }, '<A-i>', '<cmd>LspOverloadsSignature<CR>', { noremap = true, buffer = event.buf, desc = 'Show Signature' })
+              vim.keymap.set({ 'i', 'n' }, '<A-i>', '<cmd>LspOverloadsSignature<CR>', { noremap = true, buffer = event.buf, desc = 'Show Signature Overloads' })
             end
 
             if server_keys[client.name] ~= nil then
