@@ -2,7 +2,7 @@ return {
   {
     'Hoffs/omnisharp-extended-lsp.nvim',
     lazy = true,
-    event = 'BufEnter *.cs',
+    ft = 'cs'
   },
   -- {
   --   -- this is something that in csharp is not working as expected, need to rework this configs
@@ -92,7 +92,7 @@ return {
       'mfussenegger/nvim-dap',
       'Tastyep/structlog.nvim', -- Optional, but highly recommended for debugging
     },
-    event = 'BufEnter *.cs',
+    ft = 'cs',
     opts = {
       lsp = { enable = false },
     },
@@ -107,7 +107,7 @@ return {
   },
   {
     'MoaidHathot/dotnet.nvim',
-    event = 'BufEnter *.cs',
+    ft = 'cs',
     opts = {
       bootstrap = {
         auto_bootstrap = false, -- Automatically call "bootstrap" when creating a new file, adding a namespace and a class to the files
