@@ -82,5 +82,33 @@ return -- snippets
         silent = true,
       },
     },
+    -- Toggle floating terminal on <F7> [term]
+    -- https://github.com/akinsho/toggleterm.nvim
+    -- neovim bug → https://github.com/neovim/neovim/issues/21106
+    -- workarounds → https://github.com/akinsho/toggleterm.nvim/wiki/Mouse-support
+    -- {
+    --   'akinsho/toggleterm.nvim',
+    --   cmd = { 'ToggleTerm', 'TermExec' },
+    --   opts = {
+    --     highlights = {
+    --       Normal = { link = 'Normal' },
+    --       NormalNC = { link = 'NormalNC' },
+    --       NormalFloat = { link = 'Normal' },
+    --       FloatBorder = { link = 'FloatBorder' },
+    --       StatusLine = { link = 'StatusLine' },
+    --       StatusLineNC = { link = 'StatusLineNC' },
+    --       WinBar = { link = 'WinBar' },
+    --       WinBarNC = { link = 'WinBarNC' },
+    --     },
+    --     size = 10,
+    --     open_mapping = [[<F7>]],
+    --     shading_factor = 2,
+    --     direction = 'float',
+    --     float_opts = {
+    --       border = 'rounded',
+    --       highlights = { border = 'Normal', background = 'Normal' },
+    --     },
+    --   },
+    -- },
   },
 }
