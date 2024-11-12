@@ -1,6 +1,5 @@
 future plugins to implement:
 	- toggleterm
-	- guess-indent.nvim
 	- neural (Maybe)
 	- dooku.nvim
 	- vim-fugitive
