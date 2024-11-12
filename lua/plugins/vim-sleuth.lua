@@ -1,5 +1,6 @@
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   lazy = true,
-  event = 'BufAdd'
+  event = 'BufAdd',
+  opts = {},
 }
