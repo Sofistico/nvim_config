@@ -2,7 +2,7 @@ return {
   {
     'zeioth/garbage-day.nvim',
     dependencies = 'neovim/nvim-lspconfig',
-    event = 'BufAdd',
+    cmd = 'GarbageDay',
     lazy = true,
     opts = {
       -- your options here
