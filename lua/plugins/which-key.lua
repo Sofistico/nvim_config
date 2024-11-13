@@ -53,7 +53,7 @@ return {
       icons = {
         rules = {
           { pattern = 'home', icon = icon.house, color = 'blue' },
-          { pattern = 'refactoring', icon = icon.source, color = 'violet'},
+          { pattern = 'refactoring', icon = icon.init, color = 'violet'},
         },
       },
     },
