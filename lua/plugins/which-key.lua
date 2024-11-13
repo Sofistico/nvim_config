@@ -12,7 +12,7 @@
 -- Then, because we use the `config` key, the configuration only runs
 -- after the plugin has been loaded:
 --  config = function() ... end
-
+local icon = require('local-icons')
 return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
@@ -52,7 +52,8 @@ return {
       },
       icons = {
         rules = {
-          { pattern = 'home', icon = '', color = 'blue' },
+          { pattern = 'home', icon = icon.house, color = 'blue' },
+          { pattern = 'refactoring', icon = icon.source, color = 'violet'},
         },
       },
     },

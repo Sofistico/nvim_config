@@ -9,6 +9,7 @@ local M = {
   runtime = '💻',
   require = '🌙',
   source = '📄',
+  house = '',
   start = '🚀',
   task = '📌',
   lazy = '💤 ',
