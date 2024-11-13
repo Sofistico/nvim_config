@@ -4,7 +4,6 @@ future plugins to implement:
 	- dooku.nvim
 	- vim-fugitive
 	- render-markdown.nvim
-	- dressing.nvim
 	- nvim-lightbulb
 	- kulala.nvim
 	- better-escape.nvim
