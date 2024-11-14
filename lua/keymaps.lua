@@ -103,3 +103,5 @@ vim.keymap.set({ 'n', 'i' }, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>
 vim.keymap.set('i', '<C-k>', vim.lsp.buf.hover, { desc = 'Hover Info Insert' })
 
 vim.keymap.set('i', '<C-e>', '<C-o>de', { desc = 'Delete cursor after word', silent = true })
+
+vim.keymap.set('n', '<M-t>', '<cmd>tag<cr>', { desc = 'Move foward tag' })
