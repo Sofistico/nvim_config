@@ -19,13 +19,13 @@ return -- snippets
       require('telescope').load_extension 'refactoring'
     end,
     keys = {
-      { '<leader>re', ':Refactor extract ', desc = 'Extract' },
-      { '<leader>rf', ':Refactor extract_to_file ', desc = 'Extract to File' },
-      { '<leader>rv', ':Refactor extract_var ', desc = 'Extract Variable' },
-      { '<leader>ri', ':Refactor inline_var', desc = 'Inline Variable', mode = { 'n', 'x' } },
-      { '<leader>rI', ':Refactor inline_func', desc = 'Inline Function' },
-      { '<leader>rb', ':Refactor extract_block', desc = 'Extract Block' },
-      { '<leader>rbf', ':Refactor extract_block_to_file', desc = 'Extract Block to File' },
+      { '<leader>re', '<cmd>Refactor extract<CR>', desc = 'Extract', mode = { 'n', 'x' } },
+      { '<leader>rf', '<cmd>Refactor extract_to_file<CR>', desc = 'Extract to File', mode = { 'n', 'x' } },
+      { '<leader>rv', '<cmd>Refactor extract_var<CR>', desc = 'Extract Variable' },
+      { '<leader>ri', '<cmd>Refactor inline_var<CR>', desc = 'Inline Variable', mode = { 'n', 'x' } },
+      { '<leader>rI', '<cmd>Refactor inline_func<CR>', desc = 'Inline Function', mode = { 'n', 'x' } },
+      { '<leader>rb', '<cmd>Refactor extract_block<CR>', desc = 'Extract Block', mode = { 'n', 'x' } },
+      { '<leader>rB', '<cmd>Refactor extract_block_to_file<CR>', desc = 'Extract Block to File', mode = { 'n', 'x' } },
       {
         '<leader>rr',
         function()
