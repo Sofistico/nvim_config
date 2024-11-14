@@ -100,3 +100,5 @@ vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open T
 vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', { desc = 'Show Nvim Messages' })
 
 vim.keymap.set({ 'n', 'i' }, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = 'Show Signature' })
+
+vim.keymap.set('i', '<C-e>', '<C-o>de', { desc = 'Delete cursor after word', silent = true })
