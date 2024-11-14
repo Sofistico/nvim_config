@@ -88,6 +88,13 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
+          -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
+          map('<leader>cR', vim.lsp.util.rename, '[R]ename File')
+          --
+          -- Rename the variable under your cursor.
+          --  Most Language Servers support renaming across files, etc.
+          map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
+
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -176,15 +183,6 @@ return {
             if client.server_capabilities.codeLensProvider then
               map('<leader>cc', vim.lsp.codelens.run, 'Run [c]odelens', { 'n', 'v' })
               map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh e Display [C]odelens')
-            end
-
-            if client.server_capabilities.renameProvider then
-              -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
-              map('<leader>cR', vim.lsp.util.rename, '[R]ename File')
-              --
-              -- Rename the variable under your cursor.
-              --  Most Language Servers support renaming across files, etc.
-              map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
             end
 
             if client.server_capabilities.documentSymbolProvider then
