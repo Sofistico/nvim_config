@@ -1,5 +1,5 @@
 -- LSP Plugins
-local server_keys = require("util.self_lsp")
+local server_keys = require 'util.self_lsp'
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -84,51 +84,6 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          -- Jump to the definition of the word under your cursor.
-          --  This is where a variable was first declared, or where a function is defined, etc.
-          --  To jump back, press <C-t>.
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-
-          -- Find references for the word under your cursor.
-          map('gr', function()
-            require('telescope.builtin').lsp_references { layout_strategy = 'vertical', show_line = false }
-          end, '[G]oto [R]eferences')
-
-          -- Jump to the implementation of the word under your cursor.
-          --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('<C-F12>', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-
-          -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
-          --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-
-          -- Fuzzy find all the symbols in your current document.
-          --  Symbols are things like variables, functions, types, etc.
-          map('<leader>cs', require('telescope.builtin').lsp_document_symbols, 'Document [s]ymbols')
-
-          -- Fuzzy find all the symbols in your current workspace.
-          --  Similar to document symbols, except searches over your entire project.
-          map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
-
-          map('<leader>cc', vim.lsp.codelens.run, 'Run [c]odelens', { 'n', 'v' })
-          map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh e Display [C]odelens')
-          -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
-          map('<leader>cR', vim.lsp.util.rename, '[R]ename File')
-          --
-          -- Rename the variable under your cursor.
-          --  Most Language Servers support renaming across files, etc.
-          map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
-
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
-
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
-          --  For example, in C this would take you to the header.
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
@@ -178,6 +133,72 @@ return {
               })
               vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', { desc = 'Toggle Lsp Signature Auto' })
               vim.keymap.set({ 'i', 'n' }, '<A-i>', '<cmd>LspOverloadsSignature<CR>', { noremap = true, buffer = event.buf, desc = 'Show Signature Overloads' })
+            end
+
+            if client.server_capabilities.declarationProvider then
+              -- WARN: This is not Goto Definition, this is Goto Declaration.
+              --  For example, in C this would take you to the header.
+              map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+            end
+
+            if client.server_capabilities.referencesProvider then
+              -- Find references for the word under your cursor.
+              map('gr', function()
+                require('telescope.builtin').lsp_references { layout_strategy = 'vertical', show_line = false }
+              end, '[G]oto [R]eferences')
+            end
+
+            if client.server_capabilities.definitionProvider then
+              -- Jump to the definition of the word under your cursor.
+              --  This is where a variable was first declared, or where a function is defined, etc.
+              --  To jump back, press <C-t>.
+              map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+            end
+
+            if client.server_capabilities.implementationProvider then
+              -- Jump to the implementation of the word under your cursor.
+              --  Useful when your language has ways of declaring types without an actual implementation.
+              map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+              map('<C-F12>', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+            end
+
+            if client.server_capabilities.typeDefinitionProvider then
+              -- Jump to the type of the word under your cursor.
+              --  Useful when you're not sure what type a variable is and you want to see
+              --  the definition of its *type*, not where it was *defined*.
+              map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+            end
+
+            if client.server_capabilities.codeActionProvider then
+              -- Execute a code action, usually your cursor needs to be on top of an error
+              -- or a suggestion from your LSP for this to activate.
+              map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+            end
+
+            if client.server_capabilities.codeLensProvider then
+              map('<leader>cc', vim.lsp.codelens.run, 'Run [c]odelens', { 'n', 'v' })
+              map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh e Display [C]odelens')
+            end
+
+            if client.server_capabilities.renameProvider then
+              -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
+              map('<leader>cR', vim.lsp.util.rename, '[R]ename File')
+              --
+              -- Rename the variable under your cursor.
+              --  Most Language Servers support renaming across files, etc.
+              map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
+            end
+
+            if client.server_capabilities.documentSymbolProvider then
+              -- Fuzzy find all the symbols in your current document.
+              --  Symbols are things like variables, functions, types, etc.
+              map('<leader>cs', require('telescope.builtin').lsp_document_symbols, 'Document [s]ymbols')
+            end
+
+            if client.server_capabilities.workspaceSymbolProvider then
+              -- Fuzzy find all the symbols in your current workspace.
+              --  Similar to document symbols, except searches over your entire project.
+              map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
             end
 
             if server_keys[client.name] ~= nil then
