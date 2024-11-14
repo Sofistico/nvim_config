@@ -4,7 +4,25 @@ return {
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
-    opts = {},
+    opts = {
+      exclude = {
+        filetypes = {
+          'Trouble',
+          'alpha',
+          'dashboard',
+          'help',
+          'lazy',
+          'mason',
+          'neo-tree',
+          'notify',
+          'snacks_notif',
+          'snacks_terminal',
+          'snacks_win',
+          'toggleterm',
+          'trouble',
+        },
+      },
+    },
     event = 'BufAdd',
   },
 }
