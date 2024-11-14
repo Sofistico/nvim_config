@@ -84,6 +84,8 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
+          -- all general lsp commands go here:
+
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
@@ -94,6 +96,9 @@ return {
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
+
+          map('<A-i>', vim.lsp.buf.signature_help, 'Show Signature', { 'n', 'i' })
+          map('<C-k>', vim.lsp.buf.hover, 'Hover Info Insert', 'i')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
