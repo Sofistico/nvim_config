@@ -87,15 +87,16 @@ return {
         },
         sources = {
           -- { name = 'nvim_lsp_signature_help' },
-          { name = 'nvim_lsp' },
+          { name = 'nvim_lsp', priority = 9 },
           {
             name = 'lazydev',
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
             group_index = 0,
+            priority = 2,
           },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'nvim-lua' },
+          { name = 'luasnip', priority = 7 },
+          { name = 'path', priority = 5 },
+          { name = 'nvim-lua', priority = 1 },
         },
         formatting = {
           format = function(_, list)
@@ -103,6 +104,18 @@ return {
             list.kind = (icons.kinds[list.kind] or 'Foo') .. list.kind
             return list
           end,
+        },
+        sorting = {
+          priority_weight = 1.0,
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+            cmp.config.compare.kind,
+            cmp.config.compare.locality,
+            cmp.config.compare.order,
+            cmp.config.compare.recently_used,
+          },
         },
       }
     end,
