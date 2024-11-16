@@ -21,6 +21,16 @@ return {
               key = 'f',
             },
             {
+              icon = ' ',
+              icon_hl = '@variable',
+              desc = 'Session',
+              group = 'Label',
+              action = function()
+                require('persistence').load()
+              end,
+              key = 'r',
+            },
+            {
               icon = ' ',
               icon_hl = '@variable',
               desc = 'Grep',
@@ -57,7 +67,7 @@ return {
         },
       }
     end,
-    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+    dependencies = { { 'nvim-tree/nvim-web-devicons' }, 'folke/persistence.nvim' },
     keys = {
       { '<leader>h', '<cmd>Dashboard<cr>', desc = 'Go To Home' },
     },
