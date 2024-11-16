@@ -38,7 +38,8 @@ return {
       autoformat = false,
     },
     keys = {
-      { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
+       { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
+      { '<leader>cI', '<cmd>LspInstall<cr>', desc = 'Install LSP by FileType' },
       { '<leader>tl', '<cmd>LspRestart<cr>', desc = 'Restart Lsp' },
     },
     config = function()
