@@ -105,18 +105,18 @@ return {
             return list
           end,
         },
-        sorting = {
-          priority_weight = 1.0,
-          comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-            cmp.config.compare.kind,
-            cmp.config.compare.locality,
-            cmp.config.compare.order,
-            cmp.config.compare.recently_used,
-          },
-        },
+        -- sorting = {
+        --   priority_weight = 1.0,
+        --   comparators = {
+        --     cmp.config.compare.offset,
+        --     cmp.config.compare.exact,
+        --     cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+        --     cmp.config.compare.kind,
+        --     cmp.config.compare.locality,
+        --     cmp.config.compare.order,
+        --     cmp.config.compare.recently_used,
+        --   },
+        -- },
       }
     end,
   },
