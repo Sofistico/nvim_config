@@ -95,9 +95,20 @@ return {
     {
       '<leader>de',
       function()
-        require('dapui').eval()
+        local ui = require("dapui")
+        ui.eval()
       end,
       desc = 'Eval',
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>dE',
+      function()
+        local ui = require("dapui")
+        ui.eval()
+        ui.eval()
+      end,
+      desc = 'Eval and jump to window',
       mode = { 'n', 'v' },
     },
     {
