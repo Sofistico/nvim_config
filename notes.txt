@@ -6,4 +6,3 @@ future plugins to implement:
 	- render-markdown.nvim
 	- nvim-lightbulb
 	- kulala.nvim
-	- better-escape.nvim
