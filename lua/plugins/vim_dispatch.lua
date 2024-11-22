@@ -4,6 +4,6 @@ return {
     lazy = true,
     cmd = { 'Dispatch', 'Make', 'Copen' },
     dependencies = { 'tpope/vim-dispatch' },
-    keys = { '`<cr>', '` ', '\'<cr>', 'm<cr>', 'm!', '`!' },
+    keys = { '`<cr>', '`<space>', '\'<cr>', 'm<cr>', 'm!', 'm<space>', '`!' },
   },
 }
