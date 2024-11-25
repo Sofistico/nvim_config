@@ -1,5 +1,6 @@
 -- LSP Plugins
 local server_keys = require 'util.self_lsp'
+local local_icons = require 'local-icons'
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -38,7 +39,7 @@ return {
       autoformat = false,
     },
     keys = {
-       { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
+      { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
       { '<leader>cI', '<cmd>LspInstall<cr>', desc = 'Install LSP by FileType' },
       { '<leader>tl', '<cmd>LspRestart<cr>', desc = 'Restart Lsp' },
     },
@@ -202,6 +203,21 @@ return {
               -- Fuzzy find all the symbols in your current workspace.
               --  Similar to document symbols, except searches over your entire project.
               map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
+            end
+
+            -- Change diagnostic symbols in the sign column (gutter)
+            if vim.g.have_nerd_font then
+              local signs = {
+                ERROR = local_icons.diagnostics.error_lsp,
+                WARN = local_icons.diagnostics.warn_lsp,
+                INFO = local_icons.diagnostics.info_lsp,
+                HINT = local_icons.diagnostics.hint_lsp,
+              }
+              local diagnostic_signs = {}
+              for type, icon in pairs(signs) do
+                diagnostic_signs[vim.diagnostic.severity[type]] = icon
+              end
+              vim.diagnostic.config { signs = { text = diagnostic_signs } }
             end
 
             if server_keys[client.name] ~= nil then

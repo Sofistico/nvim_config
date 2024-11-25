@@ -22,9 +22,13 @@ local M = {
   },
   diagnostics = {
     Error = ' ',
+    error_lsp = '',
     Warn = ' ',
+    warn_lsp = '',
     Hint = ' ',
+    hint_lsp = '',
     Info = ' ',
+    info_lsp = '',
   },
   git = {
     added = ' ',
