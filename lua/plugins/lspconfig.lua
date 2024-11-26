@@ -215,9 +215,16 @@ return {
               }
               local diagnostic_signs = {}
               for type, icon in pairs(signs) do
-                diagnostic_signs[vim.diagnostic.severity[type]] = icon
+                if vim.fn.has('nvim-0.10.2') == 1 then
+                  diagnostic_signs[vim.diagnostic.severity[type]] = icon
+                else
+                  local hl = 'DiagnosticSign' .. type
+                  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+                end
               end
-              vim.diagnostic.config { signs = { text = diagnostic_signs } }
+              if vim.fn.has('nvim-0.10.2') == 1 then
+                vim.diagnostic.config { signs = { text = diagnostic_signs } }
+              end
             end
 
             if server_keys[client.name] ~= nil then
