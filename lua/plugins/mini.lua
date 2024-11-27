@@ -10,7 +10,7 @@ return {
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
+     -- set use_icons to true if you have a Nerd Font
       statusline.setup { use_icons = vim.g.have_nerd_font }
 
       -- You can configure sections in the statusline by overriding their
@@ -21,6 +21,15 @@ return {
         return '%2l:%-2v ' .. ' ' .. os.date '%R'
       end
 
+      statusline.section_filename = function(args)
+        -- In terminal always use plain name
+        if vim.bo.buftype == 'terminal' or MiniStatusline.is_truncated(args.trunc_width) then
+          return '%t'
+        else
+          -- Use fullpath if not truncated
+          return vim.fn.expand('%:~:.') .. '%m%r'
+        end
+      end
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
