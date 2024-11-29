@@ -215,14 +215,14 @@ return {
               }
               local diagnostic_signs = {}
               for type, icon in pairs(signs) do
-                if vim.fn.has('nvim-0.10.2') == 1 then
+                if vim.fn.has 'nvim-0.10.2' == 1 then
                   diagnostic_signs[vim.diagnostic.severity[type]] = icon
                 else
                   local hl = 'DiagnosticSign' .. type
                   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
                 end
               end
-              if vim.fn.has('nvim-0.10.2') == 1 then
+              if vim.fn.has 'nvim-0.10.2' == 1 then
                 vim.diagnostic.config { signs = { text = diagnostic_signs } }
               end
             end
@@ -317,16 +317,15 @@ return {
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
       --    :Mason
-      --
       --  You can press `g?` for help in this menu.
-      require('mason').setup()
-
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
+      require('mason').setup { ensure_installed = ensure_installed, automatic_installation = true }
+
       require('mason-tool-installer').setup { ensure_installed = ensure_installed, automatic_installation = true }
 
       capabilities.textDocument.foldingRange = {
