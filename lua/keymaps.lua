@@ -47,6 +47,8 @@ vim.keymap.set('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'New Tab' 
 vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
+vim.keymap.set('n', '<tab>', '<cmd>tabnext<cr>', {desc = "Tab Next"})
+vim.keymap.set('n', '<S-tab>', '<cmd>tabprev<cr>', {desc = "Tab Previous"})
 
 -- quit
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
@@ -93,15 +95,21 @@ vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
+-- code
 vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
 vim.keymap.set('n', '<leader>tS', '<cmd>lua vim.g.autoformat = not vim.g.autoformat<cr>', { desc = 'Toggle autoformat' })
 
 vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal' })
+
+-- messagess
 vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', { desc = 'Show Nvim Messages' })
 
+-- Signature | info
 vim.keymap.set({ 'n', 'i' }, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = 'Show Signature' })
 vim.keymap.set('i', '<C-k>', vim.lsp.buf.hover, { desc = 'Hover Info Insert' })
 
+-- Delete words
 vim.keymap.set('i', '<C-e>', '<C-o>de', { desc = 'Delete cursor after word', silent = true })
 
+-- Tags
 vim.keymap.set('n', '<M-t>', '<cmd>tag<cr>', { desc = 'Move foward tag' })
