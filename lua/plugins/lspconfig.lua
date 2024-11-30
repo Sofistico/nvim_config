@@ -1,5 +1,5 @@
 -- LSP Plugins
-local server_keys = require 'util.self_lsp'
+local server_local_configs = require 'util.self_lsp'
 local local_icons = require 'local-icons'
 return {
   {
@@ -37,6 +37,10 @@ return {
     },
     opts = {
       autoformat = false,
+      inlay_hints = {
+        enabled = true,
+        exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
+      },
     },
     keys = {
       { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
@@ -227,8 +231,8 @@ return {
               end
             end
 
-            if server_keys[client.name] ~= nil then
-              local keys = server_keys[client.name]
+            if server_local_configs[client.name] ~= nil and server_local_configs[client.name].keys ~= nil then
+              local keys = server_local_configs[client.name].keys
               for _, k in ipairs(keys) do
                 if type(k.key) == 'table' then
                   for _, kl in ipairs(k.key) do
@@ -310,6 +314,38 @@ return {
           organize_imports_on_format = true,
           enable_import_completion = true,
           enable_decompilation_support = true,
+        },
+        clangd = {
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern(
+              'Makefile',
+              'configure.ac',
+              'configure.in',
+              'config.h.in',
+              'meson.build',
+              'meson_options.txt',
+              'build.ninja'
+            )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or require('lspconfig.util').find_git_ancestor(
+              fname
+            )
+          end,
+          capabilities = {
+            offsetEncoding = { 'utf-16' },
+          },
+          cmd = {
+            'clangd',
+            '--background-index',
+            '--clang-tidy',
+            '--header-insertion=iwyu',
+            '--completion-style=detailed',
+            '--function-arg-placeholders',
+            '--fallback-style=llvm',
+          },
+          init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+          },
         },
       }
 
