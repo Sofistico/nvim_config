@@ -3,6 +3,8 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- show title on terminal:
+vim.opt.title = true
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -36,7 +38,7 @@ vim.opt.smartcase = true
 vim.opt.smartindent = true
 vim.opt.spelllang = { 'en' }
 vim.opt.splitbelow = true -- Put new windows below current
-vim.opt.splitkeep = 'screen'
+vim.opt.splitkeep = 'cursor'
 vim.opt.splitright = true -- Put new windows right of current
 
 -- Keep signcolumn on by default
