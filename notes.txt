@@ -7,6 +7,7 @@ future plugins to implement:
 	- nvim-lightbulb
 	- kulala.nvim
 	- telescope-ast-grep.nvim | https://github.com/Marskey/telescope-sg
+	- incline.nvim - to see the buffer name on the win bar
 
 This command for navigating stuff:
 nnoremap <expr> j (v:count > 4 ? "m'" . v:count . 'j' : 'gj')
