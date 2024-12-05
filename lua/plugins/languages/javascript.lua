@@ -2,7 +2,7 @@ local self_init = require 'util.self_init'
 return {
   {
     'mfussenegger/nvim-dap',
-    ft = { 'js', 'ts' },
+    ft = { 'js', 'ts', 'jsx' },
     optional = true,
     lazy = true,
     dependencies = {
