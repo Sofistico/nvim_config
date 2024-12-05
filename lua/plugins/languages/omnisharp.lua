@@ -64,6 +64,13 @@ return {
               -- TODO: FIX THIS SHIT TO DEBUG!
               cwd = '${workspaceFolder}/Bin',
             },
+            {
+              type = 'coreclr',
+              name = 'Attach to C# Process',
+              request = 'attach',
+              processId = require('dap.utils').pick_process,
+              cwd = '${workspaceFolder}',
+            }
           }
         end
       end
