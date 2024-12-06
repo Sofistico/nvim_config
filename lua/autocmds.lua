@@ -89,3 +89,6 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     end)
   end,
 })
+
+vim.cmd [[hi @lsp.type.enum.cs guifg=LightBlue]]
+vim.cmd [[hi @lsp.type.property.cs guifg=LightGreen]]
