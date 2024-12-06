@@ -75,5 +75,23 @@ return {
       end,
     },
   },
+  {
+    'kdheepak/lazygit.nvim',
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    keys = {
+      { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+  },
+  {
+    'tpope/vim-fugitive',
+    lazy = true,
+    cmd = { 'Git', 'Gedit', 'Gsplit', 'Gread', 'Gwrite', 'GMove', 'GDelete', 'GRename', 'GRemove', 'GBrowse' },
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
