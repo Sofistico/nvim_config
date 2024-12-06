@@ -48,7 +48,7 @@ vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 -- vim.keymap.set('n', '<tab>', '<cmd>tabnext<cr>', {desc = "Tab Next"})
-vim.keymap.set('n', '<S-tab>', '<cmd>tabnext<cr>', {desc = "Tab Previous"})
+vim.keymap.set('n', '<S-tab>', '<cmd>tabnext<cr>', { desc = 'Tab Previous' })
 
 -- quit
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
@@ -113,3 +113,7 @@ vim.keymap.set('i', '<C-e>', '<C-o>de', { desc = 'Delete cursor after word', sil
 
 -- Tags
 vim.keymap.set('n', '<M-t>', '<cmd>tag<cr>', { desc = 'Move foward tag' })
+
+-- Remove the recording on simple q
+vim.keymap.set('n', 'q', '<nop>', {})
+vim.keymap.set('n', 'Q', 'q', { desc = 'Record macro', noremap = true })
