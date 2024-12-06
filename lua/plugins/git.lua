@@ -91,7 +91,7 @@ return {
   {
     'tpope/vim-fugitive',
     lazy = true,
-    cmd = { 'Git', 'Gedit', 'Gsplit', 'Gread', 'Gwrite', 'GMove', 'GDelete', 'GRename', 'GRemove', 'GBrowse' },
+    cmd = { 'Git', 'Gedit', 'Gsplit', 'Gread', 'Gwrite', 'GMove', 'GDelete', 'GRename', 'GRemove', 'GBrowse', 'G' },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
