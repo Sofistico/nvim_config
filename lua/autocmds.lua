@@ -90,5 +90,9 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
-vim.cmd [[hi @lsp.type.enum.cs guifg=LightBlue]]
-vim.cmd [[hi @lsp.type.property.cs guifg=LightGreen]]
+vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
+  group = augroup 'color_scheme',
+  callback = function(ev)
+    require('util.colors').apply_custom_colors()
+  end,
+})
