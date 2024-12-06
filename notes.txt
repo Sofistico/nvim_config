@@ -2,7 +2,6 @@ future plugins to implement:
 	- toggleterm
 	- neural (Maybe)
 	- dooku.nvim
-	- vim-fugitive
 	- render-markdown.nvim
 	- nvim-lightbulb
 	- kulala.nvim
