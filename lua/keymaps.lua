@@ -115,5 +115,5 @@ vim.keymap.set('i', '<C-e>', '<C-o>de', { desc = 'Delete cursor after word', sil
 vim.keymap.set('n', '<M-t>', '<cmd>tag<cr>', { desc = 'Move foward tag' })
 
 -- Remove the recording on simple q
-vim.keymap.set('n', 'q', '<nop>', {})
-vim.keymap.set('n', 'Q', 'q', { desc = 'Record macro', noremap = true })
+vim.keymap.set({ 'n', 'x', 'v' }, 'q', '<nop>', {})
+vim.keymap.set({ 'n', 'x', 'v' }, 'Q', 'q', { desc = 'Record macro', noremap = true })
