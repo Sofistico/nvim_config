@@ -35,13 +35,6 @@ return {
       'Issafalcon/lsp-overloads.nvim',
       'folke/snacks.nvim',
     },
-    opts = {
-      autoformat = false,
-      inlay_hints = {
-        enabled = true,
-        exclude = { 'vue' }, -- filetypes for which you don't want to enable inlay hints
-      },
-    },
     keys = {
       { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
       { '<leader>cI', '<cmd>LspInstall<cr>', desc = 'Install LSP by FileType' },
@@ -142,7 +135,7 @@ return {
             -- This may be unwanted, since they displace some of your code
             if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
               map('<leader>th', function()
-                require('snacks').toggle.inlay_hints()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
               end, '[T]oggle Inlay [H]ints')
             end
 
