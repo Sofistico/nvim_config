@@ -2,7 +2,7 @@ return {
   {
     'Hoffs/omnisharp-extended-lsp.nvim',
     lazy = true,
-    ft = 'cs'
+    ft = 'cs',
   },
   -- {
   --   -- this is something that in csharp is not working as expected, need to rework this configs
@@ -60,9 +60,7 @@ return {
               program = function()
                 return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/', 'file')
               end,
-              -- The error is here for my debug problems:
-              -- TODO: FIX THIS SHIT TO DEBUG!
-              cwd = '${workspaceFolder}/Bin',
+              cwd = '${workspaceFolder}',
             },
             {
               type = 'coreclr',
@@ -70,7 +68,7 @@ return {
               request = 'attach',
               processId = require('dap.utils').pick_process,
               cwd = '${workspaceFolder}',
-            }
+            },
           }
         end
       end
@@ -103,14 +101,6 @@ return {
     opts = {
       lsp = { enable = false },
     },
-    -- config = function()
-    --   require('mason').setup() -- Mason setup must run before csharp, only if you want to use omnisharp
-    --   local cs = require 'csharp'
-    --   cs.setup {
-    --     lsp = { enable = false },
-    --   }
-    --   vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp' })
-    -- end,
   },
   {
     'MoaidHathot/dotnet.nvim',
