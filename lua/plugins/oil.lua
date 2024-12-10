@@ -31,6 +31,16 @@ return {
         nowait = true,
         desc = 'Find files in the current oil directory',
       },
+      ['<leader>sS'] = {
+        function()
+          require('telescope.builtin').live_grep {
+            cwd = require('oil').get_current_dir(),
+          }
+        end,
+        mode = 'n',
+        nowait = true,
+        desc = 'Search files in the current oil directory',
+      },
       ['<C-k>'] = 'actions.select',
       ['gS'] = 'actions.change_sort',
     },
