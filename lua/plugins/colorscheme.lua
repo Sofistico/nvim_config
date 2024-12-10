@@ -17,6 +17,8 @@ return {
     end,
   },
 
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000, opts = {
+    integrations = { which_key = true },
+  } },
 }
 -- vim: ts=2 sts=2 sw=2 et
