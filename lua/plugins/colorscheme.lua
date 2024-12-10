@@ -22,11 +22,48 @@ return {
     name = 'catppuccin',
     priority = 1000,
     opts = {
-      integrations = { which_key = true },
+      integrations = {
+        aerial = true,
+        alpha = true,
+        cmp = true,
+        dashboard = true,
+        flash = true,
+        grug_far = true,
+        gitsigns = true,
+        headlines = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        leap = true,
+        lsp_trouble = true,
+        mason = true,
+        markdown = true,
+        mini = true,
+        neotest = true,
+        neotree = true,
+        noice = true,
+        notify = true,
+        semantic_tokens = true,
+        snacks = true,
+        telescope = true,
+        treesitter = true,
+        treesitter_context = true,
+        which_key = true,
+      },
     },
-    init = function ()
+    init = function()
       vim.cmd.colorscheme 'catppuccin-frappe'
-    end
+    end,
+    specs = {
+      {
+        'akinsho/bufferline.nvim',
+        optional = true,
+        opts = function(_, opts)
+          if (vim.g.colors_name or ''):find 'catppuccin' then
+            opts.highlights = require('catppuccin.groups.integrations.bufferline').get()
+          end
+        end,
+      },
+    },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
