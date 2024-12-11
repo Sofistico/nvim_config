@@ -5,7 +5,7 @@ return {
     ft = { 'js', 'ts', 'jsx' },
     optional = true,
     lazy = true,
-    dependencies = {
+    specs = {
       -- Ensure JS debugger is installed
       'williamboman/mason.nvim',
       optional = true,
@@ -22,7 +22,7 @@ return {
             command = 'node',
             -- 💀 Make sure to update this path to point to your installation
             args = {
-              self_init.get_pkg_path('js-debug-adapter', '/js-debug/src/dapDebugServer.js'),
+              self_init.get_pkg_path('js-debug-adapter', '/js-debug/src/dapDebugServer.js', { warn = false }),
               '${port}',
             },
           },
