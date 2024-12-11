@@ -1,7 +1,7 @@
 return {
   {
     'm4xshen/hardtime.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+    dependencies = { 'MunifTanjim/nui.nvim' },
     lazy = true,
     -- event = 'BufAdd',
     opts = {
