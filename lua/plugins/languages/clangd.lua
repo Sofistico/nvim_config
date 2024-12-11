@@ -11,7 +11,7 @@ return {
   {
     'p00f/clangd_extensions.nvim',
     lazy = true,
-    ft = {'c', 'cpp'},
+    ft = { 'c', 'cpp' },
     config = function() end,
     opts = {
       inlay_hints = {
@@ -41,7 +41,7 @@ return {
   },
   {
     'mfussenegger/nvim-dap',
-    ft = {'c', 'cpp'},
+    ft = { 'c', 'cpp' },
     optional = true,
     dependencies = {
       -- Ensure C/C++ debugger is installed
@@ -82,6 +82,12 @@ return {
             name = 'Attach to process',
             pid = require('dap.utils').pick_process,
             cwd = '${workspaceFolder}',
+          },
+          -- Divider for the launch.json derived configs
+          {
+            name = '----- ↓ launch.json configs ↓ -----',
+            type = '',
+            request = 'launch',
           },
         }
       end

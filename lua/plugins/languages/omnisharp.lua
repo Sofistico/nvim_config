@@ -69,6 +69,12 @@ return {
               processId = require('dap.utils').pick_process,
               cwd = '${workspaceFolder}',
             },
+            -- Divider for the launch.json derived configs
+            {
+              name = '----- ↓ launch.json configs ↓ -----',
+              type = '',
+              request = 'launch',
+            },
           }
         end
       end

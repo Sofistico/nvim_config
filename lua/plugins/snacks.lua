@@ -1,15 +1,13 @@
 return {
   {
     'folke/snacks.nvim',
-    lazy = true,
+    event = "VimEnter",
+    lazy = false,
+    priority = 1000,
     opts = {
       bufdelete = { enabled = true },
       words = { enabled = true },
       rename = { enabled = true },
-      toggle = { enabled = true },
-      lazygit = { enabled = false },
-      terminal = { enabled = false },
-      notifier = { enabled = false },
     },
     keys = {
       {
