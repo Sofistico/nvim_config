@@ -1,9 +1,4 @@
 return {
-  {
-    'hrsh7th/cmp-emoji',
-    event = 'BufAdd',
-    lazy = true,
-  },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'BufAdd',

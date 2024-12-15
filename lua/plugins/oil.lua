@@ -39,7 +39,7 @@ return {
         end,
         mode = 'n',
         nowait = true,
-        desc = 'Search files in the current oil directory',
+        desc = 'RipGrep files in the current oil directory',
       },
       ['<C-k>'] = 'actions.select',
       ['gS'] = 'actions.change_sort',
