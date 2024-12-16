@@ -5,8 +5,8 @@ return {
       friendly_snippets = true,
     },
     dependencies = { 'rafamadriz/friendly-snippets' },
+    lazy = true,
   },
-  { 'rafamadriz/friendly-snippets', lazy = true },
   {
     'L3MON4D3/LuaSnip',
     lazy = true,
@@ -42,6 +42,7 @@ return {
           require('luasnip').filetype_extend('sh', { 'shelldoc' })
         end,
       },
+      'garymjr/nvim-snippets',
     },
     opts = {
       history = true,
