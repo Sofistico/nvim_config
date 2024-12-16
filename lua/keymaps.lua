@@ -105,7 +105,13 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
 vim.keymap.set('n', '<leader>tS', '<cmd>lua vim.g.autoformat = not vim.g.autoformat<cr>', { desc = 'Toggle autoformat' })
 
-vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal' })
+vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal in new buffer' })
+vim.keymap.set('n', '<leader>ct', function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd 'J'
+  vim.api.nvim_win_set_height(0, 10)
+end, { desc = 'Open Terminal in Split' })
 
 -- messagess
 vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', { desc = 'Show Nvim Messages' })
