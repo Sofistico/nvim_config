@@ -117,3 +117,7 @@ vim.keymap.set('n', '<M-t>', '<cmd>tag<cr>', { desc = 'Move foward tag' })
 -- Remove the recording on simple q
 vim.keymap.set({ 'n', 'x', 'v' }, 'q', '<nop>', {})
 vim.keymap.set({ 'n', 'x', 'v' }, 'Q', 'q', { desc = 'Record macro', noremap = true })
+
+-- remap - to nil so that oil can use it and make _ work as default _
+vim.keymap.set('n', '-', '<nop>', {})
+vim.keymap.set('n', '_', '-', { noremap = true, desc = 'Go back to start word'})

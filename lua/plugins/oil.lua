@@ -50,12 +50,12 @@ return {
   -- end,
   keys = {
     { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
-    {
-      '_',
-      function()
-        require('oil').toggle_float()
-      end,
-      desc = 'Open floating parent direc',
-    },
+    -- {
+    --   '_',
+    --   function()
+    --     require('oil').toggle_float()
+    --   end,
+    --   desc = 'Open floating parent direc',
+    -- },
   },
 }
