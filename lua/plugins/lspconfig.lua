@@ -245,6 +245,23 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+      -- add any global capabilities here
+      capabilities = vim.tbl_deep_extend('keep', capabilities, {
+        textDocument = {
+          foldingRange = {
+            dynamicRegistration = true,
+            lineFoldingOnly = true,
+          },
+        },
+        workspace = {
+          fileOperations = {
+            didRename = true,
+            willRename = true,
+          },
+        },
+      })
+
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Enable the following language servers
@@ -350,17 +367,16 @@ return {
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
+      local ensure_installed_tools = {
         'stylua', -- Used to format Lua code
-      })
-      require('mason').setup { ensure_installed = ensure_installed, automatic_installation = true }
-
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed, automatic_installation = true }
-
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = true,
-        lineFoldingOnly = true,
+        'csharpier', -- used to format c# code
+        'netcoredbg', -- used to debug c#
       }
+      vim.list_extend(ensure_installed_tools, ensure_installed)
+
+      require('mason').setup()
+
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed_tools, automatic_installation = true, run_on_start = true }
 
       require('mason-lspconfig').setup {
         handlers = {
@@ -374,6 +390,7 @@ return {
           end,
         },
         automatic_installation = true,
+        ensure_installed = ensure_installed,
       }
     end,
   },
