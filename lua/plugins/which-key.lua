@@ -19,6 +19,7 @@ return {
     event = 'VeryLazy', -- Sets the loading event to 'VimEnter'
     opts_extend = { 'spec' },
     opts = {
+      preset = 'helix',
       spec = {
         mode = { 'n', 'v', 'x' },
         { '<leader>c', group = 'code' },
