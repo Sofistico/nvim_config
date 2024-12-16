@@ -6,7 +6,7 @@ return {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-
+      'garymjksdjalr/nvim-snippets',
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
@@ -19,7 +19,7 @@ return {
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-      luasnip.config.setup {}
+      luasnip.config.setup()
 
       cmp.setup {
         snippet = {

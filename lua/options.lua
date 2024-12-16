@@ -5,6 +5,8 @@
 
 -- show title on terminal:
 vim.opt.title = true
+
+vim.opt.termguicolors = true -- True color support
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -13,6 +15,7 @@ vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'nv'
+vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -22,7 +25,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 end)
 
 -- Enable break indent
@@ -49,7 +52,7 @@ vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 250
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -93,11 +96,6 @@ vim.opt.fillchars = {
 }
 
 vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
-
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldmethod = 'indent'
--- vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- vim.opt.foldtext = '...'
 
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
