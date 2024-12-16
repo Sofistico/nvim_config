@@ -127,3 +127,7 @@ vim.keymap.set({ 'n', 'x', 'v' }, 'Q', 'q', { desc = 'Record macro', noremap = t
 -- remap - to nil so that oil can use it and make _ work as default _
 vim.keymap.set('n', '-', '<nop>', {})
 vim.keymap.set('n', '_', '-', { noremap = true, desc = 'Go back to start word' })
+
+-- quickfix navigation
+vim.keymap.set('n', 'gh', '<cmd>cprev<cr>', { desc = 'Go back quicklist' })
+vim.keymap.set('n', 'gl', '<cmd>cnext<cr>', { desc = 'Go next quicklist' })
