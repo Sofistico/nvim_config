@@ -43,6 +43,9 @@ return {
       },
       ['<C-k>'] = 'actions.select',
       ['gS'] = 'actions.change_sort',
+      ['<C-s>'] = { 'actions.select', opts = { vertical = true, close = true } },
+      ['<C-h>'] = { 'actions.select', opts = { horizontal = true, close = true } },
+      ['<C-t>'] = { 'actions.select', opts = { tab = true, close = true } },
     },
   },
   -- config = function ()
