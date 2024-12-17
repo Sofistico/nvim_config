@@ -39,7 +39,10 @@ return -- snippets
   {
     'rmagatti/goto-preview',
     lazy = true,
-    config = true,
+    -- config = true, -- needed if using the default opts
+    opts = {
+      zindex = 100,
+    },
     keys = {
       {
         'gpd',
