@@ -137,3 +137,6 @@ vim.keymap.set('n', '_', '-', { noremap = true, desc = 'Go back to start word' }
 -- quickfix navigation
 vim.keymap.set('n', 'gh', '<cmd>cprev<cr>', { desc = 'Go back quicklist' })
 vim.keymap.set('n', 'gl', '<cmd>cnext<cr>', { desc = 'Go next quicklist' })
+
+-- Toggle snacks
+-- require('snacks').toggle.option('wrap', { name = 'Toogle word wrap' }):map '<leader>tw'

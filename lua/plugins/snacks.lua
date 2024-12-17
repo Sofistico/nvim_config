@@ -1,14 +1,20 @@
 return {
   {
     'folke/snacks.nvim',
-    event = "VimEnter",
+    event = 'VimEnter',
     lazy = false,
     priority = 1000,
     opts = {
       bufdelete = { enabled = true },
       words = { enabled = true },
       rename = { enabled = true },
+      toggle = { enabled = true },
     },
+    config = function(_, opts)
+      local snacks = require 'snacks'
+      snacks.setup(opts)
+      snacks.toggle.option('wrap', { name = 'Toogle word wrap' }):map '<leader>tw'
+    end,
     keys = {
       {
         '<leader>bd',
