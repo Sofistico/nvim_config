@@ -50,6 +50,9 @@ return {
         { 'gs', group = 'surround' },
         { 'z', group = 'fold' },
         { 'gq', group = 'Builtin Formatter' },
+
+        -- This here is just to make a beautiful name for keys:
+        { '<c-w>r', desc = 'Rotate windows' },
       },
       icons = {
         rules = {
