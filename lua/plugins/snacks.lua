@@ -14,7 +14,7 @@ return {
       local snacks = require 'snacks'
       snacks.setup(opts)
       snacks.toggle.option('wrap', { name = 'Toogle word wrap' }):map '<leader>tw'
-      snacks.toggle.diagnostics():map("<leader>td")
+      snacks.toggle.diagnostics():map '<leader>td'
     end,
     keys = {
       {
