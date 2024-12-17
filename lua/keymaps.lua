@@ -22,12 +22,6 @@ vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Do
 vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -137,6 +131,3 @@ vim.keymap.set('n', '_', '-', { noremap = true, desc = 'Go back to start word' }
 -- quickfix navigation
 vim.keymap.set('n', 'gh', '<cmd>cprev<cr>', { desc = 'Go back quicklist' })
 vim.keymap.set('n', 'gl', '<cmd>cnext<cr>', { desc = 'Go next quicklist' })
-
--- Toggle snacks
--- require('snacks').toggle.option('wrap', { name = 'Toogle word wrap' }):map '<leader>tw'
