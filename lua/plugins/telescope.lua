@@ -75,7 +75,6 @@ return {
                 local builtin = require 'telescope.builtin'
                 builtin.find_files { hidden = true }
               end,
-              ['a-q'] = require('telescope.actions').close,
             },
             n = {
               ['q'] = require('telescope.actions').close,
@@ -100,7 +99,9 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader>sl', builtin.resume, { desc = '[S]earch Last Telescope' })
-      vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch existing [B]uffers' })
+      vim.keymap.set('n', '<leader>sb', function()
+        builtin.buffers { ignore_current_buffer = true, sort_mru = true }
+      end, { desc = '[S]earch existing [B]uffers' })
       vim.keymap.set('n', '<leader>sG', builtin.git_status, { desc = '[S]earch [G]it Status' })
       vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorscheme' })
 
