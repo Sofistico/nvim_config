@@ -59,6 +59,8 @@ vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+vim.keymap.set('n', '<leader>bS', '<cmd>sp#<cr>', { desc = 'Split alternate buffer' })
+vim.keymap.set('n', '<leader>bV', '<cmd>vs#<cr>', { desc = 'Vertical split alternate buffer' })
 vim.keymap.set('n', '<leader>bD', '<cmd>:bd!<cr>', { desc = 'Delete Buffer and Window' })
 
 -- save file

@@ -11,13 +11,29 @@ return {
       { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
       { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
       { '<leader>bi', '<Cmd>BufferLinePick<CR>', desc = 'Pick Buffer' },
+      {
+        '<leader>bs',
+        function()
+          vim.cmd.split()
+          require('bufferline').pick()
+        end,
+        desc = 'Pick Buffer and Split',
+      },
+      {
+        '<leader>bv',
+        function ()
+          vim.cmd.vsplit()
+          require('bufferline').pick()
+        end,
+        desc = 'Pick Buffer and Vertical Split'
+      },
       { '<leader>bI', '<Cmd>BufferLinePickClose<CR>', desc = 'Close Pick Buffer' },
       { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
       { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
       { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
-      { '<leader>bs', '<Cmd>BufferLineSortByDirectory<CR>', desc = 'Sort buffer by directory' },
-      { '<leader>bS', '<Cmd>BufferLineSortByExtension<CR>', desc = 'Sort buffer by relative directory' },
-      { '<leader>bR', '<Cmd>BufferLineSortByRelativeDirectory<CR>', desc = 'Sort buffer by relative directory' },
+      -- { '<leader>bs', '<Cmd>BufferLineSortByDirectory<CR>', desc = 'Sort buffer by directory' },
+      -- { '<leader>bS', '<Cmd>BufferLineSortByExtension<CR>', desc = 'Sort buffer by relative directory' },
+      -- { '<leader>bR', '<Cmd>BufferLineSortByRelativeDirectory<CR>', desc = 'Sort buffer by relative directory' },
       { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
       { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
       { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
