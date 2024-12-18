@@ -25,9 +25,11 @@ return {
       integrations = {
         aerial = true,
         alpha = true,
+        blink_cmp = true,
         cmp = true,
         dashboard = true,
         flash = true,
+        fzf = true,
         grug_far = true,
         gitsigns = true,
         headlines = true,
