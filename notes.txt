@@ -7,3 +7,4 @@ future plugins to implement:
 	- kulala.nvim
 	- telescope-ast-grep.nvim | https://github.com/Marskey/telescope-sg
 	- incline.nvim - to see the buffer name on the win bar
+	- Blink will substitute cmp in te future
