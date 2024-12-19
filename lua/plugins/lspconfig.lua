@@ -79,9 +79,9 @@ return {
           --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc, mode)
+          local map = function(keys, func, desc, mode, noremap)
             mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc, noremap = noremap })
           end
 
           -- all general lsp commands go here:
@@ -139,13 +139,15 @@ return {
 
             --- Guard against servers without the signatureHelper capability
             if client.server_capabilities.signatureHelpProvider then
+              ---@diagnostic disable-next-line: missing-fields
               require('lsp-overloads').setup(client, {
+                ---@diagnostic disable-next-line: missing-fields
                 keymaps = {
                   close_signature = '<A-i>',
                 },
               })
-              vim.api.nvim_set_keymap('n', '<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', { desc = 'Toggle Lsp Signature Auto' })
-              vim.keymap.set({ 'i', 'n' }, '<A-i>', '<cmd>LspOverloadsSignature<CR>', { noremap = true, buffer = event.buf, desc = 'Show Signature Overloads' })
+              map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto' )
+              map('<A-i>', '<cmd>LspOverloadsSignature<CR>', 'Show Signature Overloads', { 'i', 'n' }, true)
             end
 
             if client.server_capabilities.declarationProvider then
