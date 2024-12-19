@@ -1,4 +1,4 @@
--- return {
+return {
 --   'leoluz/nvim-dap-go',
 --   lazy = true,
 --   opts = {
@@ -8,4 +8,4 @@
 --       detached = vim.fn.has 'win32' == 0,
 --     },
 --   },
--- }
+}
