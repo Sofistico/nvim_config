@@ -93,5 +93,17 @@ return {
     lazy = true,
     cmd = { 'Git', 'Gedit', 'Gsplit', 'Gread', 'Gwrite', 'GMove', 'GDelete', 'GRename', 'GRemove', 'GBrowse', 'G' },
   },
+  {
+    'sindrets/diffview.nvim',
+    opts = {},
+    cmd = { 'DiffviewFileHistory', 'DiffviewFileHistory %', 'DiffviewOpen' },
+    keys = {
+      { '<leader>go', '<cmd>DiffviewOpen<cr>', desc = 'Open DiffView' },
+      { '<leader>gf', '<cmd>DiffviewFileHistory %<cr>', desc = 'Diffview this File' },
+      { mode = 'v', '<leader>gf', "<cmd>'<,'>DiffviewFileHistory<cr>", desc = 'Diffview this line/s' },
+      { '<leader>gB', '<cmd>DiffviewFileHistory<cr>', desc = 'Diffview this Branch' },
+      { '<leader>gO', '<cmd>DiffviewClose<cr>', desc = 'Close diff view' },
+    },
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
