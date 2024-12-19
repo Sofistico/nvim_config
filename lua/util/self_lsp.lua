@@ -6,7 +6,7 @@ local M = {
         --@field table|string
         key = 'gr',
         func = function()
-          require('omnisharp_extended').telescope_lsp_references { layout_strategy = 'vertical', show_line = false }
+          require('omnisharp_extended').telescope_lsp_references { layout_strategy = 'vertical', show_line = false, path_display = { 'truncate' } }
         end,
         desc = '[G]oto [R]eferences',
         mode = 'n',
