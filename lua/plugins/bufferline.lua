@@ -21,17 +21,27 @@ return {
       },
       {
         '<leader>bv',
-        function ()
+        function()
           vim.cmd.vsplit()
           require('bufferline').pick()
         end,
-        desc = 'Pick Buffer and Vertical Split'
+        desc = 'Pick Buffer and Vertical Split',
       },
       { '<leader>bI', '<Cmd>BufferLinePickClose<CR>', desc = 'Close Pick Buffer' },
       { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
       { '<leader>br', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
       { '<leader>bl', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
-      -- { '<leader>bs', '<Cmd>BufferLineSortByDirectory<CR>', desc = 'Sort buffer by directory' },
+      {
+        '<leader>bO',
+        function()
+          require('bufferline').sort_by(function(buffer_a, buffer_b)
+            local modified_a = vim.fn.getftime(buffer_a.path)
+            local modified_b = vim.fn.getftime(buffer_b.path)
+            return modified_a > modified_b
+          end)
+        end,
+        desc = 'Sort buffer by last used',
+      },
       -- { '<leader>bS', '<Cmd>BufferLineSortByExtension<CR>', desc = 'Sort buffer by relative directory' },
       -- { '<leader>bR', '<Cmd>BufferLineSortByRelativeDirectory<CR>', desc = 'Sort buffer by relative directory' },
       { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
