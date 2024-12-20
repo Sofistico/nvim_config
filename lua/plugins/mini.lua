@@ -39,7 +39,7 @@ return {
   {
     'echasnovski/mini.ai',
     lazy = true,
-    event = 'BufAdd',
+    event = 'InsertEnter',
     opts = function()
       local ai = require 'mini.ai'
       return {
@@ -75,7 +75,6 @@ return {
   },
   {
     'echasnovski/mini.icons',
-    lazy = true,
     opts = {
       file = {
         ['.keep'] = { glyph = '󰊢', hl = 'MiniIconsGrey' },
