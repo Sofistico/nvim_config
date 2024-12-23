@@ -123,6 +123,13 @@ return {
         end,
         desc = 'Go to context',
       },
+      {
+        '<leader>tC',
+        function()
+          require('treesitter-context').toggle()
+        end,
+        desc = 'Toggle treesitter context',
+      },
     },
   },
 }
