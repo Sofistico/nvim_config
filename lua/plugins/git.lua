@@ -102,6 +102,7 @@ return {
       { '<leader>gf', '<cmd>DiffviewFileHistory %<cr>', desc = 'Diffview this File' },
       { mode = 'v', '<leader>gf', "<cmd>'<,'>DiffviewFileHistory<cr>", desc = 'Diffview this line/s' },
       { '<leader>gB', '<cmd>DiffviewFileHistory<cr>', desc = 'Diffview this Branch' },
+      { '<leader>gT', ':DiffviewOpen ', desc = 'Diffview branch against this Branch' },
       { '<leader>gO', '<cmd>DiffviewClose<cr>', desc = 'Close diff view' },
     },
   },
