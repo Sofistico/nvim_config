@@ -100,6 +100,13 @@ return {
             return list
           end,
         },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        performance = {
+          max_view_entries = 15,
+        }
         -- sorting = {
         --   priority_weight = 1.0,
         --   comparators = {
