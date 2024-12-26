@@ -2,7 +2,7 @@ vim.cmd 'comp dotnet'
 
 local cs = require 'csharp'
 
-vim.keymap.set('n', '<leader>dD', cs.debug_project, { desc = 'Debug csharp', buffer = true })
+vim.keymap.set('n', '<leader>dd', cs.debug_project, { desc = 'Debug csharp', buffer = true })
 
 vim.keymap.set('n', '<leader>cn', '<cmd>DotnetUI new_item<cr>', { desc = 'New Dotnet item', silent = true, buffer = true })
 vim.keymap.set('n', '<leader>cN', '<cmd>DotnetUI file bootstrap<cr>', { desc = 'Bootstrap new file', silent = true, buffer = true })
