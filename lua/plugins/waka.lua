@@ -4,7 +4,7 @@ return {
     event = 'BufAdd',
     lazy = true,
     keys = {
-      { '<leader>xW', '<cmd>WakaTimeToday<cr>', desc = 'Show Waka Time Today' },
+      { '<leader>nw', '<cmd>WakaTimeToday<cr>', desc = 'Show Waka Time Today' },
     },
   },
   {
