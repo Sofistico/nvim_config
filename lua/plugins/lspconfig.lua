@@ -92,6 +92,14 @@ return {
             -- add the title in hover float window
             title = 'hover',
           })
+
+          vim.lsp.handlers['textDocument/signatureHelper'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            -- Use a sharp border with `FloatBorder` highlights
+            border = 'single',
+            -- add the title in hover float window
+            title = 'signature helper',
+          })
+
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
