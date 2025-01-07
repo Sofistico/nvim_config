@@ -234,7 +234,11 @@ return {
                 end
               end
               if vim.fn.has 'nvim-0.10.2' == 1 then
-                vim.diagnostic.config { signs = { text = diagnostic_signs }, float = { source = 'if_many' } }
+                vim.diagnostic.config {
+                  signs = { text = diagnostic_signs },
+                  float = { source = 'if_many' },
+                  virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
+                }
               end
             end
 
