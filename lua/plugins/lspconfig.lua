@@ -86,6 +86,12 @@ return {
 
           -- all general lsp commands go here:
 
+          vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+            -- Use a sharp border with `FloatBorder` highlights
+            border = 'single',
+            -- add the title in hover float window
+            title = 'hover',
+          })
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
@@ -146,7 +152,7 @@ return {
                   close_signature = '<A-i>',
                 },
               })
-              map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto' )
+              map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto')
               map('<A-i>', '<cmd>LspOverloadsSignature<CR>', 'Show Signature Overloads', { 'i', 'n' }, true)
             end
 
@@ -220,7 +226,7 @@ return {
                 end
               end
               if vim.fn.has 'nvim-0.10.2' == 1 then
-                vim.diagnostic.config { signs = { text = diagnostic_signs } }
+                vim.diagnostic.config { signs = { text = diagnostic_signs }, float = { source = 'if_many' } }
               end
             end
 
