@@ -1,5 +1,6 @@
 vim.cmd 'comp dotnet'
 
+vim.g.dotnet_errors_only = true
 local cs = require 'csharp'
 
 vim.keymap.set('n', '<leader>dd', cs.debug_project, { desc = 'Debug csharp', buffer = true })
