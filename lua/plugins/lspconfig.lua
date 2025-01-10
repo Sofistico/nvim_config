@@ -32,7 +32,8 @@ return {
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
-      'Issafalcon/lsp-overloads.nvim',
+      -- 'Issafalcon/lsp-overloads.nvim',
+      'ray-x/lsp_signature.nvim',
       'folke/snacks.nvim',
     },
     keys = {
@@ -153,15 +154,26 @@ return {
 
             --- Guard against servers without the signatureHelper capability
             if client.server_capabilities.signatureHelpProvider then
-              ---@diagnostic disable-next-line: missing-fields
-              require('lsp-overloads').setup(client, {
-                ---@diagnostic disable-next-line: missing-fields
-                keymaps = {
-                  close_signature = '<A-i>',
+              ------@diagnostic disable-next-line: missing-fields
+              ---require('lsp-overloads').setup(client, {
+              ---  ---@diagnostic disable-next-line: missing-fields
+              ---  keymaps = {
+              ---    close_signature = '<A-i>',
+              ---  },
+              ---})
+              ---map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto')
+              ---map('<A-i>', '<cmd>LspOverloadsSignature<CR>', 'Show Signature Overloads', { 'i', 'n' }, true)
+              local signature = require('lsp_signature')
+              signature.on_attach({
+                bind = true,
+                handler_opts = {
+                  border = 'rounded',
                 },
-              })
-              map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto')
-              map('<A-i>', '<cmd>LspOverloadsSignature<CR>', 'Show Signature Overloads', { 'i', 'n' }, true)
+                toggle_key = '<a-i>',
+                select_signature_key = '<c-ç>',
+                close_timeout = 5000,
+              }, event.buf)
+              map('<A-i>', signature.toggle_float_win, 'Toggle Signature')
             end
 
             if client.server_capabilities.declarationProvider then

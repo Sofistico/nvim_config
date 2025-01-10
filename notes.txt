@@ -6,3 +6,4 @@ future plugins to implement:
 	- kulala.nvim
 	- telescope-ast-grep.nvim | https://github.com/Marskey/telescope-sg
 	- Blink will substitute cmp in te future
+	- ray-x/lsp_signature.nvim to substitute lsp overload
