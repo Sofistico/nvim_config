@@ -237,7 +237,7 @@ return {
                 vim.diagnostic.config {
                   signs = { text = diagnostic_signs },
                   float = { source = 'if_many' },
-                  virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
+                  virtual_text = false, --{ severity = { min = vim.diagnostic.severity.INFO },  },
                 }
               end
             end
@@ -353,8 +353,8 @@ return {
               'meson.build',
               'meson_options.txt',
               'build.ninja'
-            )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or require('lspconfig.util').find_git_ancestor(
-              fname
+            )(fname) or require('lspconfig.util').root_pattern('compile_commands.json', 'compile_flags.txt')(fname) or vim.fs.dirname(
+              vim.fs.find('.git', { path = fname, upward = true })[1]
             )
           end,
           capabilities = {

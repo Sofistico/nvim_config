@@ -6,6 +6,7 @@ return {
     priority = 1000,
     opts = {
       bufdelete = { enabled = true },
+      words = { enabled = true },
       rename = { enabled = true },
       toggle = { enabled = true },
     },
@@ -13,7 +14,7 @@ return {
       local snacks = require 'snacks'
       snacks.setup(opts)
       snacks.toggle.option('wrap', { name = 'Toogle word wrap' }):map '<leader>tw'
-      snacks.toggle.diagnostics():map '<leader>td'
+      snacks.toggle.diagnostics():map '<leader>tD'
     end,
     keys = {
       {
@@ -23,22 +24,22 @@ return {
         end,
         desc = 'Delete Buffer',
       },
-      -- {
-      --   ']]',
-      --   function()
-      --     require('snacks').words.jump(vim.v.count1)
-      --   end,
-      --   desc = 'Next Reference',
-      --   mode = { 'n', 't' },
-      -- },
-      -- {
-      --   '[[',
-      --   function()
-      --     require('snacks').words.jump(-vim.v.count1)
-      --   end,
-      --   desc = 'Prev Reference',
-      --   mode = { 'n', 't' },
-      -- },
+      {
+        ']]',
+        function()
+          require('snacks').words.jump(vim.v.count1)
+        end,
+        desc = 'Next Reference',
+        mode = { 'n', 't' },
+      },
+      {
+        '[[',
+        function()
+          require('snacks').words.jump(-vim.v.count1)
+        end,
+        desc = 'Prev Reference',
+        mode = { 'n', 't' },
+      },
     },
   },
 }
