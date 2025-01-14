@@ -132,7 +132,7 @@ return -- snippets
         options = {
           severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
           multiple_diag_under_cursor = true,
-          multilines = true,
+          -- multilines = true,
         },
       }
       vim.keymap.set('n', '<leader>td', function()

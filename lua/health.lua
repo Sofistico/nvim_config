@@ -32,7 +32,9 @@ local check_external_reqs = function()
 
   return true
 end
-
+function (doSOme)
+  doSome.doSOme
+end
 return {
   check = function()
     vim.health.start 'kickstart.nvim'
