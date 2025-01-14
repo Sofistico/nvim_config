@@ -103,7 +103,6 @@ vim.api.nvim_create_autocmd('BufLeave', {
   group = augroup 'oil',
   pattern = 'oil://*',
   callback = function()
-    vim.notify 'This is leaving'
     require('tiny-inline-diagnostic').enable()
   end,
 })
@@ -113,6 +112,5 @@ vim.api.nvim_create_autocmd('BufEnter', {
   pattern = 'oil://*',
   callback = function()
     require('tiny-inline-diagnostic').disable()
-    vim.notify 'This is entering'
   end,
 })
