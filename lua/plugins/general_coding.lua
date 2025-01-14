@@ -53,25 +53,19 @@ return -- snippets
     keys = {
       {
         'gpd',
-        function()
-          require('goto-preview').goto_preview_definition()
-        end,
+        require('goto-preview').goto_preview_definition,
         desc = 'Preview Definition',
         silent = true,
       },
       {
         'gpt',
-        function()
-          require('goto-preview').goto_preview_type_definition()
-        end,
+        require('goto-preview').goto_preview_type_definition,
         desc = 'Preview Type Definition',
         silent = true,
       },
       {
         'gpi',
-        function()
-          require('goto-preview').goto_preview_type_definition()
-        end,
+        require('goto-preview').goto_preview_type_definition,
         desc = 'Preview Implementation',
         silent = true,
       },
@@ -127,7 +121,13 @@ return -- snippets
     priority = 1000, -- needs to be loaded in first
     config = function()
       local diag = require 'tiny-inline-diagnostic'
-      diag.setup { options = { severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO } } }
+      diag.setup {
+        options = {
+          severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
+          multiple_diag_under_cursor = true,
+          multilines = true,
+        },
+      }
       vim.keymap.set('n', '<leader>td', function()
         diag.toggle()
       end, { desc = 'Toggle diagnostic under cursor' })
