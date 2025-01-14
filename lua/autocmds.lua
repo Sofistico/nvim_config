@@ -1,5 +1,5 @@
 local function augroup(name)
-  return vim.api.nvim_create_augroup('kickstart_' .. name, { clear = true })
+  return vim.api.nvim_create_augroup('sofistico_' .. name, { clear = true })
 end
 
 -- close some filetypes with <q>
@@ -102,14 +102,16 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 vim.api.nvim_create_autocmd('BufLeave', {
   group = augroup 'oil',
   pattern = 'oil://*',
+  desc = 'Enables tiny-inline-diagnostics for oil',
   callback = function()
     require('tiny-inline-diagnostic').enable()
   end,
 })
 
 vim.api.nvim_create_autocmd('BufEnter', {
-  group = augroup 'oil',
   pattern = 'oil://*',
+  group = augroup 'oil',
+  desc = 'Disables tiny-inline-diagnostics for oil',
   callback = function()
     require('tiny-inline-diagnostic').disable()
   end,
