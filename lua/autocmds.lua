@@ -99,20 +99,20 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
 })
 
 -- this is here because in the oil ft makes everything load more than once
-vim.api.nvim_create_autocmd('BufLeave', {
-  group = augroup 'oil',
-  pattern = 'oil://*',
-  desc = 'Enables tiny-inline-diagnostics for oil',
-  callback = function()
-    require('tiny-inline-diagnostic').enable()
-  end,
-})
-
-vim.api.nvim_create_autocmd('BufEnter', {
-  pattern = 'oil://*',
-  group = augroup 'oil',
-  desc = 'Disables tiny-inline-diagnostics for oil',
-  callback = function()
-    require('tiny-inline-diagnostic').disable()
-  end,
-})
+-- vim.api.nvim_create_autocmd('BufLeave', {
+--   group = augroup 'oil',
+--   pattern = 'oil://*',
+--   desc = 'Enables tiny-inline-diagnostics for oil',
+--   callback = function()
+--     require('tiny-inline-diagnostic').enable()
+--   end,
+-- })
+--
+-- vim.api.nvim_create_autocmd('BufEnter', {
+--   pattern = 'oil://*',
+--   group = augroup 'oil',
+--   desc = 'Disables tiny-inline-diagnostics for oil',
+--   callback = function()
+--     require('tiny-inline-diagnostic').disable()
+--   end,
+-- })
