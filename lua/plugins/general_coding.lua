@@ -51,21 +51,28 @@ return -- snippets
       zindex = 100,
     },
     keys = {
+      -- This is here because it's bugged if i don't
       {
         'gpd',
-        require('goto-preview').goto_preview_definition,
+        function()
+          require('goto-preview').goto_preview_definition()
+        end,
         desc = 'Preview Definition',
         silent = true,
       },
       {
         'gpt',
-        require('goto-preview').goto_preview_type_definition,
+        function()
+          require('goto-preview').goto_preview_type_definition()
+        end,
         desc = 'Preview Type Definition',
         silent = true,
       },
       {
         'gpi',
-        require('goto-preview').goto_preview_type_definition,
+        function()
+          require('goto-preview').goto_preview_type_definition()
+        end,
         desc = 'Preview Implementation',
         silent = true,
       },
