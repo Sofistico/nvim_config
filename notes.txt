@@ -1,7 +1,6 @@
 future plugins to implement:
 	- neural (Maybe)
 	- dooku.nvim
-	- render-markdown.nvim
 	- nvim-lightbulb
 	- kulala.nvim
 	- telescope-ast-grep.nvim | https://github.com/Marskey/telescope-sg
