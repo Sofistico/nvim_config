@@ -1,6 +1,7 @@
 -- LSP Plugins
 local server_local_configs = require 'util.self_lsp'
 local local_icons = require 'local-icons'
+local self_init = require 'util.self_init'
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -163,7 +164,7 @@ return {
               ---})
               ---map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto')
               ---map('<A-i>', '<cmd>LspOverloadsSignature<CR>', 'Show Signature Overloads', { 'i', 'n' }, true)
-              local signature = require('lsp_signature')
+              local signature = require 'lsp_signature'
               signature.on_attach({
                 bind = true,
                 handler_opts = {
@@ -172,7 +173,7 @@ return {
                 toggle_key = '<a-i>',
                 select_signature_key = '<c-ç>',
                 close_timeout = 5000,
-                hint_prefix = "🐶 "
+                hint_prefix = '🐶 ',
               }, event.buf)
               map('<A-i>', signature.toggle_float_win, 'Toggle Signature')
             end
@@ -250,8 +251,11 @@ return {
                 vim.diagnostic.config {
                   signs = { text = diagnostic_signs },
                   float = { source = 'if_many' },
-                  virtual_text = false, --{ severity = { min = vim.diagnostic.severity.INFO },  },
+                  virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
                 }
+              end
+              if self_init.is_loaded 'tiny-inline-diagnostic.nvim' then
+                vim.diagnostic.config { virtual_text = false }
               end
             end
 

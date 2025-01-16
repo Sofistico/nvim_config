@@ -122,22 +122,23 @@ return -- snippets
     --   },
     -- },
   },
-  {
-    'rachartier/tiny-inline-diagnostic.nvim',
-    event = 'VeryLazy', -- Or `LspAttach`
-    priority = 1000, -- needs to be loaded in first
-    config = function()
-      local diag = require 'tiny-inline-diagnostic'
-      diag.setup {
-        options = {
-          severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
-          multiple_diag_under_cursor = true,
-          -- multilines = true,
-        },
-      }
-      vim.keymap.set('n', '<leader>td', function()
-        diag.toggle()
-      end, { desc = 'Toggle diagnostic under cursor' })
-    end,
-  },
+  -- for some reason this causes a major slowdown inside of oil, even if i toggle off the diagnostic
+  -- {
+  --   'rachartier/tiny-inline-diagnostic.nvim',
+  --   event = 'VeryLazy', -- Or `LspAttach`
+  --   priority = 1000, -- needs to be loaded in first
+  --   config = function()
+  --     local diag = require 'tiny-inline-diagnostic'
+  --     diag.setup {
+  --       options = {
+  --         severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
+  --         multiple_diag_under_cursor = true,
+  --         -- multilines = true,
+  --       },
+  --     }
+  --     vim.keymap.set('n', '<leader>td', function()
+  --       diag.toggle()
+  --     end, { desc = 'Toggle diagnostic under cursor' })
+  --   end,
+  -- },
 }
