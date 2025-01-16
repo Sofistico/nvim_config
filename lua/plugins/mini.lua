@@ -82,6 +82,7 @@ return {
       },
       filetype = {
         dotenv = { glyph = '', hl = 'MiniIconsYellow' },
+        csharp = { glyph = '󰌛', hl = 'MiniIconsGreen'}
       },
     },
     init = function()
