@@ -6,7 +6,8 @@ return {
     config = function()
       local helpers = require 'incline.helpers'
       local devicons = require 'nvim-web-devicons'
-      require('incline').setup {
+      local incline = require 'incline'
+      incline.setup {
         window = {
           padding = 0,
           margin = { horizontal = 0 },
@@ -27,6 +28,7 @@ return {
           }
         end,
       }
+      vim.keymap.set('n', '<leader>ti', incline.toggle, {desc = '[t]oggle [i]ncline'})
     end,
   },
 }
