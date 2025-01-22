@@ -134,7 +134,7 @@ return -- snippets
           multiple_diag_under_cursor = true,
           -- multilines = true,
         },
-        disabled_ft = { 'oil' },
+        disabled_ft = { 'oil', 'gitsigns.blame', 'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches', 'dapui_repl', 'dapui_console' },
       }
       vim.keymap.set('n', '<leader>td', function()
         diag.toggle()

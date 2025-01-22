@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'checkhealth',
     'dbout',
     'gitsigns-blame',
-    'gitsigns.blame',
     'grug-far',
     'help',
     'lspinfo',
