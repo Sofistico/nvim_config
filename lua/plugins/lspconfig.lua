@@ -21,8 +21,9 @@ return {
     lazy = true,
     event = 'BufAdd',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      -- Mason must be loaded before its dependents so we need to set it up here.
+      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+      { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       -- 'hinell/lsp-timeout.nvim',
@@ -407,8 +408,6 @@ return {
         'netcoredbg', -- used to debug c#
       }
       vim.list_extend(ensure_installed_tools, ensure_installed)
-
-      require('mason').setup()
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed_tools, automatic_installation = true, run_on_start = true }
 
