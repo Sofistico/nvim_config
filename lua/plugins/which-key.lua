@@ -31,6 +31,7 @@ return {
         { '<leader>s', group = 'search' },
         -- { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = 'toggle' },
+        { '<leader>N', group = 'fun' },
         -- { '<leader>h', group = 'git hunk'}
         { '<leader><tab>', group = 'tabs' },
         {
