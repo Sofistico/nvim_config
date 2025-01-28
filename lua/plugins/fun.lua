@@ -3,7 +3,7 @@ return {
     'tamton-aquib/duck.nvim',
     keys = {
       {
-        '<leader>Nd',
+        '<leader>Nh',
         function()
           require('duck').hatch()
         end,
