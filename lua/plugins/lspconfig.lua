@@ -173,7 +173,7 @@ return {
                 toggle_key = '<a-i>',
                 select_signature_key = '<c-ç>',
                 close_timeout = 5000,
-                hint_prefix = '🐶 ',
+                hint_prefix = local_icons.fun .. ' ',
               }, event.buf)
               map('<A-i>', signature.toggle_float_win, 'Toggle Signature')
             end

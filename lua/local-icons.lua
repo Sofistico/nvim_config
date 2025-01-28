@@ -13,6 +13,7 @@ local M = {
   start = '🚀',
   task = '📌',
   lazy = '💤 ',
+  fun = '🐶',
   dap = {
     Stopped = { '󰁕 ', 'DiagnosticWarn', 'DapStoppedLine' },
     Breakpoint = ' ',

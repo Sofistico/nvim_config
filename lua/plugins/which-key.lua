@@ -26,13 +26,9 @@ return {
       spec = {
         mode = { 'n', 'v', 'x' },
         { '<leader>c', group = 'code' },
-        -- { '<leader>d', group = '[D]ocument' },
-        -- { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = 'search' },
-        -- { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = 'toggle' },
-        { '<leader>N', group = 'fun' },
-        -- { '<leader>h', group = 'git hunk'}
+        { '<leader>N', group = 'fun', icon = icon.fun },
         { '<leader><tab>', group = 'tabs' },
         {
           '<leader>b',
