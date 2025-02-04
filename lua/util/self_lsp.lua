@@ -27,6 +27,7 @@ local M = {
         desc = '[G]oto [I]mplementation',
       },
     },
+    debugger = 'netcoredbg',
   },
   clangd = {
     setup = {},
