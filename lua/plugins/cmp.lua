@@ -14,11 +14,13 @@ return {
       'neovim/nvim-lspconfig',
       -- 'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-path',
+      'lukas-reineke/cmp-under-comparator',
     },
     opts = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+
       luasnip.config.setup()
 
       cmp.setup {
@@ -40,8 +42,8 @@ return {
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
           -- Scroll the documentation window [b]ack / [f]orward
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          -- ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
@@ -93,6 +95,7 @@ return {
           { name = 'path', priority = 5 },
           { name = 'nvim-lua', priority = 1 },
         },
+        ---@diagnostic disable-next-line: missing-fields
         formatting = {
           format = function(_, list)
             local icons = require 'local-icons'
@@ -107,18 +110,20 @@ return {
         -- performance = {
         --   max_view_entries = 15,
         -- }
-        -- sorting = {
-        --   priority_weight = 1.0,
-        --   comparators = {
-        --     cmp.config.compare.offset,
-        --     cmp.config.compare.exact,
-        --     cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-        --     cmp.config.compare.kind,
-        --     cmp.config.compare.locality,
-        --     cmp.config.compare.order,
-        --     cmp.config.compare.recently_used,
-        --   },
-        -- },
+        sorting = {
+          priority_weight = 1.0,
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            require('cmp-under-comparator').under,
+            cmp.config.compare.kind,
+            -- cmp.config.compare.sort_text,
+            -- cmp.config.compare.length,
+            -- cmp.config.compare.order,
+          },
+        },
       }
     end,
   },
