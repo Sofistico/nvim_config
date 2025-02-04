@@ -113,7 +113,7 @@ return {
     lazy = true,
     opts = {
       mode = 'cursor',
-      max_lines = 6,
+      max_lines = 10,
     },
     keys = {
       {
