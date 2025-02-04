@@ -28,11 +28,11 @@ return {
         desc = 'Pick Buffer and Vertical Split',
       },
       { '<leader>bI', '<Cmd>BufferLinePickClose<CR>', desc = 'Close Pick Buffer' },
-      { '<leader>bo', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
+      { '<leader>bO', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
       { '<leader>bl', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
       { '<leader>bh', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
       {
-        '<leader>bO',
+        '<leader>bo',
         function()
           require('bufferline').sort_by(function(buffer_a, buffer_b)
             local modified_a = vim.fn.getftime(buffer_a.path)
