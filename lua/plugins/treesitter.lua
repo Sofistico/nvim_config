@@ -75,6 +75,7 @@ return {
     'windwp/nvim-ts-autotag',
     event = 'BufEnter *.*html',
     lazy = true,
+    opts = {},
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
