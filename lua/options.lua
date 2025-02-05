@@ -104,7 +104,7 @@ vim.opt.fillchars = {
   eob = ' ',
 }
 
-vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'winsize', 'help', 'globals', 'skiprtp', 'folds' }
+vim.opt.sessionoptions = { 'buffers', 'curdir', 'tabpages', 'skiprtp', 'folds' }
 
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 
