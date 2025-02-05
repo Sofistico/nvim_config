@@ -10,6 +10,7 @@ return {
           week_header = {
             enable = true,
           },
+          project = { enable = false },
           shortcut = {
             { icon = '󰚰 ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
             {
@@ -50,7 +51,7 @@ return {
                 }
                 require('telescope.builtin').find_files(fk_opts)
               end,
-              key = 'c',
+              key = 'n',
             },
             {
               icon = '💤 ',
