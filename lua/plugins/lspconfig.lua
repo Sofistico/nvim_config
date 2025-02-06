@@ -217,8 +217,8 @@ return {
             end
 
             if client.server_capabilities.codeLensProvider then
-              map('<leader>cc', vim.lsp.codelens.run, 'Run [c]odelens', { 'n', 'v' })
-              map('<leader>cC', vim.lsp.codelens.refresh, 'Refresh e Display [C]odelens')
+              map('<leader>cc', vim.lsp.codelens.refresh, 'Refresh e Display [c]odelens')
+              map('<leader>cC', vim.lsp.codelens.run, 'Run [C]odelens', { 'n', 'v' })
             end
 
             if client.server_capabilities.documentSymbolProvider then
