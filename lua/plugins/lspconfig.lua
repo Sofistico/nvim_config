@@ -186,7 +186,7 @@ return {
             if client.server_capabilities.referencesProvider then
               -- Find references for the word under your cursor.
               map('gr', function()
-                require('telescope.builtin').lsp_references { layout_strategy = 'vertical', show_line = false }
+                require('telescope.builtin').lsp_references { layout_strategy = 'vertical', show_line = false, include_declaration = false }
               end, '[G]oto [R]eferences')
             end
 
@@ -254,7 +254,7 @@ return {
                 }
               end
               if self_init.is_loaded 'tiny-inline-diagnostic.nvim' then
-                vim.diagnostic.config {virtual_text = false}
+                vim.diagnostic.config { virtual_text = false }
               end
             end
 
