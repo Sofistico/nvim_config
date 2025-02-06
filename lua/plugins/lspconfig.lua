@@ -101,18 +101,10 @@ return {
             title = 'signature helper',
           })
 
-          -- Execute a code action, usually your cursor needs to be on top of an error
-          -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
-
           -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
           map('<leader>cR', function()
             require('snacks').rename.rename_file()
           end, '[R]ename File')
-          --
-          -- Rename the variable under your cursor.
-          --  Most Language Servers support renaming across files, etc.
-          map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -142,6 +134,18 @@ return {
                   vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
                 end,
               })
+            end
+
+            if client.supports_method(vim.lsp.protocol.Methods.textDocument_codeAction) then
+              -- Execute a code action, usually your cursor needs to be on top of an error
+              -- or a suggestion from your LSP for this to activate.
+              map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+            end
+
+            if client.supports_method(vim.lsp.protocol.Methods.textDocument_rename) then
+              -- Rename the variable under your cursor.
+              --  Most Language Servers support renaming across files, etc.
+              map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
             end
 
             -- The following code creates a keymap to toggle inlay hints in your
