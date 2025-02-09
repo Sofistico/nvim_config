@@ -1,4 +1,5 @@
 vim.cmd 'comp dotnet'
+vim.cmd 'setlocal et sw=4'
 
 vim.keymap.set('n', '<leader>cn', '<cmd>DotnetUI new_item<cr>', { desc = 'New Dotnet item', silent = true, buffer = true })
 vim.keymap.set('n', '<leader>cN', '<cmd>DotnetUI file bootstrap<cr>', { desc = 'Bootstrap new file', silent = true, buffer = true })
