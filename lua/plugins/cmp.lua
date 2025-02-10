@@ -11,6 +11,17 @@ local function under(entry1, entry2)
   end
 end
 
+-- local function priorize_kind(kind)
+--   return function(e1, e2)
+--     if e1:get_kind() == kind then
+--       return false
+--     end
+--     if e2:get_kind() == kind then
+--       return true
+--     end
+--   end
+-- end
+
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -125,11 +136,11 @@ return {
         sorting = {
           priority_weight = 1.0,
           comparators = {
-            cmp.config.compare.offset,
             cmp.config.compare.exact,
             cmp.config.compare.score,
-            under,
+            cmp.config.compare.offset,
             cmp.config.compare.kind,
+            under,
             cmp.config.compare.locality,
             cmp.config.compare.recently_used,
             -- cmp.config.compare.sort_text,
