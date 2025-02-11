@@ -99,11 +99,6 @@ vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
 vim.keymap.set('n', '<A-l>', '<cmd>><cr>', { desc = 'Move Right' })
 vim.keymap.set('n', '<A-h>', '<cmd><<cr>', { desc = 'Move Left' })
-vim.keymap.set('i', '<A-l>', '<esc><cmd>><cr>gi', { desc = 'Move Right' })
-vim.keymap.set('i', '<A-h>', '<esc><cmd><<cr>gi', { desc = 'Move Left' })
--- the code below still needs some stuff to work out in the visual mode, but for now, sort of works, but it's still easier to just call the old way
--- vim.keymap.set('v', '<A-l>', "<cmd>'<,'>><cr>", { desc = 'Move Right' })
--- vim.keymap.set('v', '<A-h>', "<cmd>'<,'><<cr>", { desc = 'Move Left' })
 
 -- code
 vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
