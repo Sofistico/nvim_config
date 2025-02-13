@@ -54,7 +54,7 @@ return -- snippets
           severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
           -- multilines = true,
         },
-        disabled_ft = { 'oil', 'gitsigns.blame', 'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches', 'dapui_repl', 'dapui_console' },
+        disabled_ft = { 'oil', 'gitsigns.blame', 'dapui_scopes', 'dapui_breakpoints', 'dapui_stacks', 'dapui_watches', 'dapui_repl', 'dapui_console', '', ' ' },
       }
       vim.keymap.set('n', '<leader>td', function()
         diag.toggle()
