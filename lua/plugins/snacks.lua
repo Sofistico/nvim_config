@@ -8,6 +8,17 @@ return {
       bufdelete = { enabled = true },
       rename = { enabled = true },
       toggle = { enabled = true },
+      input = { enabled = true },
+      styles = {
+        input = {
+          relative = 'cursor',
+          col = 0,
+          row = -3,
+          keys = {
+            i_ctrl_k = { '<c-k>', { 'cmp_accept', 'confirm' }, mode = 'i', expr = true },
+          },
+        },
+      },
     },
     config = function(_, opts)
       local snacks = require 'snacks'
