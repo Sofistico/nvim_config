@@ -48,9 +48,6 @@ return {
       ['<C-t>'] = { 'actions.select', opts = { tab = true, close = true } },
     },
   },
-  -- config = function ()
-  --   require("oil").setup()
-  -- end,
   keys = {
     { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
     -- {
@@ -61,4 +58,5 @@ return {
     --   desc = 'Open floating parent direc',
     -- },
   },
+  cmd = 'Oil',
 }
