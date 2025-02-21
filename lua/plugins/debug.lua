@@ -5,13 +5,11 @@
 -- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
-local lsp = require("util.self_lsp")
+local lsp = require 'util.self_lsp'
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
   lazy = true,
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
@@ -96,7 +94,7 @@ return {
     {
       '<leader>de',
       function()
-        local ui = require("dapui")
+        local ui = require 'dapui'
         ui.eval()
       end,
       desc = 'Eval',
@@ -105,7 +103,7 @@ return {
     {
       '<leader>dE',
       function()
-        local ui = require("dapui")
+        local ui = require 'dapui'
         ui.eval()
         ui.eval()
       end,
@@ -186,11 +184,13 @@ return {
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
+    ---@diagnostic disable-next-line: missing-fields
     dapui.setup {
       -- Set icons to characters that are more likely to work in every terminal.
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+      ---@diagnostic disable-next-line: missing-fields
       controls = {
         icons = {
           pause = '⏸',
