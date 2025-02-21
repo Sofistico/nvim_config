@@ -132,3 +132,8 @@ vim.keymap.set({ 'n', 'x', 'v' }, 'Q', 'q', { desc = 'Record macro', noremap = t
 -- remap - to nil so that oil can use it and make _ work as default _
 vim.keymap.set('n', '-', '<nop>', {})
 vim.keymap.set('n', '_', '-', { noremap = true, desc = 'Go back to start word' })
+
+-- toggle relative number
+vim.keymap.set('n', '<leader>tr', function()
+  vim.o.relativenumber = not vim.o.relativenumber
+end, { desc = 'Toggle relative number' })
