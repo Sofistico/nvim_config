@@ -53,16 +53,18 @@ return {
       local dap = require 'dap'
       if not dap.adapters['codelldb'] then
         require('dap').adapters['codelldb'] = {
-          type = 'server',
-          host = 'localhost',
-          port = '${port}',
-          executable = {
-            command = 'codelldb',
-            args = {
-              '--port',
-              '${port}',
-            },
-          },
+          -- type = 'server',
+          -- host = 'localhost',
+          -- port = '${port}',
+          -- executable = {
+          --   command = 'codelldb',
+          --   args = {
+          --     '--port',
+          --     '${port}',
+          --   },
+          -- },
+          type = 'executable',
+          command = 'codelldb', -- or if not in $PATH: "/absolute/path/to/codelldb"
         }
       end
       for _, lang in ipairs { 'c', 'cpp' } do
