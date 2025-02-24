@@ -86,6 +86,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   callback = function(ev)
     vim.b.minianimate_disable = true
     vim.cmd 'setlocal syntax=off'
+    vim.o.wrap = false
     vim.schedule(function()
       vim.bo[ev.buf].syntax = vim.filetype.match { buf = ev.buf } or ''
     end)
