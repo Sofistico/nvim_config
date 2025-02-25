@@ -169,7 +169,7 @@ return {
                   border = 'rounded',
                 },
                 toggle_key = '<a-i>',
-                close_timeout = 4000,
+                close_timeout = 10000,
                 hint_prefix = local_icons.fun .. ' ',
               }, event.buf)
               -- map('<A-i>', signature.toggle_float_win, 'Toggle Signature')

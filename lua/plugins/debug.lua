@@ -159,6 +159,13 @@ return {
       end,
       desc = 'Continue to cursor in Debug (execute)',
     },
+    {
+      '<leader>dr',
+      function()
+        require('dap').repl.toggle()
+      end,
+      desc = 'Toggle repl',
+    },
   },
   config = function()
     local dap = require 'dap'
