@@ -125,7 +125,7 @@ return {
         desc = 'Go to context',
       },
       {
-        '<leader>tC',
+        '<leader>tc',
         function()
           require('treesitter-context').toggle()
         end,
