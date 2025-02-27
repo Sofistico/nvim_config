@@ -137,3 +137,9 @@ vim.keymap.set('n', '_', '-', { noremap = true, desc = 'Go back to start word' }
 vim.keymap.set('n', '<leader>tr', function()
   vim.o.relativenumber = not vim.o.relativenumber
 end, { desc = 'Toggle relative number' })
+
+-- toggle backup
+vim.keymap.set('n', '<leader>tB', function()
+  vim.o.writebackup = not vim.o.writebackup
+  vim.notify('Write backup: ' .. tostring(vim.o.writebackup))
+end, { desc = 'Toggle backup' })
