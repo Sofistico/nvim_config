@@ -215,6 +215,13 @@ return {
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+    dap.listeners.after.event_initialized['dap_stop_backup'] = function(_, _)
+      -- the write backup doesn't play nicely with c# watch command
+      vim.o.writebackup = false
+    end
+    dap.listeners.after.event_terminated['dap_stop_backup'] = function(_, _)
+      vim.o.writebackup = true
+    end
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
     -- Change breakpoint icons
     vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
