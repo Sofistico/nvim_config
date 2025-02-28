@@ -4,7 +4,6 @@
 -- you do for a plugin at the top level, you can do for a dependency.
 --
 -- Use the `dependencies` key to specify the dependencies of a particular plugin
-local self_telescope = require 'util.self_telescope'
 
 return {
   { -- Fuzzy Finder (files, lsp, etc)
@@ -142,7 +141,7 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
 
-      vim.keymap.set('n', '<leader>sm', self_telescope.live_multigrep, { desc = '[S]earch [M]ultiGrep' })
+      vim.keymap.set('n', '<leader>sm', require('util.self_telescope').live_multigrep, { desc = '[S]earch [M]ultiGrep' })
     end,
   },
 }

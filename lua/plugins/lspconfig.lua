@@ -409,7 +409,6 @@ return {
         'csharpier', -- used to format c# code
         'netcoredbg', -- used to debug c#
       }
-      vim.list_extend(ensure_installed_tools, ensure_installed)
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed_tools, automatic_installation = true, run_on_start = true }
 
