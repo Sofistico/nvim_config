@@ -408,9 +408,13 @@ return {
         'stylua', -- Used to format Lua code
         'csharpier', -- used to format c# code
         'netcoredbg', -- used to debug c#
+        'markdownlint',
+        'prettier',
       }
 
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed_tools, automatic_installation = true, run_on_start = true }
+      ensure_installed_tools = vim.tbl_extend('keep', ensure_installed, ensure_installed_tools)
+
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed_tools, automatic_installation = true }
 
       require('mason-lspconfig').setup {
         handlers = {
