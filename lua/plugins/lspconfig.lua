@@ -218,13 +218,13 @@ return {
             if client.server_capabilities.documentSymbolProvider then
               -- Fuzzy find all the symbols in your current document.
               --  Symbols are things like variables, functions, types, etc.
-              map('<leader>cs', require('telescope.builtin').lsp_document_symbols, 'Document [s]ymbols')
+              map('<leader>ss', require('telescope.builtin').lsp_document_symbols, 'Document [s]ymbols')
             end
 
             if client.server_capabilities.workspaceSymbolProvider then
               -- Fuzzy find all the symbols in your current workspace.
               --  Similar to document symbols, except searches over your entire project.
-              map('<leader>cS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
+              map('<leader>sS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
             end
 
             -- Change diagnostic symbols in the sign column (gutter)
