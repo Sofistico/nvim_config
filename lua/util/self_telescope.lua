@@ -50,7 +50,7 @@ M.live_multigrep = function(opts)
 end
 
 M.setup = function()
-  live_multigrep()
+  M.live_multigrep()
 end
 
 return M
