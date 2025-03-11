@@ -1,7 +1,7 @@
 -- LSP Plugins
-local server_local_configs = require 'util.self_lsp'
-local local_icons = require 'local-icons'
-local self_init = require 'util.self_init'
+local lsp_configs = require 'util.self_lsp'
+local icons = require 'local-icons'
+local plugins = require 'util.self_init'
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -170,7 +170,7 @@ return {
                 },
                 toggle_key = '<a-i>',
                 close_timeout = 10000,
-                hint_prefix = local_icons.fun .. ' ',
+                hint_prefix = icons.fun .. ' ',
               }, event.buf)
               -- map('<A-i>', signature.toggle_float_win, 'Toggle Signature')
             end
@@ -228,36 +228,10 @@ return {
             end
 
             -- Change diagnostic symbols in the sign column (gutter)
-            if vim.g.have_nerd_font then
-              local signs = {
-                ERROR = local_icons.diagnostics.error_lsp,
-                WARN = local_icons.diagnostics.warn_lsp,
-                INFO = local_icons.diagnostics.info_lsp,
-                HINT = local_icons.diagnostics.hint_lsp,
-              }
-              local diagnostic_signs = {}
-              for type, icon in pairs(signs) do
-                if vim.fn.has 'nvim-0.10.2' == 1 then
-                  diagnostic_signs[vim.diagnostic.severity[type]] = icon
-                else
-                  local hl = 'DiagnosticSign' .. type
-                  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-                end
-              end
-              if vim.fn.has 'nvim-0.10.2' == 1 then
-                vim.diagnostic.config {
-                  signs = { text = diagnostic_signs },
-                  float = { source = 'if_many' },
-                  virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
-                }
-              end
-              if self_init.is_loaded 'tiny-inline-diagnostic.nvim' then
-                vim.diagnostic.config { virtual_text = false }
-              end
-            end
+            lsp_configs.config_lsp_diagnostic(vim.g.have_nerd_font, icons, plugins);
 
-            if server_local_configs[client.name] ~= nil and server_local_configs[client.name].keys ~= nil then
-              local keys = server_local_configs[client.name].keys
+            if lsp_configs[client.name] ~= nil and lsp_configs[client.name].keys ~= nil then
+              local keys = lsp_configs[client.name].keys
               for _, k in ipairs(keys) do
                 if type(k.key) == 'table' then
                   for _, kl in ipairs(k.key) do
