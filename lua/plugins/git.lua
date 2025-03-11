@@ -23,6 +23,7 @@ return {
         topdelete = { text = '' },
         changedelete = { text = '▎' },
       },
+      sign_priority = 20,
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
