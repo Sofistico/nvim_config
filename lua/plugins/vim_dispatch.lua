@@ -9,7 +9,7 @@ return {
       '`<space>',
       "'<cr>",
       { 'm<cr>', '<cmd>Make<cr>', desc = 'Make' },
-      { 'm!', '<cmd>Make!', desc = 'Make on background' },
+      { 'm!', '<cmd>Make!<cr>', desc = 'Make on background' },
       { 'm<space>', '<cmd>Make ', desc = 'Make with command' },
       '`!',
     },
