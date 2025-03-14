@@ -1,0 +1,7 @@
+{
+  "private readonly field": {
+    "prefix": "pr",
+    "body": ["private readonly ${1:MyType} ${2:MyVar}$0"],
+    "description": "Define a private readonly field" 
+  }
+}
