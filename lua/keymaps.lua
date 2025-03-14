@@ -143,3 +143,7 @@ vim.keymap.set('n', '<leader>tB', function()
   vim.o.writebackup = not vim.o.writebackup
   vim.notify('Write backup: ' .. tostring(vim.o.writebackup))
 end, { desc = 'Toggle backup' })
+
+if vim.fn.has('win32') then
+  vim.keymap.set('n', '<leader>tE', '<cmd>e ++ff=dos', {desc = "Set fileformat to DOS"})
+end
