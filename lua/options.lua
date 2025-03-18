@@ -43,8 +43,8 @@ vim.schedule(function()
   end
 end)
 
--- Enable break indent
-vim.opt.breakindent = false
+-- indenting
+vim.opt.smartindent = true
 
 -- Save undo history
 vim.opt.undofile = true
@@ -53,7 +53,6 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.smartindent = true
 vim.opt.spelllang = { 'en' }
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitkeep = 'cursor'
