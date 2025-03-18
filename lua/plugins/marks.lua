@@ -2,6 +2,8 @@ return {
   {
     'chentoast/marks.nvim',
     event = 'BufAdd',
-    opts = {},
+    opts = {
+      sign_priority = { 11, 12, 13 },
+    },
   },
 }

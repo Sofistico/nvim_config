@@ -56,7 +56,7 @@ function M.config_lsp_diagnostic(has_nerd_font, icons, plugins)
     end
     if vim.fn.has 'nvim-0.10.2' == 1 then
       vim.diagnostic.config {
-        signs = { text = diagnostic_signs },
+        signs = { text = diagnostic_signs, priority = 20 },
         float = { source = 'if_many' },
         virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
       }
