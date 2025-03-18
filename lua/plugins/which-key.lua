@@ -53,8 +53,8 @@ return {
 
         -- This here is just to make a beautiful name for keys:
         { '<c-w>r', desc = 'Rotate windows' },
-        {'g-', desc = 'Go to older text state'},
-        {'g+', desc = 'Go to newer text state'}
+        { 'g-', desc = 'Go to older text state' },
+        { 'g+', desc = 'Go to newer text state' },
       },
       icons = {
         rules = {
