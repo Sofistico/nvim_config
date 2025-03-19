@@ -6,3 +6,4 @@ future plugins to implement:
 	- telescope-ast-grep.nvim | https://github.com/Marskey/telescope-sg
 	- Blink will substitute cmp in te future
 	- Code companion maybe?
+	- nvim spider seems promising
