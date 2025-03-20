@@ -367,28 +367,7 @@ return {
         },
       }
 
-      -- Ensure the servers and tools above are installed
-      --  To check the current status of installed tools and/or manually install
-      --  other tools, you can run
-      --    :Mason
-      --  You can press `g?` for help in this menu.
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = {
-        'lua_ls',
-        'omnisharp',
-      }
-      local ensure_installed_tools = {
-        'stylua', -- Used to format Lua code
-        'csharpier', -- used to format c# code
-        'netcoredbg', -- used to debug c#
-        'markdownlint',
-        'prettier',
-      }
-
-      ensure_installed_tools = vim.tbl_extend('keep', ensure_installed, ensure_installed_tools)
-
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed_tools, automatic_installation = true }
+      require('mason-tool-installer').setup { ensure_installed = lsp_configs.ensure_installed_all, automatic_installation = true }
 
       require('mason-lspconfig').setup {
         handlers = {
@@ -402,7 +381,7 @@ return {
           end,
         },
         automatic_installation = true,
-        ensure_installed = ensure_installed,
+        ensure_installed = lsp_configs.ensure_installed_lsp,
       }
     end,
   },
