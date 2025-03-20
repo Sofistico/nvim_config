@@ -43,37 +43,4 @@ return -- snippets
       },
     },
   },
-  -- {
-  --   'rachartier/tiny-inline-diagnostic.nvim',
-  --   event = 'VeryLazy', -- Or `LspAttach`
-  --   priority = 1000, -- needs to be loaded in first
-  --   config = function()
-  --     local diag = require 'tiny-inline-diagnostic'
-  --     diag.setup {
-  --       options = {
-  --         severity = { vim.diagnostic.severity.ERROR, vim.diagnostic.severity.WARN, vim.diagnostic.severity.INFO },
-  --         -- multilines = true,
-  --       },
-  --       disabled_ft = {
-  --         'oil',
-  --         'oil_preview',
-  --         'oil_progress',
-  --         'netrw',
-  --         'gitsigns.blame',
-  --         'dapui_scopes',
-  --         'dapui_breakpoints',
-  --         'dapui_stacks',
-  --         'dapui_watches',
-  --         'dapui_repl',
-  --         'dapui_console',
-  --         '',
-  --         ' ',
-  --       },
-  --       throttle = 200,
-  --     }
-  --     vim.keymap.set('n', '<leader>td', function()
-  --       diag.toggle()
-  --     end, { desc = 'Toggle diagnostic under cursor' })
-  --   end,
-  -- },
 }
