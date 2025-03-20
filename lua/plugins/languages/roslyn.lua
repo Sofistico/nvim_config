@@ -1,5 +1,6 @@
 local lsp = require 'util.self_lsp'
 local helpers = require 'util.self_init'
+local selected_project = nil
 
 return {
   {
@@ -85,12 +86,15 @@ return {
         },
         broad_search = true,
         choose_target = function(targets)
-          local enumerated_target = { 'Choose a target to start: ' }
-          for i, v in ipairs(targets) do
-            enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
+          if selected_project == nil or not vim.tbl_contains(targets, selected_project) then
+            local enumerated_target = { 'Choose a target to start: ' }
+            for i, v in ipairs(targets) do
+              enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
+            end
+            local choice = vim.fn.inputlist(enumerated_target)
+            selected_project = targets[choice]
           end
-          local choice = vim.fn.inputlist(enumerated_target)
-          return targets[choice]
+          return selected_project
         end,
       }
 
