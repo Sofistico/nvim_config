@@ -1,7 +1,7 @@
 return {
   'williamboman/mason.nvim',
   lazy = true,
-  cmd = 'Mason',
+  cmd = { 'Mason', 'MasonUpdate' },
   opts = {
     registries = {
       'github:mason-org/mason-registry',
