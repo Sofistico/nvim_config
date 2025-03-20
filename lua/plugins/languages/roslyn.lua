@@ -85,7 +85,11 @@ return {
         },
         broad_search = true,
         choose_target = function(targets)
-          local choice = vim.fn.inputlist(targets)
+          local enumerated_target = { 'Choose a target to start: ' }
+          for i, v in ipairs(targets) do
+            enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
+          end
+          local choice = vim.fn.inputlist(enumerated_target)
           return targets[choice]
         end,
       }
