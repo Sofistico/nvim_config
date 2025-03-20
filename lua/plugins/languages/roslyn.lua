@@ -84,6 +84,10 @@ return {
           },
         },
         broad_search = true,
+        choose_target = function(targets)
+          local choice = vim.fn.inputlist(targets)
+          return targets[choice]
+        end,
       }
 
       if helpers.is_loaded 'rzls.roslyn_handlers' then
