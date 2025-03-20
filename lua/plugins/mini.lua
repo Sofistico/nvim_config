@@ -90,6 +90,8 @@ return {
       filetype = {
         dotenv = { glyph = '', hl = 'MiniIconsYellow' },
         csharp = { glyph = '󰌛', hl = 'MiniIconsGreen' },
+        cshtml = { glyph = '', hl = 'MiniIconsAzure'},
+        razor = { glyph = '', hl = 'MiniIconsAzure'},
       },
     },
     init = function()

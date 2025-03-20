@@ -1,4 +1,5 @@
 local lsp = require 'util.self_lsp'
+local helpers = require 'util.self_init'
 
 return {
   {
@@ -32,8 +33,11 @@ return {
       }
     end,
     config = function()
+      local roslyn = require 'roslyn'
+
       ---@module 'roslyn.config'
-      require('roslyn').setup {
+      ---@class RoslynNvimConfig
+      local roslyn_config = {
         args = {
           '--stdio',
           '--logLevel=Information',
@@ -81,6 +85,13 @@ return {
         },
         broad_search = true,
       }
+
+      if helpers.is_loaded 'rzls.roslyn_handlers' then
+        roslyn_config.config.handlers = require 'rzls.roslyn_handlers'
+      end
+
+      roslyn.setup(roslyn_config)
+
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = { '%__virtual.cs$' },
@@ -103,6 +114,23 @@ return {
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           lsp.monkey_patch_semantic_tokens(client)
+
+          -- diagnostic refresh
+          vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+            group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
+            pattern = '*',
+            callback = function()
+              local clients = vim.lsp.get_clients { name = 'roslyn' }
+              if not clients or #clients == 0 then
+                return
+              end
+
+              local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
+              for _, buf in ipairs(buffers) do
+                vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
+              end
+            end,
+          })
         end,
       })
     end,
