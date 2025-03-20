@@ -63,7 +63,7 @@ return {
             { icon = '󰿅 ', desc = 'Quit', group = '@property', action = 'q', key = 'q' },
           },
           footer = function()
-            return { 'Current CWD: ' .. vim.fn.getcwd() }
+            return { '🐶' .. ' woof' }
           end,
         },
       }
