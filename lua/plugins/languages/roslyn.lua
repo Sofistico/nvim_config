@@ -34,8 +34,6 @@ return {
       }
     end,
     config = function()
-      local roslyn = require 'roslyn'
-
       ---@module 'roslyn.config'
       ---@class RoslynNvimConfig
       local roslyn_config = {
@@ -55,6 +53,7 @@ return {
             'Microsoft.NET.Sdk.Razor.DesignTime.targets'
           ),
         },
+        filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         config = {
           handlers = require 'rzls.roslyn_handlers',
@@ -73,14 +72,22 @@ return {
               dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
               dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
             },
+            ['csharp|background_analysis'] = {
+              dotnet_analyzer_diagnostics_scope = 'openFiles',
+              dotnet_compiler_diagnostics_scope = 'openFiles',
+            },
             ['csharp|code_lens'] = {
               dotnet_enable_references_code_lens = true,
             },
             ['csharp|completion'] = {
               dotnet_show_completion_items_from_unimported_namespaces = true,
+              dotnet_show_name_completion_suggestions = true,
             },
             ['csharp|symbol_search'] = {
               dotnet_search_reference_assemblies = true,
+            },
+            ['csharp|formatting'] = {
+              dotnet_organize_imports_on_format = true,
             },
           },
         },
@@ -102,7 +109,7 @@ return {
         roslyn_config.config.handlers = require 'rzls.roslyn_handlers'
       end
 
-      roslyn.setup(roslyn_config)
+      require 'roslyn'.setup(roslyn_config)
 
       require('telescope').setup {
         defaults = {

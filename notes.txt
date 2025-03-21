@@ -7,3 +7,4 @@ future plugins to implement:
 	- Blink will substitute cmp in te future
 	- Code companion maybe?
 	- nvim spider seems promising
+	- easy-dotnet.nvim for some of it's work, though not everything
