@@ -7,6 +7,7 @@ return {
     },
     lazy = true,
     ft = 'sql',
+    cmd = 'DB',
     config = function()
       local cmp = require 'cmp'
       -- Setup up vim-dadbod
