@@ -120,9 +120,21 @@ return {
         },
         ---@diagnostic disable-next-line: missing-fields
         formatting = {
-          format = function(_, list)
+          format = function(entry, list)
             local icons = require 'local-icons'
             list.kind = (icons.kinds[list.kind] or 'Foo') .. list.kind
+
+            -- list.menu = ({
+            --   nvim_lsp = '[LSP]',
+            --   vsnip = '[Snippet]',
+            --   nvim_lua = '[Nvim Lua]',
+            --   buffer = '[Buffer]',
+            -- })[entry.source.name]
+
+            list.dup = ({
+              nvim_lsp = 0,
+            })[entry.source.name] or 0
+
             return list
           end,
         },

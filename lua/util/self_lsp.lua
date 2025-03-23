@@ -58,7 +58,7 @@ function M.config_lsp_diagnostic(has_nerd_font, icons, plugins)
       vim.diagnostic.config {
         signs = { text = diagnostic_signs, priority = 20 },
         float = { source = 'if_many' },
-        virtual_text = { severity = { min = vim.diagnostic.severity.INFO } },
+        virtual_text = { source = 'if_many', severity = { min = vim.diagnostic.severity.INFO } },
       }
     end
     if plugins.is_loaded 'tiny-inline-diagnostic.nvim' then

@@ -91,7 +91,7 @@ return {
           ),
           -- '--extension=' .. vim.fs.joinpath(libs_path, "Microsoft.CodeAnalysis.CSharp.dll"),
         },
-        filewatching = 'roslyn',
+        -- filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         config = {
           handlers = require 'rzls.roslyn_handlers',
