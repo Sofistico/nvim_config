@@ -308,7 +308,7 @@ return {
           },
         },
         omnisharp = {
-          autostart = false,
+          autostart = not vim.g.use_roslyn,
           handlers = {
             ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
             ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
