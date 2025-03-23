@@ -228,7 +228,7 @@ return {
             end
 
             -- Change diagnostic symbols in the sign column (gutter)
-            lsp_configs.config_lsp_diagnostic(vim.g.have_nerd_font, icons, plugins);
+            lsp_configs.config_lsp_diagnostic(vim.g.have_nerd_font, icons, plugins)
 
             if lsp_configs[client.name] ~= nil and lsp_configs[client.name].keys ~= nil then
               local keys = lsp_configs[client.name].keys
@@ -308,6 +308,7 @@ return {
           },
         },
         omnisharp = {
+          autostart = false,
           handlers = {
             ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
             ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,

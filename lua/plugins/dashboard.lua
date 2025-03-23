@@ -63,7 +63,7 @@ return {
             { icon = '󰿅 ', desc = 'Quit', group = '@property', action = 'q', key = 'q' },
           },
           footer = function()
-            return { '🐶' .. ' woof' }
+            return { '🐶 woof: ' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t') }
           end,
         },
       }

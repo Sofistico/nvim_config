@@ -2,7 +2,7 @@ local lsp = require 'util.self_lsp'
 local helpers = require 'util.self_init'
 local selected_project = nil
 
-local function handle_namespace_fix()
+local function fix_namespace_code_action()
   vim.api.nvim_create_user_command('CSFixNamespace', function()
     local bufnr = vim.api.nvim_get_current_buf()
 
@@ -16,20 +16,20 @@ local function handle_namespace_fix()
     local action = {
       kind = 'quickfix',
       data = {
-        CustomTags = { 'FixNamespace' },
+        CustomTags = { 'SyncNamespace' },
         TextDocument = { uri = vim.uri_from_bufnr(bufnr) },
-        CodeActionPath = { 'Remove unnecessary usings' },
+        CodeActionPath = { 'Match Folder And Namespace: Change Namespace To Match Folder' },
         Range = {
           ['start'] = { line = 0, character = 0 },
           ['end'] = { line = 0, character = 0 },
         },
-        UniqueIdentifier = 'Remove unnecessary usings',
+        UniqueIdentifier = 'SyncNamespace',
       },
     }
 
     client.request('codeAction/resolve', action, function(err, resolved_action)
       if err then
-        vim.notify('Fix using directives failed', vim.log.levels.ERROR, { title = 'Roslyn' })
+        vim.notify('Fix using directives failed ' .. err.message, vim.log.levels.ERROR, { title = 'Roslyn' })
         return
       end
       vim.lsp.util.apply_workspace_edit(resolved_action.edit, client.offset_encoding)
@@ -69,6 +69,8 @@ return {
       }
     end,
     config = function()
+      local data = vim.fn.stdpath 'data' --[[@as string]]
+      local libs_path = vim.fs.joinpath(data, 'mason', 'packages', 'roslyn', 'libexec')
       ---@module 'roslyn.config'
       ---@class RoslynNvimConfig
       local roslyn_config = {
@@ -76,8 +78,7 @@ return {
           '--stdio',
           '--logLevel=Information',
           '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-          '--razorSourceGenerator='
-            .. vim.fs.joinpath(vim.fn.stdpath 'data' --[[@as string]], 'mason', 'packages', 'roslyn', 'libexec', 'Microsoft.CodeAnalysis.Razor.Compiler.dll'),
+          '--razorSourceGenerator=' .. vim.fs.joinpath(libs_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'),
           '--razorDesignTimePath=' .. vim.fs.joinpath(
             vim.fn.stdpath 'data' --[[@as string]],
             'mason',
@@ -87,6 +88,7 @@ return {
             'Targets',
             'Microsoft.NET.Sdk.Razor.DesignTime.targets'
           ),
+          -- '--extension=' .. vim.fs.joinpath(libs_path, "Microsoft.CodeAnalysis.CSharp.dll"),
         },
         filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
@@ -187,6 +189,7 @@ return {
           })
         end,
       })
+      fix_namespace_code_action()
     end,
   },
 }
