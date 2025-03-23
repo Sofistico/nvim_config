@@ -143,6 +143,7 @@ return {
               })
             end
 
+            lsp_configs.make_capabilities(client)
             -- The following code creates a keymap to toggle inlay hints in your
             -- code, if the language server you are using supports them
             --
@@ -353,7 +354,6 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            lsp_configs.make_capabilities(server)
             require('lspconfig')[server_name].setup(server)
           end,
         },
