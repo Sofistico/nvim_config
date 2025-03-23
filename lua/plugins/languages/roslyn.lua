@@ -41,6 +41,7 @@ return {
   {
     'seblyng/roslyn.nvim',
     ft = { 'cs', 'razor' },
+    enabled = vim.g.use_roslyn,
     keys = {
       {
         '<leader>tT',
