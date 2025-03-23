@@ -172,6 +172,8 @@ return {
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           lsp.monkey_patch_semantic_tokens(client)
 
+          lsp.make_capabilities(client)
+
           -- diagnostic refresh
           vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
             group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),

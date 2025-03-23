@@ -246,30 +246,6 @@ return {
         end,
       })
 
-      -- LSP servers and clients are able to communicate to each other what features they support.
-      --  By default, Neovim doesn't support everything that is in the LSP specification.
-      --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-      -- add any global capabilities here
-      capabilities = vim.tbl_deep_extend('keep', capabilities, {
-        textDocument = {
-          foldingRange = {
-            dynamicRegistration = true,
-            lineFoldingOnly = true,
-          },
-        },
-        workspace = {
-          fileOperations = {
-            didRename = true,
-            willRename = true,
-          },
-        },
-      })
-
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -308,7 +284,7 @@ return {
           },
         },
         omnisharp = {
-          -- autostart = not vim.g.use_roslyn,
+          autostart = not vim.g.use_roslyn,
           handlers = {
             ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
             ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
@@ -377,7 +353,7 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            lsp_configs.make_capabilities(server)
             require('lspconfig')[server_name].setup(server)
           end,
         },
