@@ -133,6 +133,9 @@ return {
             },
             ['csharp|quick_info'] = {
               dotnet_show_remarks_in_quick_info = true,
+            },
+            ['csharp|type_members'] = {
+              dotnet_member_insertion_location = 'with_other_members_of_the_same_kind',
             }
           },
         },
