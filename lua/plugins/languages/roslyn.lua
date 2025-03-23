@@ -14,7 +14,8 @@ local function fix_namespace_code_action()
 
     local client = clients[1]
     local action = {
-      kind = 'quickfix',
+      kind = 'refactor',
+      title = "Alterar o namespace para corresponder à estrutura da pasta",
       data = {
         CustomTags = { 'SyncNamespace' },
         TextDocument = { uri = vim.uri_from_bufnr(bufnr) },
@@ -75,6 +76,7 @@ return {
       ---@module 'roslyn.config'
       ---@class RoslynNvimConfig
       local roslyn_config = {
+        ---@diagnostic disable-next-line: duplicate-index
         args = {
           '--stdio',
           '--logLevel=Information',
@@ -91,10 +93,12 @@ return {
           ),
           -- '--extension=' .. vim.fs.joinpath(libs_path, "Microsoft.CodeAnalysis.CSharp.dll"),
         },
-        -- filewatching = 'roslyn',
+        filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         config = {
           handlers = require 'rzls.roslyn_handlers',
+          autostart = vim.g.use_roslyn,
+          filetypes = { 'cs', 'razor' },
           settings = {
             ['csharp|inlay_hints'] = {
               csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -127,6 +131,9 @@ return {
             ['csharp|formatting'] = {
               dotnet_organize_imports_on_format = true,
             },
+            ['csharp|quick_info'] = {
+              dotnet_show_remarks_in_quick_info = true,
+            }
           },
         },
         broad_search = true,
