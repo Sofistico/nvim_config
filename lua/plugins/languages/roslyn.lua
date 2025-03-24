@@ -2,8 +2,8 @@ local lsp = require 'util.self_lsp'
 local helpers = require 'util.self_init'
 local selected_project = nil
 
-local function fix_namespace_code_action()
-  vim.api.nvim_create_user_command('CSFixNamespace', function()
+local function remove_unused_using()
+  vim.api.nvim_create_user_command('RoslynRemoveUsing', function()
     local bufnr = vim.api.nvim_get_current_buf()
 
     local clients = vim.lsp.get_clients { name = 'roslyn' }
@@ -14,28 +14,27 @@ local function fix_namespace_code_action()
 
     local client = clients[1]
     local action = {
-      kind = 'refactor',
-      title = "Alterar o namespace para corresponder à estrutura da pasta",
+      kind = 'quickfix',
       data = {
-        CustomTags = { 'SyncNamespace' },
+        CustomTags = { 'RemoveUnnecessaryImports' },
         TextDocument = { uri = vim.uri_from_bufnr(bufnr) },
-        CodeActionPath = { 'Match Folder And Namespace: Change Namespace To Match Folder' },
+        CodeActionPath = { 'Remove unnecessary usings' },
         Range = {
           ['start'] = { line = 0, character = 0 },
           ['end'] = { line = 0, character = 0 },
         },
-        UniqueIdentifier = 'SyncNamespace',
+        UniqueIdentifier = 'Remove unnecessary usings',
       },
     }
 
     client.request('codeAction/resolve', action, function(err, resolved_action)
       if err then
-        vim.notify('Fix using directives failed ' .. err.message, vim.log.levels.ERROR, { title = 'Roslyn' })
+        vim.notify('Fix using directives failed', vim.log.levels.ERROR, { title = 'Roslyn' })
         return
       end
       vim.lsp.util.apply_workspace_edit(resolved_action.edit, client.offset_encoding)
     end)
-  end, { desc = 'Fix Namespace for File' })
+  end, { desc = 'Remove unnecessary using directives' })
 end
 
 return {
@@ -136,7 +135,7 @@ return {
             },
             ['csharp|type_members'] = {
               dotnet_member_insertion_location = 'with_other_members_of_the_same_kind',
-            }
+            },
           },
         },
         broad_search = true,
@@ -200,7 +199,7 @@ return {
           })
         end,
       })
-      fix_namespace_code_action()
+      remove_unused_using()
     end,
   },
 }
