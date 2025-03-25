@@ -7,7 +7,7 @@
         "snippets": [
             {
                 "language": ["csharp", "cs"],
-                "path": "./snippets/csharp/fields.json"
+                "path": "./snippets/csharp/custom.json"
             }
         ]
     }

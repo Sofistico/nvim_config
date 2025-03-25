@@ -1,0 +1,17 @@
+{
+  "private readonly field": {
+    "prefix": "pr",
+    "body": ["private readonly ${1:MyType} _${2:myVar};$0"],
+    "description": "Define a private readonly field"
+  },
+  "IActionResult method": {
+    "prefix": "iactionresult",
+    "body": [
+      "public async Task<IActionResult> ${1:Name}(${2:string} ${3:parameter})",
+      "{",
+      "\t$0",
+      "}"
+    ],
+    "description": "Create a new IActionResult method"
+  }
+}
