@@ -1,13 +1,4 @@
 return {
-  -- {
-  --   'nvim-cmp',
-  --   ft = {'c', 'cpp'},
-  --   optional = true,
-  --   opts = function(_, opts)
-  --     local sorting = opts.sorting or {}
-  --     table.insert(sorting.comparators or {}, 1, require 'clangd_extensions.cmp_scores')
-  --   end,
-  -- },
   {
     'p00f/clangd_extensions.nvim',
     lazy = true,

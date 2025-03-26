@@ -178,6 +178,8 @@ function M.make_capabilities(lsp_server)
 
   if init_helper.is_loaded 'cmp_nvim_lsp' then
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+  elseif init_helper.is_loaded 'blink.cmp' then
+    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities(capabilities))
   end
   lsp_server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, lsp_server.capabilities or {})
 end

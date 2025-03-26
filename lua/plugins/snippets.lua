@@ -44,7 +44,10 @@ return {
           require('luasnip').filetype_extend('cs', { 'fields' })
         end,
       },
-      'garymjr/nvim-snippets',
+      {
+        'garymjr/nvim-snippets',
+        cond = not vim.g.use_blink,
+      },
     },
     opts = {
       history = true,
