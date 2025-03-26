@@ -205,7 +205,21 @@ return {
       completion = {
 
         documentation = { auto_show = true, window = { border = 'rounded' } },
-        menu = { border = 'rounded', draw = { columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind', gap = 1 } } } },
+        menu = {
+          border = 'rounded',
+          draw = {
+            columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind', gap = 1 } },
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  local icons = require 'local-icons'
+                  local kind_icon = icons.kinds[ctx.kind] or 'foo'
+                  return kind_icon
+                end,
+              },
+            },
+          },
+        },
       },
       signature = { window = { border = 'rounded' } },
 
