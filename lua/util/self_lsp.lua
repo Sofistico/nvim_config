@@ -98,7 +98,7 @@ function M.monkey_patch_semantic_tokens(client)
   })
   local request_inner = client.request
 
-  if vim.fn.has 'nvim-0.10.2' == 1 then
+  if vim.fn.has 'nvim-0.10.2' == 1 and vim.fn.has 'nvim-0.11' == 0 then
     -- monkey patch the request proxy
     client.request = function(method, params, handler, req_bufnr)
       if method ~= vim.lsp.protocol.Methods.textDocument_semanticTokens_full then
