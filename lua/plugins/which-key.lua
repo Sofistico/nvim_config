@@ -24,7 +24,7 @@ return {
       -- this setting is independent of vim.opt.timeoutlen
       delay = 0,
       spec = {
-        mode = { 'n', 'v', 'x' },
+        mode = { 'n', 'x' },
         { '<leader>c', group = 'code' },
         { '<leader>s', group = 'search' },
         { '<leader>t', group = 'toggle' },
