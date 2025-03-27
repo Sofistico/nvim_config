@@ -193,7 +193,7 @@ return {
         ['<C-l>'] = { 'snippet_forward' },
         ['<C-h>'] = { 'snippet_backward' },
         ['<C-j>'] = { 'show' },
-        ['<Tab>'] = { 'snippet_forward', 'select_and_accept' },
+        -- ['<Tab>'] = { 'select_and_accept' },
         -- ['<c-d>'] = { 'show_documentation', 'hide_documentation' },
       },
 
@@ -215,6 +215,18 @@ return {
                   local icons = require 'local-icons'
                   local kind_icon = icons.kinds[ctx.kind] or 'foo'
                   return kind_icon
+                end,
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                  return hl
+                end,
+              },
+              kind = {
+                -- (optional) use highlights from mini.icons
+                highlight = function(ctx)
+                  local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                  return hl
                 end,
               },
             },
