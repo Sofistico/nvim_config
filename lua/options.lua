@@ -129,6 +129,6 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.7
 end
 
-vim.o.winborder = 'rounded'
+-- vim.o.winborder = 'rounded'
 
 -- vim: ts=2 sts=2 sw=2 et

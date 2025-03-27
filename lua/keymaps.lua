@@ -74,20 +74,19 @@ vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous Quickfix' })
 vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next Quickfix' })
 
-local diagnostic_goto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+local diagnostic_goto = function(jump, severity)
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
-    go { severity = severity }
+    vim.diagnostic.jump { severity = severity, count = jump, float = true }
   end
 end
 
-vim.keymap.set('n', ']d', diagnostic_goto(true), { desc = 'Next Diagnostic' })
-vim.keymap.set('n', '[d', diagnostic_goto(false), { desc = 'Prev Diagnostic' })
-vim.keymap.set('n', ']e', diagnostic_goto(true, 'ERROR'), { desc = 'Next Error' })
-vim.keymap.set('n', '[e', diagnostic_goto(false, 'ERROR'), { desc = 'Prev Error' })
-vim.keymap.set('n', ']w', diagnostic_goto(true, 'WARN'), { desc = 'Next Warning' })
-vim.keymap.set('n', '[w', diagnostic_goto(false, 'WARN'), { desc = 'Prev Warning' })
+vim.keymap.set('n', ']d', diagnostic_goto(1), { desc = 'Next Diagnostic' })
+vim.keymap.set('n', '[d', diagnostic_goto(-1), { desc = 'Prev Diagnostic' })
+vim.keymap.set('n', ']e', diagnostic_goto(1, 'ERROR'), { desc = 'Next Error' })
+vim.keymap.set('n', '[e', diagnostic_goto(-1, 'ERROR'), { desc = 'Prev Error' })
+vim.keymap.set('n', ']w', diagnostic_goto(1, 'WARN'), { desc = 'Next Warning' })
+vim.keymap.set('n', '[w', diagnostic_goto(-1, 'WARN'), { desc = 'Prev Warning' })
 
 -- Move Lines
 vim.keymap.set('n', '<A-j>', '<cmd>m .+1<cr>==', { desc = 'Move Down' })
@@ -144,6 +143,6 @@ vim.keymap.set('n', '<leader>tB', function()
   vim.notify('Write backup: ' .. tostring(vim.o.writebackup))
 end, { desc = 'Toggle backup' })
 
-if vim.fn.has('win32') then
-  vim.keymap.set('n', '<leader>tE', '<cmd>set fileformat=unix<cr>', {desc = "Set fileformat to DOS"})
+if vim.fn.has 'win32' then
+  vim.keymap.set('n', '<leader>tE', '<cmd>set fileformat=unix<cr>', { desc = 'Set fileformat to DOS' })
 end

@@ -70,6 +70,22 @@ return {
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
 
+      local _hover = vim.lsp.buf.hover
+      local _signatureHelp = vim.lsp.buf.signature_help
+
+      vim.lsp.buf.hover = function(opts)
+        opts = opts or {}
+        opts.border = opts.border or 'rounded'
+        opts.title = opts.title or 'Hover'
+        return _hover(opts)
+      end
+      vim.lsp.buf.signature_help = function(opts)
+        opts = opts or {}
+        opts.border = opts.border or 'rounded'
+        opts.title = opts.title or 'Signature Helper'
+        return _signatureHelp(opts)
+      end
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -85,26 +101,15 @@ return {
 
           -- all general lsp commands go here:
 
-          vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-            -- Use a sharp border with `FloatBorder` highlights
-            border = 'single',
-            -- add the title in hover float window
-            title = 'hover',
-          })
-
-          vim.lsp.handlers['textDocument/signatureHelper'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-            -- Use a sharp border with `FloatBorder` highlights
-            border = 'single',
-            -- add the title in hover float window
-            title = 'signature helper',
-          })
-
+          --
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          map('gra', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
+          map('grn', vim.lsp.buf.rename, '[r]ename')
 
           -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
           map('<leader>cR', function()
@@ -118,7 +123,7 @@ return {
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client then
-            if client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+            if client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
               local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
               vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
                 buffer = event.buf,
@@ -142,11 +147,13 @@ return {
             end
 
             lsp_configs.make_capabilities(client)
+
+            -- client:request(vim.lsp.buf.hover, params?, handler?, bufnr?)
             -- The following code creates a keymap to toggle inlay hints in your
             -- code, if the language server you are using supports them
             --
             -- This may be unwanted, since they displace some of your code
-            if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
               require('snacks').toggle.inlay_hints():map '<leader>th'
             end
 
@@ -177,12 +184,12 @@ return {
             if client.server_capabilities.declarationProvider then
               -- WARN: This is not Goto Definition, this is Goto Declaration.
               --  For example, in C this would take you to the header.
-              map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+              map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
             end
 
             if client.server_capabilities.referencesProvider then
               -- Find references for the word under your cursor.
-              map('gr', function()
+              map('grr', function()
                 require('telescope.builtin').lsp_references { layout_strategy = 'vertical', show_line = false, include_declaration = false }
               end, '[G]oto [R]eferences')
             end
@@ -191,14 +198,14 @@ return {
               -- Jump to the definition of the word under your cursor.
               --  This is where a variable was first declared, or where a function is defined, etc.
               --  To jump back, press <C-t>.
-              map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+              map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
               map('<F12>', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
             end
 
             if client.server_capabilities.implementationProvider then
               -- Jump to the implementation of the word under your cursor.
               --  Useful when your language has ways of declaring types without an actual implementation.
-              map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+              map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
               map('<C-F12>', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
             end
 
@@ -206,7 +213,7 @@ return {
               -- Jump to the type of the word under your cursor.
               --  Useful when you're not sure what type a variable is and you want to see
               --  the definition of its *type*, not where it was *defined*.
-              map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+              map('grD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
             end
 
             if client.server_capabilities.codeLensProvider then
@@ -233,6 +240,7 @@ return {
               local keys = lsp_configs[client.name].keys
               for _, k in ipairs(keys) do
                 if type(k.key) == 'table' then
+                  ---@diagnostic disable-next-line: param-type-mismatch
                   for _, kl in ipairs(k.key) do
                     map(kl, k.func, k.desc, k.mode)
                   end
