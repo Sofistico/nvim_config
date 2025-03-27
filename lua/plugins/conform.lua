@@ -48,6 +48,7 @@ return {
         json = { 'prettierd', 'prettier', stop_after_first = true },
         markdown = { 'markdownlint' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
+        html = { 'prettier', 'prettierd', stop_after_first = true },
       },
     },
   },
