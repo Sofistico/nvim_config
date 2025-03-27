@@ -194,6 +194,7 @@ return {
         ['<C-h>'] = { 'snippet_backward' },
         ['<C-j>'] = { 'show' },
         ['<Tab>'] = { 'snippet_forward', 'select_and_accept' },
+        -- ['<c-d>'] = { 'show_documentation', 'hide_documentation' },
       },
 
       appearance = {
@@ -203,7 +204,6 @@ return {
       },
 
       completion = {
-
         documentation = { auto_show = true, window = { border = 'rounded' } },
         menu = {
           border = 'rounded',
@@ -242,7 +242,16 @@ return {
       -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
       --
       -- See the fuzzy documentation for more information
-      fuzzy = { implementation = 'prefer_rust_with_warning' },
+      fuzzy = {
+        implementation = 'prefer_rust_with_warning',
+        sorts = {
+          'exact',
+          -- defaults
+          'score',
+          'kind',
+          'sort_text',
+        },
+      },
     },
     opts_extend = { 'sources.default' },
   },

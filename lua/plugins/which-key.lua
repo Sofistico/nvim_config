@@ -55,6 +55,7 @@ return {
         { '<c-w>r', desc = 'Rotate windows' },
         { 'g-', desc = 'Go to older text state' },
         { 'g+', desc = 'Go to newer text state' },
+        { 'gr', group = 'Lsp' },
       },
       icons = {
         rules = {
