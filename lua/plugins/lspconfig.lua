@@ -73,12 +73,15 @@ return {
       local _hover = vim.lsp.buf.hover
       local _signatureHelp = vim.lsp.buf.signature_help
 
+      ---@diagnostic disable-next-line: duplicate-set-field
       vim.lsp.buf.hover = function(opts)
         opts = opts or {}
         opts.border = opts.border or 'rounded'
         opts.title = opts.title or 'Hover'
         return _hover(opts)
       end
+
+      ---@diagnostic disable-next-line: duplicate-set-field
       vim.lsp.buf.signature_help = function(opts)
         opts = opts or {}
         opts.border = opts.border or 'rounded'
