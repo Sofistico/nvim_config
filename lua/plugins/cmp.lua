@@ -193,7 +193,7 @@ return {
         ['<C-l>'] = { 'snippet_forward' },
         ['<C-h>'] = { 'snippet_backward' },
         ['<C-j>'] = { 'show' },
-        -- ['<Tab>'] = { 'select_and_accept' },
+        ['<Tab>'] = { 'select_and_accept', 'snippet_forward' },
         -- ['<c-d>'] = { 'show_documentation', 'hide_documentation' },
       },
 
