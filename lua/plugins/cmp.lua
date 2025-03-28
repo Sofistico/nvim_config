@@ -245,6 +245,25 @@ return {
         per_filetype = { sql = { 'dadbod' } },
         providers = {
           dadbod = { module = 'vim_dadbod_completion.blink' },
+          lsp = {
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                local cmp_item_kind = require('blink.cmp.types').CompletionItemKind
+
+                if item.kind == cmp_item_kind.Property or item.kind == cmp_item_kind.Field then
+                  item.score_offset = item.score_offset + 1
+                end
+
+                if item.kind == cmp_item_kind.Operator then
+                  item.score_offset = item.score_offset - 1
+                end
+              end
+
+              return vim.tbl_filter(function(item)
+                return item.kind ~= require('blink.cmp.types').CompletionItemKind.Text
+              end, items)
+            end,
+          },
         },
       },
       snippets = { preset = 'luasnip' },

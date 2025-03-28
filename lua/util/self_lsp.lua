@@ -152,6 +152,7 @@ function M.monkey_patch_semantic_tokens(client)
 end
 
 -- add any global capabilities here
+-- @class lsp.ClientCapabilities
 local global_capabilities = {
   textDocument = {
     foldingRange = {
@@ -163,6 +164,10 @@ local global_capabilities = {
     fileOperations = {
       didRename = true,
       willRename = true,
+    },
+    didChangeWatchedFiles = {
+      dynamicRegistration = true,
+      relativePatternSupport = true
     },
   },
 }
