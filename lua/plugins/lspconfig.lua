@@ -295,11 +295,11 @@ return {
         },
         omnisharp = {
           autostart = not vim.g.use_roslyn,
-          handlers = {
+          handlers = plugins.is_loaded 'omnisharp_extended' and {
             ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
-            ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
-            ['textDocument/references'] = require('omnisharp_extended').references_handler,
-            ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
+            ['textDocument/typeDefinition'] = not vim.g.use_roslyn and require('omnisharp_extended').type_definition_handler,
+            ['textDocument/references'] = not vim.g.use_roslyn and require('omnisharp_extended').references_handler,
+            ['textDocument/implementation'] = not vim.g.use_roslyn and require('omnisharp_extended').implementation_handler,
           },
           settings = {
             FormattingOptions = {
