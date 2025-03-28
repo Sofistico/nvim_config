@@ -6,7 +6,7 @@ local M = {
     keys = {
       {
         --@field table|string
-        key = 'gr',
+        key = 'gdr',
         func = function()
           require('omnisharp_extended').telescope_lsp_references { layout_strategy = 'vertical', show_line = false, path_display = { 'truncate' } }
         end,
@@ -14,7 +14,7 @@ local M = {
         mode = 'n',
       },
       {
-        key = { 'gd', '<F12>' },
+        key = { 'grd', '<F12>' },
         func = function()
           require('omnisharp_extended').telescope_lsp_definitions()
         end,
@@ -22,7 +22,7 @@ local M = {
         mode = 'n',
       },
       {
-        key = { 'gI', '<C-F12>' },
+        key = { 'gri', '<C-F12>' },
         func = function()
           require('omnisharp_extended').telescope_lsp_implementation()
         end,
@@ -34,7 +34,7 @@ local M = {
   clangd = {
     setup = {},
     keys = {
-      { key = '<leader>ch', func = '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
+      { key = 'grh', func = '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
     },
   },
 }
@@ -167,7 +167,7 @@ local global_capabilities = {
     },
     didChangeWatchedFiles = {
       dynamicRegistration = true,
-      relativePatternSupport = true
+      relativePatternSupport = true,
     },
   },
 }
