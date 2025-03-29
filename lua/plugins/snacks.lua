@@ -35,6 +35,13 @@ return {
         end,
         desc = 'Delete Buffer',
       },
+      {
+        '<leader>ti',
+        function()
+          require('snacks').image.hover()
+        end,
+        desc = 'Toggle image hover',
+      },
     },
   },
 }
