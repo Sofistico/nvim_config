@@ -266,6 +266,7 @@ return {
           },
         },
       },
+      cmdline = { enabled = false },
       snippets = { preset = 'luasnip' },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

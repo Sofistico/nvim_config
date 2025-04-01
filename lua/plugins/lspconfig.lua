@@ -187,7 +187,7 @@ return {
             if client.server_capabilities.declarationProvider then
               -- WARN: This is not Goto Definition, this is Goto Declaration.
               --  For example, in C this would take you to the header.
-              map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+              map('<leader>D', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
             end
 
             if client.server_capabilities.referencesProvider then
