@@ -29,6 +29,7 @@ return {
         { '<leader>s', group = 'search' },
         { '<leader>t', group = 'toggle' },
         { '<leader>N', group = 'fun', icon = icon.fun },
+        { '<leader>a', group = 'ai', icon = icon.kinds.Copilot },
         { '<leader><tab>', group = 'tabs' },
         {
           '<leader>b',
