@@ -187,7 +187,7 @@ return {
             if client.server_capabilities.declarationProvider then
               -- WARN: This is not Goto Definition, this is Goto Declaration.
               --  For example, in C this would take you to the header.
-              map('<leader>D', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+              map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
             end
 
             if client.server_capabilities.referencesProvider then
@@ -216,7 +216,7 @@ return {
               -- Jump to the type of the word under your cursor.
               --  Useful when you're not sure what type a variable is and you want to see
               --  the definition of its *type*, not where it was *defined*.
-              map('grD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+              map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
             end
 
             if client.server_capabilities.codeLensProvider then
