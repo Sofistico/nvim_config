@@ -179,6 +179,9 @@ return {
         group = vim.api.nvim_create_augroup('roslyn-lsp-attach', { clear = true }),
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.name ~= 'roslyn' then
+            return
+          end
           lsp.monkey_patch_semantic_tokens(client)
 
           -- diagnostic refresh

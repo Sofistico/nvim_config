@@ -1,8 +1,11 @@
-local copilot_enabled = true
+local copilot_enabled = false -- copilot always starts disabled
 
 return {
   {
     'github/copilot.vim',
+    config = function()
+      vim.cmd 'Copilot disable'
+    end,
     keys = {
       {
         '<leader>tC',
@@ -65,7 +68,7 @@ return {
         function()
           require('codecompanion').chat()
         end,
-      desc = 'Code Companion Chat',
+        desc = 'Code Companion Chat',
       },
     },
   },
