@@ -98,56 +98,29 @@ function M.monkey_patch_semantic_tokens(client)
   })
   local request_inner = client.request
 
-  if vim.fn.has 'nvim-0.10.2' == 1 and vim.fn.has 'nvim-0.11' == 0 then
-    -- monkey patch the request proxy
-    client.request = function(method, params, handler, req_bufnr)
-      if method ~= vim.lsp.protocol.Methods.textDocument_semanticTokens_full then
-        return request_inner(method, params, handler)
-      end
-
-      local target_bufnr = vim.uri_to_bufnr(params.textDocument.uri)
-      local line_count = vim.api.nvim_buf_line_count(target_bufnr)
-      local last_line = vim.api.nvim_buf_get_lines(target_bufnr, line_count - 1, line_count, true)[1]
-
-      return request_inner('textDocument/semanticTokens/range', {
-        textDocument = params.textDocument,
-        range = {
-          ['start'] = {
-            line = 0,
-            character = 0,
-          },
-          ['end'] = {
-            line = line_count - 1,
-            character = string.len(last_line) - 1,
-          },
-        },
-      }, handler, req_bufnr)
+  -- monkey patch the request proxy
+  function client:request(method, params, handler, req_bufnr)
+    if method ~= vim.lsp.protocol.Methods.textDocument_semanticTokens_full then
+      return request_inner(self, method, params, handler)
     end
-  elseif vim.fn.has 'nvm-0.11' == 1 then
-    -- monkey patch the request proxy
-    function client:request(method, params, handler, req_bufnr)
-      if method ~= vim.lsp.protocol.Methods.textDocument_semanticTokens_full then
-        return request_inner(self, method, params, handler)
-      end
 
-      local target_bufnr = vim.uri_to_bufnr(params.textDocument.uri)
-      local line_count = vim.api.nvim_buf_line_count(target_bufnr)
-      local last_line = vim.api.nvim_buf_get_lines(target_bufnr, line_count - 1, line_count, true)[1]
+    local target_bufnr = vim.uri_to_bufnr(params.textDocument.uri)
+    local line_count = vim.api.nvim_buf_line_count(target_bufnr)
+    local last_line = vim.api.nvim_buf_get_lines(target_bufnr, line_count - 1, line_count, true)[1]
 
-      return request_inner(self, 'textDocument/semanticTokens/range', {
-        textDocument = params.textDocument,
-        range = {
-          ['start'] = {
-            line = 0,
-            character = 0,
-          },
-          ['end'] = {
-            line = line_count - 1,
-            character = string.len(last_line) - 1,
-          },
+    return request_inner(self, 'textDocument/semanticTokens/range', {
+      textDocument = params.textDocument,
+      range = {
+        ['start'] = {
+          line = 0,
+          character = 0,
         },
-      }, handler, req_bufnr)
-    end
+        ['end'] = {
+          line = line_count - 1,
+          character = string.len(last_line) - 1,
+        },
+      },
+    }, handler, req_bufnr)
   end
 end
 
