@@ -23,7 +23,6 @@ return {
   },
   {
     'olimorris/codecompanion.nvim',
-    cmd = "Ai",
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
