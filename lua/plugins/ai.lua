@@ -22,6 +22,14 @@ return {
         end,
         desc = 'Toggle copilot',
       },
+      {
+        '<leader>C',
+        function()
+          vim.keymap.del('n', '<leader>C')
+          vim.notify('Started copilot! ps: dont forget to <m-\\> to force it to trigger');
+        end,
+        desc = 'Start copilot',
+      },
     },
   },
   {
