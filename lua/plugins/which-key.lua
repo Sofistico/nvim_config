@@ -29,7 +29,7 @@ return {
         { '<leader>s', group = 'search' },
         { '<leader>t', group = 'toggle' },
         { '<leader>N', group = 'fun', icon = icon.fun },
-        { '<leader>a', group = 'ai', icon = icon.kinds.Copilot },
+        { '<leader>a', group = 'ai' },
         { '<leader><tab>', group = 'tabs' },
         {
           '<leader>b',
@@ -62,6 +62,7 @@ return {
         rules = {
           { pattern = 'home', icon = icon.house, color = 'blue' },
           { pattern = 'refactoring', icon = icon.init, color = 'violet' },
+          { pattern = 'ai', icon = icon.kinds.Copilot },
         },
         mappings = vim.g.have_nerd_font,
       },
