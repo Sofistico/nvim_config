@@ -1,4 +1,4 @@
-vim.cmd 'comp dotnet'
+vim.cmd 'comp! dotnet'
 vim.cmd 'setlocal et sw=4'
 vim.bo.mp = 'dotnet build -nologo -consoleloggerparameters:NoSummary'
 
