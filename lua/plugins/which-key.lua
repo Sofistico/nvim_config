@@ -30,6 +30,7 @@ return {
         { '<leader>t', group = 'toggle' },
         { '<leader>N', group = 'fun', icon = icon.fun },
         { '<leader>a', group = 'ai' },
+        { '<leader>o', group = 'overseer', icon = icon.cmd },
         { '<leader><tab>', group = 'tabs' },
         {
           '<leader>b',
