@@ -24,6 +24,7 @@ return {
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
+    'stevearc/overseer.nvim',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -213,6 +214,7 @@ return {
       },
     }
 
+    require('overseer').enable_dap()
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.after.event_initialized['dap_stop_backup'] = function(_, _)
