@@ -13,5 +13,15 @@ return {
       '<cmd>OverseerToggle<cr>',
       desc = 'Task: Open',
     },
+    {
+      'm<cr>',
+      '<cmd>Make<cr>',
+      desc = 'Make on background',
+    },
+    -- {
+    --   'm<space>',
+    --   '<cmd>Make ',
+    --   desc = 'Make with command on background',
+    -- },
   },
 }
