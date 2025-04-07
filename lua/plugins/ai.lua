@@ -65,13 +65,6 @@ return {
         desc = 'Code Companion Inline',
       },
       {
-        '<leader>aC',
-        function()
-          require('codecompanion').last_chat()
-        end,
-        desc = 'Code Companion Last Chat',
-      },
-      {
         '<leader>ac',
         function()
           require('codecompanion').chat()
