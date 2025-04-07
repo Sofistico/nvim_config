@@ -205,6 +205,7 @@ return {
 
       completion = {
         documentation = { auto_show = true, window = { border = 'rounded' } },
+        accept = { resolve_timeout_ms = 1000 },
         menu = {
           border = 'rounded',
           draw = {
