@@ -1,9 +1,11 @@
+local dap_helper = require('util.self_dap')
+
 return {
   {
     'Hoffs/omnisharp-extended-lsp.nvim',
     lazy = true,
     ft = 'cs',
-    cond = not vim.g.use_roslyn
+    cond = not vim.g.use_roslyn,
   },
   {
     'stevearc/conform.nvim',
@@ -56,6 +58,13 @@ return {
               request = 'attach',
               processId = require('dap.utils').pick_process,
               cwd = '${workspaceFolder}',
+            },
+            {
+              type = 'coreclr',
+              name = 'Select C# Dll',
+              request = 'launch',
+              cwd = '${workspaceFolder}',
+              program = dap_helper.select_csharp_dll,
             },
             -- Divider for the launch.json derived configs
             {
