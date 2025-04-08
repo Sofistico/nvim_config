@@ -1,4 +1,7 @@
 local dap_helper = require('util.self_dap')
+local function select_dll_csharp()
+  return dap_helper.select_execution('**/bin/Debug/**/*.dll')
+end
 
 return {
   {
@@ -64,7 +67,7 @@ return {
               name = 'Select C# Dll',
               request = 'launch',
               cwd = '${workspaceFolder}',
-              program = dap_helper.select_csharp_dll,
+              program = select_dll_csharp,
             },
             -- Divider for the launch.json derived configs
             {

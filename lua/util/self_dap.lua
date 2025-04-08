@@ -1,8 +1,8 @@
 local M = {}
 
-function M.select_csharp_dll()
+function M.select_execution(glob)
   return coroutine.create(function(dap_run_co)
-    local items = vim.fn.globpath(vim.fn.getcwd(), '**/bin/Debug/**/*.dll', false, true)
+    local items = vim.fn.globpath(vim.fn.getcwd(), glob, false, true)
     local opts = {
       format_item = function(path)
         return vim.fn.fnamemodify(path, ':.')
