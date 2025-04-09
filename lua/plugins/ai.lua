@@ -5,6 +5,7 @@ return {
     'github/copilot.vim',
     config = function()
       vim.cmd 'Copilot disable'
+      vim.keymap.del('n', '<leader>C')
     end,
     keys = {
       {
@@ -26,7 +27,7 @@ return {
         '<leader>C',
         function()
           vim.keymap.del('n', '<leader>C')
-          vim.notify('Started copilot! ps: dont forget to <m-\\> to force it to trigger');
+          vim.notify 'Started copilot! ps: dont forget to <m-\\> to force it to trigger'
         end,
         desc = 'Start copilot',
       },
