@@ -8,6 +8,10 @@ vim.g.have_nerd_font = true
 vim.g.use_roslyn = true
 vim.g.use_blink = true
 
+function _G.printd(var)
+  vim.notify(vim.inspect(var))
+end
+
 -- [[ Setting options ]]
 require 'options'
 
