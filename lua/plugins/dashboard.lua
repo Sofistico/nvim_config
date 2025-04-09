@@ -6,11 +6,13 @@ return {
       require('dashboard').setup {
         -- config
         theme = 'hyper',
+        shortcut_type = 'number',
         config = {
           week_header = {
             enable = true,
           },
           project = { enable = false },
+          mru = { enable = true, cwd_only = true },
           shortcut = {
             { icon = '󰚰 ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
             {
