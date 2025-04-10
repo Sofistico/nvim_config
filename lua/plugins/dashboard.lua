@@ -12,7 +12,7 @@ return {
             enable = true,
           },
           project = { enable = false },
-          mru = { enable = true, cwd_only = true },
+          mru = { enable = true, cwd_only = false },
           shortcut = {
             { icon = '󰚰 ', icon_hl = '@variable', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
             {

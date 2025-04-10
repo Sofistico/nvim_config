@@ -28,6 +28,7 @@ return {
         blink_cmp = true,
         cmp = true,
         dashboard = true,
+        dadbod_ui = true,
         flash = true,
         fzf = true,
         grug_far = true,
