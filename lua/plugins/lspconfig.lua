@@ -178,6 +178,7 @@ return {
                   border = 'rounded',
                 },
                 toggle_key = '<a-i>',
+                select_signature_key = '<M-n>', -- cycle to next signature, e.g. '<M-n>' function overloading
                 close_timeout = 10000,
                 hint_prefix = icons.fun .. ' ',
               }, event.buf)
