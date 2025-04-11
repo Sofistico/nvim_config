@@ -46,14 +46,11 @@ return {
         if not dap.configurations[lang] then
           dap.configurations[lang] = {
             {
-              type = 'netcoredbg',
-              name = 'Launch file',
+              type = 'coreclr',
+              name = 'Select C# Dll',
               request = 'launch',
-              ---@diagnostic disable-next-line: redundant-parameter
-              program = function()
-                return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/', 'file')
-              end,
               cwd = '${workspaceFolder}',
+              program = select_dll_csharp,
             },
             {
               type = 'coreclr',
@@ -61,13 +58,6 @@ return {
               request = 'attach',
               processId = require('dap.utils').pick_process,
               cwd = '${workspaceFolder}',
-            },
-            {
-              type = 'coreclr',
-              name = 'Select C# Dll',
-              request = 'launch',
-              cwd = '${workspaceFolder}',
-              program = select_dll_csharp,
             },
             -- Divider for the launch.json derived configs
             {
