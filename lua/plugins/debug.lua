@@ -236,5 +236,10 @@ return {
       local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
       vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     end
+
+    -- this is here because sometimes the netcoredbg dapper can't seem to find the breakpoint because of windows
+    if vim.fn.has 'win32' then
+      vim.opt.shellslash = false
+    end
   end,
 }
