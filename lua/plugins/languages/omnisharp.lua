@@ -1,7 +1,17 @@
-local dap_helper = require('util.self_dap')
+local dap_helper = require 'util.self_dap'
+local dll = nil
 local function select_dll_csharp()
-  return dap_helper.select_execution('**/bin/Debug/**/*.dll')
+  dll = dap_helper.select_execution '**/bin/Debug/**/*.dll'
+  return dll
 end
+
+-- local function get_csproj()
+--   if not dll then
+--     return '${workspaceFolder}'
+--   end
+--   local filename = dll:gsub('%.dll%', '')
+--   printd(filename)
+-- end
 
 return {
   {
