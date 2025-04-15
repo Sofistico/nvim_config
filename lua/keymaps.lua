@@ -97,8 +97,8 @@ vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
-vim.keymap.set('n', '<A-l>', '<cmd>><cr>', { desc = 'Move Right' })
-vim.keymap.set('n', '<A-h>', '<cmd><<cr>', { desc = 'Move Left' })
+-- vim.keymap.set('n', '<A-l>', '<cmd>><cr>', { desc = 'Move Right' })
+-- vim.keymap.set('n', '<A-h>', '<cmd><<cr>', { desc = 'Move Left' })
 
 -- code
 vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })

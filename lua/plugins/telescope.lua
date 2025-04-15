@@ -76,14 +76,14 @@ return {
           layout_strategy = 'vertical',
           mappings = {
             i = {
-              ['<a-h>'] = function()
-                local builtin = require 'telescope.builtin'
-                builtin.find_files { hidden = true }
-              end,
               ['<c-s>'] = require('telescope.actions').file_split,
               ['<c-v>'] = require('telescope.actions').file_vsplit,
               ['<c-x>'] = false,
               ['<c-k>'] = require('telescope.actions').select_default,
+              ['<a-a>'] = function()
+                local builtin = require 'telescope.builtin'
+                builtin.find_files { hidden = true }
+              end,
             },
             n = {
               ['q'] = require('telescope.actions').close,
