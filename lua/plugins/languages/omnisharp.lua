@@ -9,10 +9,7 @@ local function get_dll_csproj_path()
   end
   local dll = dap_helper.dll
   local tail = vim.fn.fnamemodify(dll, ':t:r')
-  printd(tail)
-  local csproj = vim.fn.fnamemodify(dap_helper.search_for('**/' .. tail .. '.csproj'), ':p:h')
-  printd(csproj)
-  return csproj
+  return vim.fn.fnamemodify(dap_helper.search_for('**/' .. tail .. '.csproj'), ':p:h')
 end
 
 return {
