@@ -1,4 +1,9 @@
 local M = {}
+M.dll = nil
+
+function M.search_for(glob)
+  return vim.fn.globpath(vim.fn.getcwd(), glob, false, false)
+end
 
 function M.select_execution(glob)
   return coroutine.create(function(dap_run_co)
@@ -12,6 +17,7 @@ function M.select_execution(glob)
       if choice == nil then
         return nil
       else
+        M.dll = choice
         coroutine.resume(dap_run_co, choice)
       end
     end

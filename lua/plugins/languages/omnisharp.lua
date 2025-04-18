@@ -1,17 +1,19 @@
 local dap_helper = require 'util.self_dap'
-local dll = nil
 local function select_dll_csharp()
-  dll = dap_helper.select_execution '**/bin/Debug/**/*.dll'
-  return dll
+  return dap_helper.select_execution '**/bin/Debug/**/*.dll'
 end
 
--- local function get_csproj()
---   if not dll then
---     return '${workspaceFolder}'
---   end
---   local filename = dll:gsub('%.dll%', '')
---   printd(filename)
--- end
+local function get_dll_csproj_path()
+  if not dap_helper.dll then
+    return '${workspaceFolder}'
+  end
+  local dll = dap_helper.dll
+  local tail = vim.fn.fnamemodify(dll, ':t:r')
+  printd(tail)
+  local csproj = vim.fn.fnamemodify(dap_helper.search_for('**/' .. tail .. '.csproj'), ':p:h')
+  printd(csproj)
+  return csproj
+end
 
 return {
   {
@@ -59,7 +61,7 @@ return {
               type = 'coreclr',
               name = 'Select C# Dll',
               request = 'launch',
-              cwd = '${workspaceFolder}',
+              cwd = get_dll_csproj_path,
               program = select_dll_csharp,
             },
             {

@@ -1,6 +1,5 @@
 local lsp = require 'util.self_lsp'
 local helpers = require 'util.self_init'
-local selected_project = nil
 
 return {
   {
@@ -105,15 +104,16 @@ return {
         },
         broad_search = true,
         choose_target = function(targets)
-          if selected_project == nil or not vim.tbl_contains(targets, selected_project) then
+          local current_sln = vim.g.roslyn_nvim_selected_solution
+          if current_sln == nil or not vim.tbl_contains(targets, current_sln) then
             local enumerated_target = { 'Choose a target to start: ' }
             for i, v in ipairs(targets) do
               enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
             end
             local choice = vim.fn.inputlist(enumerated_target)
-            selected_project = targets[choice]
+            current_sln = targets[choice]
           end
-          return selected_project
+          return current_sln
         end,
       }
 
