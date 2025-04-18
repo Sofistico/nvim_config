@@ -145,7 +145,7 @@ function M.make_capabilities(lsp_server)
   --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  capabilities = vim.tbl_deep_extend('keep', capabilities, global_capabilities)
+  capabilities = vim.tbl_deep_extend('force', capabilities, global_capabilities)
 
   if init_helper.is_loaded 'cmp_nvim_lsp' then
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
