@@ -36,26 +36,34 @@ return {
     config = function()
       local data = vim.fn.stdpath 'data' --[[@as string]]
       local libs_path = vim.fs.joinpath(data, 'mason', 'packages', 'roslyn', 'libexec')
-      ---@module 'roslyn.config'
-      ---@class RoslynNvimConfig
-      local roslyn_config = {
-        ---@diagnostic disable-next-line: duplicate-index
-        args = {
+
+      local mason_registry = require 'mason-registry'
+
+      ---@type string[]
+      local cmd = {}
+
+      local roslyn_package = mason_registry.get_package 'roslyn'
+      if roslyn_package:is_installed() then
+        vim.list_extend(cmd, {
+          'dotnet',
+          vim.fs.joinpath(roslyn_package:get_install_path(), 'libexec', 'Microsoft.CodeAnalysis.LanguageServer.dll'),
           '--stdio',
           '--logLevel=Information',
           '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-          '--razorSourceGenerator=' .. vim.fs.joinpath(libs_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'),
-          '--razorDesignTimePath=' .. vim.fs.joinpath(
-            vim.fn.stdpath 'data' --[[@as string]],
-            'mason',
-            'packages',
-            'rzls',
-            'libexec',
-            'Targets',
-            'Microsoft.NET.Sdk.Razor.DesignTime.targets'
-          ),
-          -- '--extension=' .. vim.fs.joinpath(libs_path, "Microsoft.CodeAnalysis.CSharp.dll"),
-        },
+        })
+
+        local rzls_package = mason_registry.get_package 'rzls'
+        if rzls_package:is_installed() then
+          local rzls_path = vim.fs.joinpath(rzls_package:get_install_path(), 'libexec')
+          table.insert(cmd, '--razorSourceGenerator=' .. vim.fs.joinpath(rzls_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'))
+          table.insert(cmd, '--razorDesignTimePath=' .. vim.fs.joinpath(rzls_path, 'Targets', 'Microsoft.NET.Sdk.Razor.DesignTime.targets'))
+        end
+      end
+
+      ---@module 'roslyn.config'
+      ---@class RoslynNvimConfig
+      local roslyn_config = {
+        cmd = cmd,
         filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         config = {
