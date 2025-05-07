@@ -296,7 +296,6 @@ return {
         },
         omnisharp = {
           autostart = not vim.g.use_roslyn,
-          enabled = not vim.g.use_roslyn,
           handlers = plugins.is_loaded 'omnisharp_extended' and {
             ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
             ['textDocument/typeDefinition'] = not vim.g.use_roslyn and require('omnisharp_extended').type_definition_handler,
@@ -359,6 +358,11 @@ return {
       require('mason-tool-installer').setup { ensure_installed = lsp_configs.ensure_installed_all, automatic_installation = true }
 
       require('mason-lspconfig').setup {
+        automatic_enable = {
+          exclude = {
+            'omnisharp',
+          },
+        },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
