@@ -63,7 +63,6 @@ return {
         rules = {
           { pattern = 'home', icon = icon.house, color = 'blue' },
           { pattern = 'refactoring', icon = icon.init, color = 'violet' },
-          { pattern = 'ai', icon = icon.kinds.Copilot },
         },
         mappings = vim.g.have_nerd_font,
       },
