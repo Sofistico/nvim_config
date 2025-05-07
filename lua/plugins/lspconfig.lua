@@ -22,8 +22,8 @@ return {
     event = 'BufAdd',
     dependencies = {
       -- Mason must be loaded before its dependents so we need to set it up here.
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       -- 'hinell/lsp-timeout.nvim',
       -- Useful status updates for LSP.
