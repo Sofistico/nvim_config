@@ -353,6 +353,9 @@ return {
             clangdFileStatus = true,
           },
         },
+        html = {
+          filetypes = { 'html', 'templ', 'razor' },
+        },
       }
 
       require('mason-tool-installer').setup { ensure_installed = lsp_configs.ensure_installed_all, automatic_installation = true }
