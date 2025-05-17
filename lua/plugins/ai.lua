@@ -66,6 +66,14 @@ return {
         desc = 'Code Companion Inline',
       },
       {
+        '<leader>ai',
+        function()
+          vim.cmd "'<,'>CodeCompanion"
+        end,
+        desc = 'Code Companion Inline',
+        mode = 'v',
+      },
+      {
         '<leader>ac',
         function()
           require('codecompanion').chat()
