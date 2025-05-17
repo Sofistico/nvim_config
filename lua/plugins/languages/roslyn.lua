@@ -34,9 +34,6 @@ return {
       }
     end,
     config = function()
-      local data = vim.fn.stdpath 'data' --[[@as string]]
-      local libs_path = vim.fs.joinpath(data, 'mason', 'packages', 'roslyn', 'libexec')
-
       local mason_registry = require 'mason-registry'
 
       ---@type string[]
@@ -66,6 +63,19 @@ return {
         filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         config = {
+          capabilities = {
+            textDocument = {
+              _vs_onAutoInsert = { dynamicRegistration = false },
+            },
+          },
+          handlers = {
+            ['textDocument/_vs_onAutoInsert'] = function(err, result, _)
+              if err or not result then
+                return
+              end
+              lsp.apply_vs_text_edit(result._vs_textEdit)
+            end,
+          },
           autostart = vim.g.use_roslyn,
           filetypes = { 'cs', 'razor' },
           settings = {
@@ -168,6 +178,35 @@ return {
               for _, buf in ipairs(buffers) do
                 vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
               end
+            end,
+          })
+
+          -- vs_text_edit
+          vim.api.nvim_create_autocmd('InsertCharPre', {
+            pattern = '*.cs',
+            callback = function()
+              local char = vim.v.char
+
+              if char ~= '/' then
+                return
+              end
+
+              local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+              row, col = row - 1, col + 1
+              local bufnr = vim.api.nvim_get_current_buf()
+              local uri = vim.uri_from_bufnr(bufnr)
+
+              local params = {
+                _vs_textDocument = { uri = uri },
+                _vs_position = { line = row, character = col },
+                _vs_ch = char,
+                _vs_options = { tabSize = 4, insertSpaces = true },
+              }
+
+              -- NOTE: we should send textDocument/_vs_onAutoInsert request only after buffer has changed.
+              vim.defer_fn(function()
+                vim.lsp.buf_request(bufnr, 'textDocument/_vs_onAutoInsert', params)
+              end, 1)
             end,
           })
         end,

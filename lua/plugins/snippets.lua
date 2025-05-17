@@ -41,7 +41,6 @@ return {
           require('luasnip').filetype_extend('ruby', { 'rdoc' })
           require('luasnip').filetype_extend('sh', { 'shelldoc' })
           require('luasnip.loaders.from_lua').load { paths = { '~/snippets' } }
-          require('luasnip').filetype_extend('cs', { 'fields' })
         end,
       },
       {
