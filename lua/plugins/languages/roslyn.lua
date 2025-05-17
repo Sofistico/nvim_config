@@ -66,7 +66,6 @@ return {
         filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         config = {
-          handlers = require 'rzls.roslyn_handlers',
           autostart = vim.g.use_roslyn,
           filetypes = { 'cs', 'razor' },
           settings = {
@@ -125,7 +124,7 @@ return {
       }
 
       if helpers.is_loaded 'rzls.roslyn_handlers' then
-        roslyn_config.config.handlers = require 'rzls.roslyn_handlers'
+        roslyn_config.config.handlers = vim.tbl_extend('error', require 'rzls.roslyn_handlers', roslyn_config.config.handlers)
       end
 
       require('roslyn').setup(roslyn_config)
@@ -154,7 +153,6 @@ return {
           if client and client.name ~= 'roslyn' then
             return
           end
-          lsp.monkey_patch_semantic_tokens(client)
 
           -- diagnostic refresh
           vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
