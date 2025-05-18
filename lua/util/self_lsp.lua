@@ -32,6 +32,7 @@ local M = {
     debugger = 'netcoredbg',
   },
   clangd = {
+    filetypes = { 'cpp', 'c' },
     setup = {},
     keys = {
       { key = 'grh', func = '<cmd>ClangdSwitchSourceHeader<cr>', desc = 'Switch Source/Header (C/C++)' },
