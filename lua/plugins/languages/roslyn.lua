@@ -141,7 +141,7 @@ return {
 
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { '%__virtual.cs$' },
+          file_ignore_patterns = { '%__virtual.cs$', '%_cshtml.g.cs$' },
         },
       }
       require('trouble').setup {
