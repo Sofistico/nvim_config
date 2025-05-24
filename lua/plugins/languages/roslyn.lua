@@ -62,62 +62,6 @@ return {
         cmd = cmd,
         filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
-        config = {
-          capabilities = {
-            textDocument = {
-              _vs_onAutoInsert = { dynamicRegistration = false },
-            },
-          },
-          handlers = {
-            ['textDocument/_vs_onAutoInsert'] = function(err, result, _)
-              if err or not result then
-                return
-              end
-              lsp.apply_vs_text_edit(result._vs_textEdit)
-            end,
-          },
-          autostart = vim.g.use_roslyn,
-          filetypes = { 'cs', 'razor' },
-          settings = {
-            ['csharp|inlay_hints'] = {
-              csharp_enable_inlay_hints_for_implicit_object_creation = true,
-              csharp_enable_inlay_hints_for_implicit_variable_types = true,
-              csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-              csharp_enable_inlay_hints_for_types = true,
-              dotnet_enable_inlay_hints_for_indexer_parameters = true,
-              dotnet_enable_inlay_hints_for_literal_parameters = true,
-              dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-              dotnet_enable_inlay_hints_for_other_parameters = true,
-              dotnet_enable_inlay_hints_for_parameters = true,
-              dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-              dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-              dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-            },
-            ['csharp|background_analysis'] = {
-              dotnet_analyzer_diagnostics_scope = 'openFiles',
-              dotnet_compiler_diagnostics_scope = 'openFiles',
-            },
-            ['csharp|code_lens'] = {
-              dotnet_enable_references_code_lens = true,
-            },
-            ['csharp|completion'] = {
-              dotnet_show_completion_items_from_unimported_namespaces = true,
-              dotnet_show_name_completion_suggestions = true,
-            },
-            ['csharp|symbol_search'] = {
-              dotnet_search_reference_assemblies = true,
-            },
-            ['csharp|formatting'] = {
-              dotnet_organize_imports_on_format = true,
-            },
-            ['csharp|quick_info'] = {
-              dotnet_show_remarks_in_quick_info = true,
-            },
-            ['csharp|type_members'] = {
-              dotnet_member_insertion_location = 'with_other_members_of_the_same_kind',
-            },
-          },
-        },
         broad_search = true,
         choose_target = function(targets)
           local current_sln = vim.g.roslyn_nvim_selected_solution
@@ -133,8 +77,65 @@ return {
         end,
       }
 
+      vim.lsp.config('roslyn', {
+        capabilities = {
+          textDocument = {
+            _vs_onAutoInsert = { dynamicRegistration = false },
+          },
+        },
+        handlers = {
+          ['textDocument/_vs_onAutoInsert'] = function(err, result, _)
+            if err or not result then
+              return
+            end
+            lsp.apply_vs_text_edit(result._vs_textEdit)
+          end,
+        },
+        autostart = vim.g.use_roslyn,
+        filetypes = { 'cs', 'razor' },
+        settings = {
+          ['csharp|inlay_hints'] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+            csharp_enable_inlay_hints_for_types = true,
+            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+            dotnet_enable_inlay_hints_for_literal_parameters = true,
+            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+            dotnet_enable_inlay_hints_for_other_parameters = true,
+            dotnet_enable_inlay_hints_for_parameters = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+          },
+          ['csharp|background_analysis'] = {
+            dotnet_analyzer_diagnostics_scope = 'openFiles',
+            dotnet_compiler_diagnostics_scope = 'openFiles',
+          },
+          ['csharp|code_lens'] = {
+            dotnet_enable_references_code_lens = true,
+          },
+          ['csharp|completion'] = {
+            dotnet_show_completion_items_from_unimported_namespaces = true,
+            dotnet_show_name_completion_suggestions = true,
+          },
+          ['csharp|symbol_search'] = {
+            dotnet_search_reference_assemblies = true,
+          },
+          ['csharp|formatting'] = {
+            dotnet_organize_imports_on_format = true,
+          },
+          ['csharp|quick_info'] = {
+            dotnet_show_remarks_in_quick_info = true,
+          },
+          ['csharp|type_members'] = {
+            dotnet_member_insertion_location = 'with_other_members_of_the_same_kind',
+          },
+        },
+      })
+
       if helpers.is_loaded 'rzls.roslyn_handlers' then
-        roslyn_config.config.handlers = vim.tbl_extend('error', require 'rzls.roslyn_handlers', roslyn_config.config.handlers)
+        vim.lsp.config('roslyn', { handlers = require 'rzls.roslyn_handlers' })
       end
 
       require('roslyn').setup(roslyn_config)
