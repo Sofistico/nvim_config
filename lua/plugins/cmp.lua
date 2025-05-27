@@ -241,9 +241,9 @@ return {
       sources = {
         -- `lsp`, `buffer`, `snippets`, `path` and `omni` are built-in
         -- so you don't need to define them in `sources.providers`
-        default = { 'lsp', 'easy-dotnet', 'buffer', 'snippets', 'path' },
+        default = { 'lsp', 'buffer', 'snippets', 'path' },
 
-        per_filetype = { sql = { 'dadbod' } },
+        per_filetype = { sql = { 'dadbod' }, xml = { 'easy-dotnet' } },
         providers = {
           dadbod = { module = 'vim_dadbod_completion.blink' },
           -- Doesn't work properly for some reason
