@@ -125,7 +125,7 @@ vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 require('util.colors').apply_custom_colors()
 
 if vim.g.neovide then
-  vim.o.guifont = "DejaVuSansM Nerd Font Mono:h10,Symbols Nerd Font Mono:h10"
+  vim.o.guifont = 'DejaVuSansM Nerd Font Mono:h10,Symbols Nerd Font Mono:h10'
   vim.g.neovide_scale_factor = 0.7
 end
 
