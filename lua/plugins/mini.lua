@@ -69,6 +69,7 @@ return {
           u = ai.gen_spec.function_call(), -- u for "Usage"
           U = ai.gen_spec.function_call { name_pattern = '[%w_]' }, -- without dot in function name
         },
+        use_nvim_treesitter = true,
       }
     end,
     config = function(_, opts)
@@ -90,8 +91,8 @@ return {
       filetype = {
         dotenv = { glyph = '', hl = 'MiniIconsYellow' },
         csharp = { glyph = '󰌛', hl = 'MiniIconsGreen' },
-        cshtml = { glyph = '', hl = 'MiniIconsAzure'},
-        razor = { glyph = '', hl = 'MiniIconsAzure'},
+        cshtml = { glyph = '', hl = 'MiniIconsAzure' },
+        razor = { glyph = '', hl = 'MiniIconsAzure' },
       },
     },
     init = function()

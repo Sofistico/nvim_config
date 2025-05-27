@@ -161,7 +161,7 @@ return {
         group = vim.api.nvim_create_augroup('roslyn-lsp-attach', { clear = true }),
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.name ~= 'roslyn' then
+          if client and (client.name ~= 'roslyn' or client.name == 'roslyn_ls') then
             return
           end
 
@@ -182,9 +182,11 @@ return {
             end,
           })
 
+          local bufnr = event.buf
           -- vs_text_edit
           vim.api.nvim_create_autocmd('InsertCharPre', {
-            pattern = '*.cs',
+            buffer = bufnr,
+            desc = "Roslyn: Trigger an auto insert on '/'.",
             callback = function()
               local char = vim.v.char
 
@@ -194,19 +196,35 @@ return {
 
               local row, col = unpack(vim.api.nvim_win_get_cursor(0))
               row, col = row - 1, col + 1
-              local bufnr = vim.api.nvim_get_current_buf()
               local uri = vim.uri_from_bufnr(bufnr)
 
               local params = {
                 _vs_textDocument = { uri = uri },
                 _vs_position = { line = row, character = col },
                 _vs_ch = char,
-                _vs_options = { tabSize = 4, insertSpaces = true },
+                _vs_options = {
+                  tabSize = vim.bo[bufnr].tabstop,
+                  insertSpaces = vim.bo[bufnr].expandtab,
+                },
               }
 
-              -- NOTE: we should send textDocument/_vs_onAutoInsert request only after buffer has changed.
+              -- NOTE: We should send textDocument/_vs_onAutoInsert request only after
+              -- buffer has changed.
               vim.defer_fn(function()
-                vim.lsp.buf_request(bufnr, 'textDocument/_vs_onAutoInsert', params)
+                client:request(
+                  ---@diagnostic disable-next-line: param-type-mismatch
+                  'textDocument/_vs_onAutoInsert',
+                  params,
+                  function(err, result, _)
+                    if err or not result then
+                      return
+                    end
+
+                    local newText = string.gsub(result._vs_textEdit.newText, '\r', '')
+                    vim.snippet.expand(newText)
+                  end,
+                  bufnr
+                )
               end, 1)
             end,
           })

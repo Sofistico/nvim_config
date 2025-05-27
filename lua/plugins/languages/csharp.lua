@@ -41,6 +41,7 @@ return {
     optional = true,
     opts = function()
       local dap = require 'dap'
+      local dotnet = require 'easy-dotnet'
       if not dap.adapters['netcoredbg'] then
         require('dap').adapters['netcoredbg'] = {
           type = 'executable',
@@ -59,6 +60,10 @@ return {
               name = 'Select C# Dll',
               request = 'launch',
               cwd = get_dll_csproj_path,
+              -- env = function ()
+              --   local vars = dotnet.get_environment_variables(dap_helper.dll)
+              --   return vars or nil
+              -- end,
               program = select_dll_csharp,
             },
             {
