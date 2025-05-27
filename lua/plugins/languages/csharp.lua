@@ -3,13 +3,27 @@ local function select_dll_csharp()
   return dap_helper.select_execution '**/bin/Debug/**/*.dll'
 end
 
-local function get_dll_csproj_path()
+local function get_dll_proj_name()
   if not dap_helper.dll then
-    return '${workspaceFolder}'
+    select_dll_csharp()
   end
   local dll = dap_helper.dll
   local tail = vim.fn.fnamemodify(dll, ':t:r')
-  return vim.fn.fnamemodify(dap_helper.search_for('**/' .. tail .. '.csproj'), ':p:h')
+  return tail
+end
+
+local function get_dll_csproj_path()
+  local proj_name = get_dll_proj_name()
+  if not proj_name then
+    return '${workspaceFolder}'
+  end
+  return vim.fn.fnamemodify(dap_helper.search_for('**/' .. proj_name .. '.csproj'), ':p:h')
+end
+
+local function get_dll_env()
+  local dotnet = require 'easy-dotnet'
+  local vars = dotnet.get_environment_variables(dap_helper.dll, get_dll_csproj_path(), false)
+  return vars or nil
 end
 
 return {
@@ -41,7 +55,6 @@ return {
     optional = true,
     opts = function()
       local dap = require 'dap'
-      local dotnet = require 'easy-dotnet'
       if not dap.adapters['netcoredbg'] then
         require('dap').adapters['netcoredbg'] = {
           type = 'executable',
@@ -60,10 +73,7 @@ return {
               name = 'Select C# Dll',
               request = 'launch',
               cwd = get_dll_csproj_path,
-              -- env = function ()
-              --   local vars = dotnet.get_environment_variables(dap_helper.dll)
-              --   return vars or nil
-              -- end,
+              env = get_dll_env,
               program = select_dll_csharp,
             },
             {
