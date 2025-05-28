@@ -40,26 +40,27 @@ return {
       local cmd = {}
 
       local roslyn_package = mason_registry.get_package 'roslyn'
+      local rzls_package = mason_registry.get_package 'rzls'
       if roslyn_package:is_installed() then
         vim.list_extend(cmd, {
-          'dotnet',
+          'roslyn',
           '--stdio',
           '--logLevel=Information',
           '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
         })
 
-        local rzls_package = mason_registry.get_package 'rzls'
         if rzls_package:is_installed() then
           local rzls_path = vim.fn.expand '$MASON/packages/rzls/libexec'
           table.insert(cmd, '--razorSourceGenerator=' .. vim.fs.joinpath(rzls_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'))
           table.insert(cmd, '--razorDesignTimePath=' .. vim.fs.joinpath(rzls_path, 'Targets', 'Microsoft.NET.Sdk.Razor.DesignTime.targets'))
+          -- table.insert(cmd, '--extension')
+          -- table.insert(cmd, vim.fs.joinpath(rzls_path, 'RazorExtension', 'Microsoft.VisualStudioCode.RazorExtension.dll'))
         end
       end
 
       ---@module 'roslyn.config'
       ---@class RoslynNvimConfig
       local roslyn_config = {
-        cmd = cmd,
         filewatching = 'roslyn',
         ---@diagnostic disable-next-line: missing-fields
         broad_search = true,
@@ -78,6 +79,7 @@ return {
       }
 
       vim.lsp.config('roslyn', {
+        cmd = cmd,
         capabilities = {
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
@@ -134,7 +136,7 @@ return {
         },
       })
 
-      if helpers.is_loaded 'rzls.roslyn_handlers' then
+      if rzls_package:is_installed() then
         vim.lsp.config('roslyn', { handlers = require 'rzls.roslyn_handlers' })
       end
 
