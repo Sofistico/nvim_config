@@ -65,8 +65,8 @@ vim.keymap.set('n', '<leader>bD', '<cmd>:bd!<cr>', { desc = 'Delete Buffer and W
 vim.keymap.set('n', '<leader>br', '<cmd>:e!<cr>', { desc = 'Reload current buffer' })
 
 -- save file
-vim.keymap.set({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
-vim.keymap.set({ 'i', 'x', 'n', 's' }, '<A-s>', '<cmd>wa<cr><esc>', { desc = 'Save All Files' })
+vim.keymap.set({ 'n' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
+vim.keymap.set({ 'n' }, '<A-s>', '<cmd>wa<cr><esc>', { desc = 'Save All Files' })
 
 -- lazy
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { desc = 'Lazy' })
