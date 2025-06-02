@@ -145,5 +145,8 @@ vim.keymap.set('n', '<leader>tB', function()
 end, { desc = 'Toggle backup' })
 
 if vim.fn.has 'win32' then
-  vim.keymap.set('n', '<leader>tE', '<cmd>set fileformat=unix<cr>', { desc = 'Set fileformat to DOS' })
+  vim.keymap.set('n', '<leader>tE', function()
+    vim.cmd 'set fileformat=dos'
+    vim.cmd 'set fenc=utf-8'
+  end, { desc = 'Set fileformat to DOS' })
 end
