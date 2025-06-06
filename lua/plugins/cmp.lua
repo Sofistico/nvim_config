@@ -266,6 +266,9 @@ return {
                 if item.kind == cmp_item_kind.Operator then
                   item.score_offset = item.score_offset - 1
                 end
+                if item.kind == cmp_item_kind.Snippet then
+                  item.score_offset = item.score_offset - 1
+                end
               end
 
               return vim.tbl_filter(function(item)
