@@ -11,6 +11,10 @@ local function under(entry1, entry2)
   end
 end
 
+local function kind_desc(a, b)
+  return a.kind < b.kind
+end
+
 -- local function priorize_kind(kind)
 --   return function(e1, e2)
 --     if e1:get_kind() == kind then
@@ -259,10 +263,15 @@ return {
               for _, item in ipairs(items) do
                 local cmp_item_kind = require('blink.cmp.types').CompletionItemKind
 
+                -- priorize
                 if item.kind == cmp_item_kind.Property or item.kind == cmp_item_kind.Field then
                   item.score_offset = item.score_offset + 1
                 end
+                if item.kind == cmp_item_kind.Function then
+                  item.score_offset = item.score_offset + 1
+                end
 
+                -- de-priorize
                 if item.kind == cmp_item_kind.Operator then
                   item.score_offset = item.score_offset - 1
                 end
@@ -292,8 +301,7 @@ return {
           'exact',
           -- defaults
           'score',
-          'kind',
-          'sort_text',
+          kind_desc,
         },
       },
     },
