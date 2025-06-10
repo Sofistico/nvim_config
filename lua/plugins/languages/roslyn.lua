@@ -52,8 +52,8 @@ return {
           local rzls_path = vim.fn.expand '$MASON/packages/rzls/libexec'
           table.insert(cmd, '--razorSourceGenerator=' .. vim.fs.joinpath(rzls_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'))
           table.insert(cmd, '--razorDesignTimePath=' .. vim.fs.joinpath(rzls_path, 'Targets', 'Microsoft.NET.Sdk.Razor.DesignTime.targets'))
-          -- table.insert(cmd, '--extension')
-          -- table.insert(cmd, vim.fs.joinpath(rzls_path, 'RazorExtension', 'Microsoft.VisualStudioCode.RazorExtension.dll'))
+          table.insert(cmd, '--extension')
+          table.insert(cmd, vim.fs.joinpath(rzls_path, 'RazorExtension', 'Microsoft.VisualStudioCode.RazorExtension.dll'))
         end
       end
 
