@@ -1,5 +1,4 @@
 local lsp = require 'util.self_lsp'
-local helpers = require 'util.self_init'
 
 return {
   {
@@ -73,6 +72,7 @@ return {
             end
             local choice = vim.fn.inputlist(enumerated_target)
             current_sln = targets[choice]
+            vim.g.roslyn_nvim_selected_solution = current_sln
           end
           return current_sln
         end,
