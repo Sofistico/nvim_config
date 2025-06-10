@@ -1,4 +1,5 @@
 local lsp = require 'util.self_lsp'
+local rzls_enabled = false
 
 return {
   {
@@ -17,20 +18,20 @@ return {
         -- By loading as a dependencies, we ensure that we are available to set
         -- the handlers for roslyn
         'tris203/rzls.nvim',
-        config = function()
-          ---@diagnostic disable-next-line: missing-fields
-          require('rzls').setup {}
-        end,
+        config = true,
+        cond = rzls_enabled,
       },
     },
     init = function()
       -- we add the razor filetypes before the plugin loads
-      vim.filetype.add {
-        extension = {
-          razor = 'razor',
-          cshtml = 'razor',
-        },
-      }
+      if rzls_enabled then
+        vim.filetype.add {
+          extension = {
+            razor = 'razor',
+            cshtml = 'razor',
+          },
+        }
+      end
     end,
     config = function()
       local mason_registry = require 'mason-registry'
@@ -48,7 +49,7 @@ return {
           '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
         })
 
-        if rzls_package:is_installed() then
+        if rzls_enabled and rzls_package:is_installed() then
           local rzls_path = vim.fn.expand '$MASON/packages/rzls/libexec'
           table.insert(cmd, '--razorSourceGenerator=' .. vim.fs.joinpath(rzls_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'))
           table.insert(cmd, '--razorDesignTimePath=' .. vim.fs.joinpath(rzls_path, 'Targets', 'Microsoft.NET.Sdk.Razor.DesignTime.targets'))
@@ -136,7 +137,7 @@ return {
         },
       })
 
-      if rzls_package:is_installed() then
+      if rzls_enabled and rzls_package:is_installed() then
         vim.lsp.config('roslyn', { handlers = require 'rzls.roslyn_handlers' })
       end
 
