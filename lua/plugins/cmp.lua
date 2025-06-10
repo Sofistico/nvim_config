@@ -15,17 +15,6 @@ local function kind_desc(a, b)
   return a.kind < b.kind
 end
 
--- local function priorize_kind(kind)
---   return function(e1, e2)
---     if e1:get_kind() == kind then
---       return false
---     end
---     if e2:get_kind() == kind then
---       return true
---     end
---   end
--- end
-
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
