@@ -11,10 +11,6 @@ local function under(entry1, entry2)
   end
 end
 
-local function kind_desc(a, b)
-  return a.kind < b.kind
-end
-
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -290,7 +286,7 @@ return {
           'exact',
           -- defaults
           'score',
-          kind_desc,
+          'kind',
         },
       },
     },
