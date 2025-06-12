@@ -45,8 +45,10 @@ vim.keymap.set('n', '<leader><tab>o', '<cmd>tabonly<cr>', { desc = 'Close Other 
 vim.keymap.set('n', '<leader><tab>f', '<cmd>tabfirst<cr>', { desc = 'First Tab' })
 vim.keymap.set('n', '<leader><tab><tab>', '<cmd>tabnew<cr>', { desc = 'New Tab' })
 vim.keymap.set('n', '<leader><tab>]', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
+vim.keymap.set('n', ']<tab>', '<cmd>tabnext<cr>', { desc = 'Next Tab' })
 vim.keymap.set('n', '<leader><tab>d', '<cmd>tabclose<cr>', { desc = 'Close Tab' })
 vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
+vim.keymap.set('n', '[<tab>', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 -- vim.keymap.set('n', '<tab>', '<cmd>tabnext<cr>', {desc = "Tab Next"})
 vim.keymap.set('n', '<S-tab>', '<cmd>tabnext<cr>', { desc = 'Tab Previous' })
 
