@@ -1,5 +1,5 @@
 local lsp = require 'util.self_lsp'
-local rzls_enabled = false
+local rzls_enabled = true
 
 return {
   {
@@ -95,7 +95,7 @@ return {
           end,
         },
         autostart = vim.g.use_roslyn,
-        filetypes = { 'cs', 'razor' },
+        filetypes = { 'cs' },
         settings = {
           ['csharp|inlay_hints'] = {
             csharp_enable_inlay_hints_for_implicit_object_creation = true,
