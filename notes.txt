@@ -1,10 +1,5 @@
 future plugins to implement:
-	- neural (Maybe)
 	- dooku.nvim
-	- nvim-lightbulb
 	- kulala.nvim
 	- telescope-ast-grep.nvim | https://github.com/Marskey/telescope-sg
-	- Blink will substitute cmp in te future
-	- Code companion maybe?
 	- nvim spider seems promising
-	- easy-dotnet.nvim for some of it's work, though not everything
