@@ -43,10 +43,6 @@ return {
           require('luasnip.loaders.from_lua').load { paths = { '~/snippets' } }
         end,
       },
-      {
-        'garymjr/nvim-snippets',
-        cond = not vim.g.use_blink,
-      },
     },
     opts = {
       history = true,

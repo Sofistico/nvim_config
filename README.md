@@ -37,9 +37,6 @@ NVIM_APPNAME=Sofistico/nvim_config/ nvim
 
 + [folke/ts-comments.nvim](https://dotfyle.com/plugins/folke/ts-comments.nvim)
 + [folke/todo-comments.nvim](https://dotfyle.com/plugins/folke/todo-comments.nvim)
-### completion
-
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
 ### debugging
 
 + [theHamsta/nvim-dap-virtual-text](https://dotfyle.com/plugins/theHamsta/nvim-dap-virtual-text)
