@@ -80,6 +80,7 @@ return {
               ['<c-v>'] = require('telescope.actions').file_vsplit,
               ['<c-x>'] = false,
               ['<c-k>'] = require('telescope.actions').select_default,
+              ['<c-j>'] = require('telescope.actions').preview_scrolling_right,
               ['<a-a>'] = function()
                 local builtin = require 'telescope.builtin'
                 builtin.find_files { hidden = true }
@@ -91,6 +92,7 @@ return {
               ['<c-s>'] = require('telescope.actions').file_split,
               ['<c-v>'] = require('telescope.actions').file_vsplit,
               ['<c-k>'] = require('telescope.actions').select_default,
+              ['<c-j>'] = require('telescope.actions').preview_scrolling_right,
             },
           },
         },
