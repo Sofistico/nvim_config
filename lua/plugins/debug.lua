@@ -7,7 +7,7 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 local lsp = require 'util.self_lsp'
 
-local use_dap_ui = true
+local use_dap_ui = false
 
 return {
   'mfussenegger/nvim-dap',
@@ -24,7 +24,14 @@ return {
       'igorlfs/nvim-dap-view',
       ---@module 'dap-view'
       ---@type dapview.Config
-      opts = {},
+      opts = {
+        windows = {
+          terminal = {
+            -- Use the actual names for the adapters you want to hide
+            hide = { 'go', 'coreclr', 'netcoredbg', 'cs' }, -- `go` is known to not use the terminal.
+          },
+        },
+      },
       cond = not use_dap_ui,
     },
 
@@ -84,7 +91,11 @@ return {
     {
       '<F7>',
       function()
-        require('dapui').toggle()
+        if use_dap_ui then
+          require('dapui').toggle()
+        else
+          require('dap-view').toggle()
+        end
       end,
       desc = 'Debug: See last session result.',
     },
@@ -105,8 +116,12 @@ return {
     {
       '<leader>de',
       function()
-        local ui = require 'dapui'
-        ui.eval()
+        if use_dap_ui then
+          local ui = require 'dapui'
+          ui.eval()
+        else
+          require('dap-view').add_expr()
+        end
       end,
       desc = 'Eval',
       mode = { 'n', 'v' },
@@ -114,9 +129,13 @@ return {
     {
       '<leader>dE',
       function()
-        local ui = require 'dapui'
-        ui.eval()
-        ui.eval()
+        if use_dap_ui then
+          local ui = require 'dapui'
+          ui.eval()
+          ui.eval()
+        else
+          vim.notify 'Keymap not configured!'
+        end
       end,
       desc = 'Eval and jump to window',
       mode = { 'n', 'v' },
@@ -124,7 +143,11 @@ return {
     {
       '<leader>du',
       function()
-        require('dapui').toggle {}
+        if use_dap_ui then
+          require('dapui').toggle()
+        else
+          require('dap-view').toggle()
+        end
       end,
       desc = 'Dap UI',
     },
@@ -228,6 +251,20 @@ return {
       dap.listeners.after.event_initialized['dapui_config'] = dapui.open
       dap.listeners.before.event_terminated['dapui_config'] = dapui.close
       dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    else
+      local dv = require 'dap-view'
+      dap.listeners.before.attach['dap-view-config'] = function()
+        dv.open()
+      end
+      dap.listeners.before.launch['dap-view-config'] = function()
+        dv.open()
+      end
+      dap.listeners.before.event_terminated['dap-view-config'] = function()
+        dv.close()
+      end
+      dap.listeners.before.event_exited['dap-view-config'] = function()
+        dv.close()
+      end
     end
 
     require('overseer').enable_dap()
