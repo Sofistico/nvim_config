@@ -7,15 +7,25 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 local lsp = require 'util.self_lsp'
 
+local use_dap_ui = true
+
 return {
   'mfussenegger/nvim-dap',
   lazy = true,
   dependencies = {
     -- Creates a beautiful debugger UI
-    'rcarriga/nvim-dap-ui',
+    { 'rcarriga/nvim-dap-ui', cond = use_dap_ui },
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},
+      cond = use_dap_ui,
+    },
+    {
+      'igorlfs/nvim-dap-view',
+      ---@module 'dap-view'
+      ---@type dapview.Config
+      opts = {},
+      cond = not use_dap_ui,
     },
 
     -- Required dependency for nvim-dap-ui
@@ -170,7 +180,6 @@ return {
   },
   config = function()
     local dap = require 'dap'
-    local dapui = require 'dapui'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
@@ -190,33 +199,38 @@ return {
       },
     }
 
-    -- Dap UI setup
-    -- For more information, see |:help nvim-dap-ui|
-    ---@diagnostic disable-next-line: missing-fields
-    dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+    if use_dap_ui then
+      local dapui = require 'dapui'
+      -- Dap UI setup
+      -- For more information, see |:help nvim-dap-ui|
       ---@diagnostic disable-next-line: missing-fields
-      controls = {
-        icons = {
-          pause = '⏸',
-          play = '▶',
-          step_into = '⏎',
-          step_over = '⏭',
-          step_out = '⏮',
-          step_back = 'b',
-          run_last = '▶▶',
-          terminate = '⏹',
-          disconnect = '⏏',
+      dapui.setup {
+        -- Set icons to characters that are more likely to work in every terminal.
+        --    Feel free to remove or use ones that you like more! :)
+        --    Don't feel like these are good choices.
+        icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+        ---@diagnostic disable-next-line: missing-fields
+        controls = {
+          icons = {
+            pause = '⏸',
+            play = '▶',
+            step_into = '⏎',
+            step_over = '⏭',
+            step_out = '⏮',
+            step_back = 'b',
+            run_last = '▶▶',
+            terminate = '⏹',
+            disconnect = '⏏',
+          },
         },
-      },
-    }
+      }
+
+      dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+      dap.listeners.before.event_terminated['dapui_config'] = dapui.close
+      dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    end
 
     require('overseer').enable_dap()
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.after.event_initialized['dap_stop_backup'] = function(_, _)
       -- the write backup doesn't play nicely with c# watch command
       vim.o.writebackup = false
@@ -224,7 +238,6 @@ return {
     dap.listeners.after.event_terminated['dap_stop_backup'] = function(_, _)
       vim.o.writebackup = true
     end
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
     -- Change breakpoint icons
     vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
     vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
