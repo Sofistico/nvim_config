@@ -53,6 +53,13 @@ return {
       desc = 'Debug: Start/Continue',
     },
     {
+      '<leader>dR',
+      function()
+        require('dap').continue()
+      end,
+      desc = 'Debug: Start/Continue',
+    },
+    {
       '<F11>',
       function()
         require('dap').step_into()
