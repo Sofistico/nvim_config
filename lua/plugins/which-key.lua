@@ -58,6 +58,7 @@ return {
         { 'g-', desc = 'Go to older text state' },
         { 'g+', desc = 'Go to newer text state' },
         { 'gr', group = 'Lsp' },
+        { 'g?', group = 'Debug Print' },
       },
       icons = {
         rules = {
