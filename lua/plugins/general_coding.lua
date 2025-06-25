@@ -15,10 +15,4 @@ return -- snippets
   -- },
   -- library used by other plugins
   { 'nvim-lua/plenary.nvim', lazy = true },
-  {
-    'andrewferrier/debugprint.nvim',
-    lazy = true,
-    event = 'InsertEnter',
-    opts = {},
-  },
 }

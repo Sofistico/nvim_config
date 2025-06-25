@@ -77,7 +77,7 @@ return {
         -- so you don't need to define them in `sources.providers`
         default = { 'lsp', 'buffer', 'snippets', 'path' },
 
-        per_filetype = { sql = { 'dadbod' }, xml = { 'easy-dotnet', 'buffer', 'snippets', 'path' } },
+        per_filetype = { sql = { 'dadbod', 'buffer', 'snippets' }, xml = { 'easy-dotnet', 'buffer', 'snippets', 'path' } },
         providers = {
           dadbod = { module = 'vim_dadbod_completion.blink' },
           -- Doesn't work properly for some reason
