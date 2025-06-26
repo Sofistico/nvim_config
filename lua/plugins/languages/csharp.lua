@@ -31,7 +31,7 @@ return {
     'Hoffs/omnisharp-extended-lsp.nvim',
     lazy = true,
     ft = 'cs',
-    cond = not vim.g.use_roslyn,
+    enabled = not vim.g.use_roslyn,
   },
   {
     'stevearc/conform.nvim',

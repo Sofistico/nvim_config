@@ -5,7 +5,7 @@ return {
   {
     'seblyng/roslyn.nvim',
     ft = { 'cs', 'razor' },
-    cond = vim.g.use_roslyn,
+    enabled = vim.g.use_roslyn,
     keys = {
       {
         '<leader>tT',
@@ -19,7 +19,7 @@ return {
         -- the handlers for roslyn
         'tris203/rzls.nvim',
         config = true,
-        cond = rzls_enabled,
+        enabled = rzls_enabled,
       },
     },
     init = function()
