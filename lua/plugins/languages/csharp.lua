@@ -199,7 +199,20 @@ return {
         secrets = {
           path = get_secret_path,
         },
-        -- notifications = { handler = false },
+        notifications = {
+          --ignoring the loading notification, just creates bloat for nothing
+          handler = function(start_event)
+            if start_event.job.name ~= 'Loading' then
+              return
+            end
+            local spinner = require('easy-dotnet.ui-modules.spinner').new()
+            spinner:start_spinner(start_event.job.name)
+            ---@param finished_event JobEvent
+            return function(finished_event)
+              spinner:stop_spinner(finished_event.result.text, finished_event.result.level)
+            end
+          end,
+        },
         csproj_mappings = true,
         fsproj_mappings = true,
         auto_bootstrap_namespace = {

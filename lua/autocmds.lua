@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'tsplayground',
     'fugitive',
     'gitcommit',
+    'copilot',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -86,7 +87,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   callback = function(ev)
     vim.b.minianimate_disable = true
     vim.cmd 'setlocal syntax=off'
-    vim.o.swapfile = false
+    vim.bo.swapfile = false
     vim.o.wrap = false
     vim.schedule(function()
       vim.bo[ev.buf].syntax = vim.filetype.match { buf = ev.buf } or ''
@@ -98,5 +99,13 @@ vim.api.nvim_create_autocmd({ 'ColorScheme' }, {
   group = augroup 'color_scheme',
   callback = function(ev)
     require('util.colors').apply_custom_colors()
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = augroup 'razor_generated_file',
+  pattern = { '%__virtual.cs$', '%_cshtml.g.cs$' },
+  callback = function()
+    vim.bo.swapfile = false
   end,
 })

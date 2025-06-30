@@ -1,44 +1,18 @@
-local copilot_enabled = false -- copilot always starts disabled
-
 return {
   {
-    'github/copilot.vim',
+    'zbirenbaum/copilot.lua',
+    lazy = true,
+    cmd = 'Copilot',
     config = function()
-      vim.cmd 'Copilot disable'
-      vim.keymap.del('n', '<leader>C')
+      require('copilot').setup {}
     end,
-    keys = {
-      {
-        '<leader>tC',
-        function()
-          if copilot_enabled then
-            copilot_enabled = false
-            vim.cmd 'Copilot disable'
-            vim.notify 'Copilot disabled'
-          else
-            copilot_enabled = true
-            vim.cmd 'Copilot enable'
-            vim.notify 'Copilot enabled'
-          end
-        end,
-        desc = 'Toggle copilot',
-      },
-      {
-        '<leader>C',
-        function()
-          vim.keymap.del('n', '<leader>C')
-          vim.notify 'Started copilot! ps: dont forget to <m-\\> to force it to trigger'
-        end,
-        desc = 'Start copilot',
-      },
-    },
   },
   {
     'olimorris/codecompanion.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-treesitter/nvim-treesitter',
-      'github/copilot.vim',
+      'zbirenbaum/copilot.lua',
     },
     config = true,
     opts = {
