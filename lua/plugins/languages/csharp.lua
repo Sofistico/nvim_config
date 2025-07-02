@@ -27,12 +27,12 @@ local function get_dll_env()
 end
 
 return {
-  {
-    'Hoffs/omnisharp-extended-lsp.nvim',
-    lazy = true,
-    ft = 'cs',
-    enabled = not vim.g.use_roslyn,
-  },
+  -- {
+  --   'Hoffs/omnisharp-extended-lsp.nvim',
+  --   lazy = true,
+  --   ft = 'cs',
+  --   enabled = not vim.g.use_roslyn,
+  -- },
   {
     'stevearc/conform.nvim',
     optional = true,
