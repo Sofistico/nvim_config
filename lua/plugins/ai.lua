@@ -48,7 +48,7 @@ return {
         mode = 'v',
       },
       {
-        '<leader>ai',
+        '<leader>ac',
         function()
           vim.cmd "'<,'>CodeCompanionChat"
         end,
