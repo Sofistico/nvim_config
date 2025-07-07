@@ -13,5 +13,9 @@
       "}"
     ],
     "description": "Create a new IActionResult method"
+  },
+  "imethod": {
+    "prefix": "imethod",
+    "body": [ "public ${1:type} ${2:Name}(${3:parameter});$0" ]
   }
 }

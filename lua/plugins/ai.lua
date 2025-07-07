@@ -48,6 +48,22 @@ return {
         mode = 'v',
       },
       {
+        '<leader>ai',
+        function()
+          vim.cmd "'<,'>CodeCompanionChat"
+        end,
+        desc = 'Code Companion Chat',
+        mode = 'v',
+      },
+      {
+        '<leader>aa',
+        function()
+          vim.cmd "'<,'>CodeCompanionActions"
+        end,
+        desc = 'Code Companion Actions',
+        mode = 'v',
+      },
+      {
         '<leader>ac',
         function()
           require('codecompanion').chat()
