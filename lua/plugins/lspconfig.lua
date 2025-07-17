@@ -113,6 +113,7 @@ return {
           --  Most Language Servers support renaming across files, etc.
           map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
           map('grn', vim.lsp.buf.rename, '[r]ename')
+          map('grt', vim.lsp.buf.type_definition, '[t]ype definition')
 
           -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
           map('<leader>cR', function()
