@@ -68,6 +68,10 @@ vim.keymap.set('n', '<leader>bS', '<cmd>sp#<cr>', { desc = 'Split alternate buff
 vim.keymap.set('n', '<leader>bV', '<cmd>vs#<cr>', { desc = 'Vertical split alternate buffer' })
 vim.keymap.set('n', '<leader>bD', '<cmd>:bd!<cr>', { desc = 'Delete Buffer and Window' })
 vim.keymap.set('n', '<leader>br', '<cmd>:e!<cr>', { desc = 'Reload current buffer' })
+vim.keymap.set('n', '<leader>bR', function()
+  local input = vim.fn.input('File: ', '')
+  vim.cmd.file(input)
+end, { desc = 'Rename current buffer' })
 
 -- save file
 vim.keymap.set({ 'n', 'i' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
