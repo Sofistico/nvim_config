@@ -30,6 +30,10 @@ vim.keymap.set('n', '<leader>cS', function()
   dotnet.solution_select()
 end, { desc = 'Select solution', silent = true, buffer = true })
 
+vim.keymap.set('n', '<leader>cr', function()
+  dotnet.run()
+end, { desc = 'Run dotnet', silent = true, buffer = true })
+
 vim.keymap.set('n', '<leader>te', function()
   vim.g.dotnet_errors_only = not vim.g.dotnet_errors_only
   vim.notify('Toggled dotnet errors: ' .. tostring(vim.g.dotnet_errors_only))
