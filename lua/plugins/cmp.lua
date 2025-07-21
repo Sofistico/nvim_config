@@ -36,10 +36,18 @@ return {
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
+      -- enabled = function()
+      --   return not vim.tbl_contains({
+      --     'NvimTree',
+      --     'Telescope',
+      --     'TelescopePrompt',
+      --   }, vim.bo.filetype) and vim.bo.buftype ~= 'prompt' and vim.b.completion ~= false
+      -- end,
 
       completion = {
         documentation = { auto_show = true, window = { border = 'rounded' } },
         accept = { resolve_timeout_ms = 1000 },
+        keyword = { range = 'full' },
         menu = {
           border = 'rounded',
           draw = {
