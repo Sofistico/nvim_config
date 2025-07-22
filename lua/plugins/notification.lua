@@ -12,6 +12,13 @@ return {
         end,
         desc = 'Dismiss All Notifications',
       },
+      {
+        '<leader>K',
+        function()
+          require('notify').dismiss { silent = true, pending = true }
+        end,
+        desc = 'Kill All Notifications',
+      },
       { '<leader>nh', '<cmd>Telescope notify<cr>', desc = 'Show Notification History' },
     },
     opts = {
