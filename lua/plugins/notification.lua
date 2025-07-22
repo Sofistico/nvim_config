@@ -13,7 +13,7 @@ return {
         desc = 'Dismiss All Notifications',
       },
       {
-        '<leader>K',
+        '<leader>k',
         function()
           require('notify').dismiss { silent = true, pending = true }
         end,
