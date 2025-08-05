@@ -28,27 +28,21 @@ end
 
 return {
   -- {
-  --   'Hoffs/omnisharp-extended-lsp.nvim',
+  --   'stevearc/conform.nvim',
+  --   optional = true,
   --   lazy = true,
-  --   ft = 'cs',
-  --   enabled = not vim.g.use_roslyn,
+  --   opts = {
+  --     formatters_by_ft = {
+  --       cs = { 'csharpier' },
+  --     },
+  --     formatters = {
+  --       csharpier = {
+  --         command = 'dotnet-csharpier',
+  --         args = { '--write-stdout' },
+  --       },
+  --     },
+  --   },
   -- },
-  {
-    'stevearc/conform.nvim',
-    optional = true,
-    lazy = true,
-    opts = {
-      formatters_by_ft = {
-        cs = { 'csharpier' },
-      },
-      formatters = {
-        csharpier = {
-          command = 'dotnet-csharpier',
-          args = { '--write-stdout' },
-        },
-      },
-    },
-  },
   {
     'mfussenegger/nvim-dap',
     lazy = true,
