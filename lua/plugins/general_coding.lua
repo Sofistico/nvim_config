@@ -48,12 +48,12 @@ return -- snippets
       end, { desc = 'Go to fourth harpoon' })
 
       -- Toggle previous & next buffers stored within Harpoon list
-      vim.keymap.set('n', '<leader>j', function()
-        harpoon:list():prev()
-      end, { desc = 'Previous buffer harpoon' })
-      vim.keymap.set('n', '<leader>k', function()
-        harpoon:list():next()
-      end, { desc = 'Next buffer harpoon' })
+      -- vim.keymap.set('n', '<leader>j', function()
+      --   harpoon:list():prev()
+      -- end, { desc = 'Previous buffer harpoon' })
+      -- vim.keymap.set('n', '<leader>k', function()
+      --   harpoon:list():next()
+      -- end, { desc = 'Next buffer harpoon' })
     end,
   },
 }
