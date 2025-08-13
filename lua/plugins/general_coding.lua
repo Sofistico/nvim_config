@@ -47,6 +47,9 @@ return -- snippets
         harpoon:list():select(4)
       end, { desc = 'Go to fourth harpoon' })
 
+      vim.keymap.set('n', '<leader>H', function()
+        harpoon:list():clear()
+      end, { desc = 'Clear harpoon' })
       -- Toggle previous & next buffers stored within Harpoon list
       -- vim.keymap.set('n', '<leader>j', function()
       --   harpoon:list():prev()

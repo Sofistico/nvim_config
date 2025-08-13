@@ -56,7 +56,7 @@ vim.keymap.set('n', '<S-tab>', '<cmd>tabnext<cr>', { desc = 'Tab Previous' })
 
 -- quit
 vim.keymap.set('n', '<leader>qq', '<cmd>conf qa<cr>', { desc = 'Quit All' })
-vim.keymap.set('n', '<leader>qd', '<cmd>detach<cr>', { desc = 'Quit All' })
+vim.keymap.set('n', '<leader>qd', '<cmd>detach<cr>', { desc = 'Detach' })
 
 -- buffer
 vim.keymap.set('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
