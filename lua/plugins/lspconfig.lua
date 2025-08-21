@@ -113,11 +113,6 @@ return {
           -- map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
           map('grn', vim.lsp.buf.rename, '[r]ename')
 
-          -- TODO: Make this take an input like vim.lsp.buf.rename for the rename of the file, see https://github.com/neovim/neovim/blob/f72dc2b4c805f309f23aff62b3e7ba7b71a554d2/runtime/lua/vim/lsp/buf.lua#L319C1-L320C1
-          map('<leader>cR', function()
-            require('snacks').rename.rename_file()
-          end, '[R]ename File')
-
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
