@@ -151,7 +151,6 @@ NVIM_APPNAME=Sofistico/nvim_config/ nvim
 + clangd
 + html
 + lua_ls
-+ omnisharp
 + tflint
 + roslyn
 

@@ -5,7 +5,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
-vim.g.use_roslyn = true
 
 function _G.printd(var)
   vim.notify(vim.inspect(var))

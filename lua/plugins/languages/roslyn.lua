@@ -5,7 +5,6 @@ return {
   {
     'seblyng/roslyn.nvim',
     ft = { 'cs', 'razor' },
-    enabled = vim.g.use_roslyn,
     keys = {
       {
         '<leader>tT',
@@ -136,7 +135,6 @@ return {
             return vim.NIL
           end,
         },
-        autostart = vim.g.use_roslyn,
         filetypes = { 'cs' },
         settings = {
           ['csharp|inlay_hints'] = {

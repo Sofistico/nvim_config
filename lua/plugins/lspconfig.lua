@@ -255,11 +255,6 @@ return {
       require('mason-tool-installer').setup { ensure_installed = lsp_configs.ensure_installed_all, automatic_installation = true }
 
       require('mason-lspconfig').setup {
-        automatic_enable = {
-          exclude = {
-            'omnisharp',
-          },
-        },
         handlers = {
           function(server_name)
             local server = lsp_configs.servers[server_name] or {}
