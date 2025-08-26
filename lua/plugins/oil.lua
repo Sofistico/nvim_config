@@ -46,6 +46,14 @@ return {
       ['<C-v>'] = { 'actions.select', opts = { vertical = true, close = true } },
       ['<C-s>'] = { 'actions.select', opts = { horizontal = true, close = true } },
       ['<C-t>'] = { 'actions.select', opts = { tab = true, close = true } },
+      ['<leader>:'] = {
+        'actions.open_cmdline',
+        opts = {
+          shorten_path = true,
+          modify = ':h',
+        },
+        desc = 'Open the command line with the current directory as an argument',
+      },
     },
   },
   keys = {

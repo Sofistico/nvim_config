@@ -120,9 +120,16 @@ vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a T
 vim.o.softtabstop = -1 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 
--- if vim.fn.executable 'nu' == 1 then
---   vim.o.shell = 'nu'
--- end
+if vim.fn.executable 'nu' == 1 then
+  vim.o.shell = 'nu' -- Replace with your Nushell path
+  vim.o.shellcmdflag = '--login --stdin --no-newline -c'
+  vim.o.shellredir = 'out+err> %s'
+  vim.o.shellpipe = '| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record'
+  vim.o.shelltemp = false
+  vim.o.shellxescape = ''
+  vim.o.shellxquote = ''
+  vim.o.shellquote = ''
+end
 
 require('util.colors').apply_custom_colors()
 
@@ -130,7 +137,5 @@ if vim.g.neovide then
   vim.o.guifont = 'DejaVuSansM Nerd Font Mono:h10,Symbols Nerd Font Mono:h10'
   vim.g.neovide_scale_factor = 0.7
 end
-
--- vim.o.winborder = 'rounded'
 
 -- vim: ts=2 sts=2 sw=2 et
