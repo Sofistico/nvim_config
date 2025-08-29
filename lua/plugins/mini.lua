@@ -13,7 +13,7 @@ return {
   --   end,
   -- },
   {
-    'echasnovski/mini.statusline',
+    'nvim-mini/mini.statusline',
     lazy = true,
     event = 'VeryLazy',
     config = function()
@@ -44,7 +44,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     lazy = true,
     event = 'InsertEnter',
     opts = function()
@@ -82,7 +82,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.icons',
+    'nvim-mini/mini.icons',
     opts = {
       file = {
         ['.keep'] = { glyph = '󰊢', hl = 'MiniIconsGrey' },
@@ -103,7 +103,7 @@ return {
     end,
   },
   {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     lazy = true,
     event = 'BufAdd',
     opts = {
