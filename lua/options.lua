@@ -129,6 +129,7 @@ if vim.fn.executable 'nu' == 1 then
   vim.o.shellxescape = ''
   vim.o.shellxquote = ''
   vim.o.shellquote = ''
+  vim.o.shellslash = true
 end
 
 require('util.colors').apply_custom_colors()
