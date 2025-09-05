@@ -139,6 +139,6 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.7
 end
 
-vim.o.shortmess = "A"
+vim.o.shortmess = vim.o.shortmess .. 'A'
 
 -- vim: ts=2 sts=2 sw=2 et
