@@ -51,7 +51,7 @@ return {
       desc = 'Debug: Start/Continue',
     },
     {
-      '<leader>dR',
+      '<leader>dr',
       function()
         require('dap').continue()
       end,
@@ -199,7 +199,7 @@ return {
       desc = 'Continue to cursor in Debug (execute)',
     },
     {
-      '<leader>dr',
+      '<leader>dR',
       function()
         require('dap').repl.toggle()
       end,

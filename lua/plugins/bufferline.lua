@@ -8,8 +8,6 @@ return {
       'folke/snacks.nvim',
     },
     keys = {
-      { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle Pin' },
-      { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete Non-Pinned Buffers' },
       { '<leader>bi', '<Cmd>BufferLinePick<CR>', desc = 'Pick Buffer' },
       {
         '<leader>bs',
@@ -29,8 +27,6 @@ return {
       },
       { '<leader>bI', '<Cmd>BufferLinePickClose<CR>', desc = 'Close Pick Buffer' },
       { '<leader>bO', '<Cmd>BufferLineCloseOthers<CR>', desc = 'Delete Other Buffers' },
-      { '<leader>bl', '<Cmd>BufferLineCloseRight<CR>', desc = 'Delete Buffers to the Right' },
-      { '<leader>bh', '<Cmd>BufferLineCloseLeft<CR>', desc = 'Delete Buffers to the Left' },
       {
         '<leader>bo',
         function()
@@ -42,12 +38,8 @@ return {
         end,
         desc = 'Sort buffer by last used',
       },
-      -- { '<leader>bS', '<Cmd>BufferLineSortByExtension<CR>', desc = 'Sort buffer by relative directory' },
-      -- { '<leader>bR', '<Cmd>BufferLineSortByRelativeDirectory<CR>', desc = 'Sort buffer by relative directory' },
       { '<S-h>', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
       { '<S-l>', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
-      { '[b', '<cmd>BufferLineCyclePrev<cr>', desc = 'Prev Buffer' },
-      { ']b', '<cmd>BufferLineCycleNext<cr>', desc = 'Next Buffer' },
       { '[B', '<cmd>BufferLineMovePrev<cr>', desc = 'Move buffer prev' },
       { ']B', '<cmd>BufferLineMoveNext<cr>', desc = 'Move buffer next' },
     },
