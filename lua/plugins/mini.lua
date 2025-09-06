@@ -48,13 +48,11 @@ return {
         if statusline.is_truncated(args.trunc_width) then
           return ''
         end
-        local buf = vim.api.nvim_get_current_buf()
-        local clients = vim.lsp.get_clients { bufnr = buf } or ''
+        local clients = vim.lsp.get_clients { bufnr = vim.api.nvim_get_current_buf() }
         if vim.tbl_count(clients) == 0 then
           return ''
         end
-        local use_icons = vim.g.have_nerd_font
-        local icon = use_icons and '󰰎' or 'LSP'
+        local icon = vim.g.have_nerd_font and '󰰎' or 'LSP'
         local attached = icon
         for _, client in pairs(clients) do
           attached = attached .. ' ' .. client.name
