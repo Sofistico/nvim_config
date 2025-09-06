@@ -32,7 +32,7 @@ return {
         }
       end
     end,
-    config = function()
+    opts = function()
       local mason_registry = require 'mason-registry'
 
       ---@type string[]
