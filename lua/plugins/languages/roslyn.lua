@@ -31,12 +31,11 @@ return {
           },
         }
       end
-    end,
-    opts = function()
-      local mason_registry = require 'mason-registry'
 
       ---@type string[]
       local cmd = {}
+
+      local mason_registry = require 'mason-registry'
 
       local roslyn_package = mason_registry.get_package 'roslyn'
       local rzls_package = mason_registry.get_package 'rzls'
@@ -57,32 +56,16 @@ return {
         end
       end
 
-      ---@module 'roslyn.config'
-      ---@class RoslynNvimConfig
-      local roslyn_config = {
-        filewatching = 'roslyn',
-        ---@diagnostic disable-next-line: missing-fields
-        broad_search = true,
-        choose_target = function(targets)
-          local current_sln = vim.g.roslyn_nvim_selected_solution
-          if current_sln == nil or not vim.tbl_contains(targets, current_sln) then
-            local enumerated_target = { 'Choose a target to start: ' }
-            for i, v in ipairs(targets) do
-              enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
-            end
-            local choice = vim.fn.inputlist(enumerated_target)
-            current_sln = targets[choice]
-            vim.g.roslyn_nvim_selected_solution = current_sln
-          end
-          return current_sln
-        end,
-      }
-
       vim.lsp.config('roslyn', {
         cmd = cmd,
         capabilities = {
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
+          },
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = false,
+            },
           },
         },
         handlers = {
@@ -138,8 +121,29 @@ return {
       if rzls_enabled and rzls_package:is_installed() then
         vim.lsp.config('roslyn', { handlers = require 'rzls.roslyn_handlers' })
       end
-
-      require('roslyn').setup(roslyn_config)
+    end,
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      filewatching = 'roslyn',
+      ---@diagnostic disable-next-line: missing-fields
+      broad_search = true,
+      choose_target = function(targets)
+        local current_sln = vim.g.roslyn_nvim_selected_solution
+        if current_sln == nil or not vim.tbl_contains(targets, current_sln) then
+          local enumerated_target = { 'Choose a target to start: ' }
+          for i, v in ipairs(targets) do
+            enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
+          end
+          local choice = vim.fn.inputlist(enumerated_target)
+          current_sln = targets[choice]
+          vim.g.roslyn_nvim_selected_solution = current_sln
+        end
+        return current_sln
+      end,
+    },
+    config = function(_, opts)
+      require('roslyn').setup(opts)
 
       require('telescope').setup {
         defaults = {
