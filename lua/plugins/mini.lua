@@ -32,6 +32,7 @@ return {
         return '%2l:%-2v ' .. ' ' .. os.date '%R'
       end
 
+      ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_filename = function(args)
         -- In terminal always use plain name
         if vim.bo.buftype == 'terminal' or statusline.is_truncated(args.trunc_width) then
@@ -40,6 +41,25 @@ return {
           -- Use fullpath if not truncated
           return vim.fn.expand '%:~:.' .. '%m%r'
         end
+      end
+
+      ---@diagnostic disable-next-line: duplicate-set-field
+      statusline.section_lsp = function(args)
+        if statusline.is_truncated(args.trunc_width) then
+          return ''
+        end
+        local buf = vim.api.nvim_get_current_buf()
+        local clients = vim.lsp.get_clients { bufnr = buf } or ''
+        if vim.tbl_count(clients) == 0 then
+          return ''
+        end
+        local use_icons = vim.g.have_nerd_font
+        local icon = use_icons and '󰰎' or 'LSP'
+        local attached = icon
+        for _, client in pairs(clients) do
+          attached = attached .. ' ' .. client.name
+        end
+        return attached
       end
     end,
   },
