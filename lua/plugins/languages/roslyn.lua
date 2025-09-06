@@ -92,48 +92,6 @@ return {
             end
             lsp.apply_vs_text_edit(result._vs_textEdit)
           end,
-          ['workspace/_roslyn_projectNeedsRestore'] = function(_, result, ctx)
-            -- FIXME: workaround for roslyn_ls bug (sends here .cs files for some reason)
-            -- started around 5.0.0-1.25263.3
-            local project_file_paths = vim.tbl_get(result, 'projectFilePaths') or {}
-            if vim.iter(project_file_paths):any(function(path)
-              return vim.endswith(path, '.cs')
-            end) then
-              -- remove cs files and check if empty afterwards
-              -- we could simply filter it out, but empty list would mean "restore-all"
-              -- and it's not what we want since csprojs will come in later requests
-              project_file_paths = vim
-                .iter(project_file_paths)
-                :filter(function(path)
-                  return not vim.endswith(path, '.cs')
-                end)
-                :totable()
-              if vim.tbl_isempty(project_file_paths) then
-                ---@type lsp.ResponseError
-                return { code = 0, message = '' }
-              end
-            end
-
-            local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
-
-            client:request(
-              ---@diagnostic disable-next-line: param-type-mismatch
-              'workspace/_roslyn_restore',
-              { projectFilePaths = project_file_paths },
-              function(err, response)
-                if err then
-                  vim.notify(err.message, vim.log.levels.ERROR, { title = 'roslyn.nvim' })
-                end
-                if response then
-                  for _, v in ipairs(response) do
-                    vim.notify(v.message, vim.log.levels.INFO, { title = 'roslyn.nvim' })
-                  end
-                end
-              end
-            )
-
-            return vim.NIL
-          end,
         },
         filetypes = { 'cs' },
         settings = {
@@ -271,6 +229,44 @@ return {
               end, 1)
             end,
           })
+        end,
+      })
+
+      -- fidget spinner with dotnet restore
+      local handles = {}
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'RoslynRestoreProgress',
+        callback = function(ev)
+          local token = ev.data.params[1]
+          local handle = handles[token]
+          if handle then
+            handle:report {
+              title = ev.data.params[2].state,
+              message = ev.data.params[2].message,
+            }
+          else
+            handles[token] = require('fidget.progress').handle.create {
+              title = ev.data.params[2].state,
+              message = ev.data.params[2].message,
+              lsp_client = {
+                name = 'roslyn',
+              },
+            }
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'RoslynRestoreResult',
+        callback = function(ev)
+          local handle = handles[ev.data.token]
+          handles[ev.data.token] = nil
+
+          if handle then
+            handle.message = ev.data.err and ev.data.err.message or 'Restore completed'
+            handle:finish()
+          end
         end,
       })
     end,
