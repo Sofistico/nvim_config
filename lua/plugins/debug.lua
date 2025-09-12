@@ -119,6 +119,13 @@ return {
       desc = 'Terminate',
     },
     {
+      '<leader>dd',
+      function()
+        require('dap').disconnect()
+      end,
+      desc = 'Disconnect',
+    },
+    {
       '<leader>de',
       function()
         if use_dap_ui then

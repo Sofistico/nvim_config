@@ -33,3 +33,7 @@ end, { desc = 'Select solution', silent = true, buffer = true })
 vim.keymap.set('n', '<leader>cr', function()
   dotnet.run()
 end, { desc = 'Run dotnet', silent = true, buffer = true })
+
+vim.keymap.set('n', '<leader>cw', function()
+  dotnet.watch()
+end, { desc = 'Run watch dotnet', silent = true, buffer = true })

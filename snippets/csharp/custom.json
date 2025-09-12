@@ -17,5 +17,9 @@
   "imethod": {
     "prefix": "imethod",
     "body": [ "public ${1:type} ${2:Name}(${3:parameter});$0" ]
+  },
+  "buipop": {
+    "prefix": "buipop",
+    "body": ["builder.Property(i => i.${1:property}).HasColumnName(\"${2:name}\")$0;"]
   }
 }

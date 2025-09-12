@@ -85,6 +85,7 @@ return {
                 local builtin = require 'telescope.builtin'
                 builtin.find_files { hidden = true }
               end,
+              ['<C-h>'] = 'which_key',
             },
             n = {
               ['q'] = require('telescope.actions').close,
