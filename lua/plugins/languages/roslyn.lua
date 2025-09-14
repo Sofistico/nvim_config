@@ -147,7 +147,7 @@ return {
 
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { '%__virtual.cs$', '%_cshtml.g.cs$' },
+          file_ignore_patterns = { '%__virtual.cs$', '__virtual%.cs$', '%_cshtml.g.cs$' },
         },
       }
       require('trouble').setup {
@@ -155,7 +155,7 @@ return {
           diagnostics = {
             filter = function(items)
               return vim.tbl_filter(function(item)
-                return not string.match(item.basename, [[%__virtual.cs$]])
+                return not string.match(item.basename, [[__virtual%.cs$]])
               end, items)
             end,
           },
