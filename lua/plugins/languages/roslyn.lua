@@ -167,12 +167,15 @@ return {
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           -- this is a workaround for a weird behavior that is happening where two clients are being spawned, one with a null root marker and the correct one
-          local other_roslyn_clients = vim.lsp.get_clients { name = 'roslyn' }
-          for key, _ in pairs(other_roslyn_clients) do
-            if key ~= event.data.client_id then
-              vim.lsp.get_client_by_id(key):stop()
-            end
-          end
+          -- local other_roslyn_clients = vim.lsp.get_clients { name = 'roslyn' }
+          -- for key, _ in pairs(other_roslyn_clients) do
+          --   if key ~= event.data.client_id then
+          --     local client_to_be_stoped = vim.lsp.get_client_by_id(key)
+          --     if client_to_be_stoped then
+          --       client_to_be_stoped:stop()
+          --     end
+          --   end
+          -- end
           if client and (client.name ~= 'roslyn' or client.name == 'roslyn_ls') then
             return
           end

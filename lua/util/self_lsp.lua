@@ -198,9 +198,8 @@ function M.apply_vs_text_edit(edit)
 end
 
 function M.enable_lsps_not_in_mason()
-  local lspconfig = require 'lspconfig'
   for _, server_name in ipairs(M.ensure_lsps_not_in_mason) do
-    lspconfig[server_name].setup(M.servers[server_name] or {})
+    vim.lsp.config(server_name, M.servers[server_name] or {})
   end
 end
 

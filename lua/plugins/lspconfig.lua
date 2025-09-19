@@ -261,7 +261,7 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
-            require('lspconfig')[server_name].setup(server)
+            vim.lsp.config(server_name, server)
           end,
         },
         automatic_installation = true,
