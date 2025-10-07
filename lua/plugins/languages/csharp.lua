@@ -221,6 +221,7 @@ return {
         -- telescope -> fzf -> snacks ->  basic
         picker = 'telescope',
         background_scanning = true,
+        lsp = { enabled = false },
       }
     end,
   },
