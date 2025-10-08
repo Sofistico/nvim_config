@@ -54,17 +54,17 @@ return {
         },
         desc = 'Open the command line with the current directory as an argument',
       },
+      ['gd'] = {
+        function()
+          require('oil').set_columns { 'icon', 'permissions', 'size', 'mtime' }
+        end,
+        mode = 'n',
+        desc = 'Set detailed columns',
+      },
     },
   },
   keys = {
     { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
-    -- {
-    --   '_',
-    --   function()
-    --     require('oil').toggle_float()
-    --   end,
-    --   desc = 'Open floating parent direc',
-    -- },
   },
   cmd = 'Oil',
 }
