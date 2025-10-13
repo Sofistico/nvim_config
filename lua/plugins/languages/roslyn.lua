@@ -4,7 +4,7 @@ local rzls_enabled = true
 return {
   {
     'seblyng/roslyn.nvim',
-    ft = { 'cs', 'razor' },
+    event = "BufAdd *.cs",
     keys = {
       {
         '<leader>tT',
@@ -31,6 +31,29 @@ return {
           },
         }
       end
+    end,
+    ---@module 'roslyn.config'
+    ---@type RoslynNvimConfig
+    opts = {
+      filewatching = 'roslyn',
+      ---@diagnostic disable-next-line: missing-fields
+      broad_search = true,
+      choose_target = function(targets)
+        local current_sln = vim.g.roslyn_nvim_selected_solution
+        if current_sln == nil or not vim.tbl_contains(targets, current_sln) then
+          local enumerated_target = { 'Choose a target to start: ' }
+          for i, v in ipairs(targets) do
+            enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
+          end
+          local choice = vim.fn.inputlist(enumerated_target)
+          current_sln = targets[choice]
+          vim.g.roslyn_nvim_selected_solution = current_sln
+        end
+        return current_sln
+      end,
+    },
+    config = function(_, opts)
+      require("roslyn").setup(opts)
 
       ---@type string[]
       local cmd = {}
@@ -121,30 +144,6 @@ return {
       if rzls_enabled and rzls_package:is_installed() then
         vim.lsp.config('roslyn', { handlers = require 'rzls.roslyn_handlers' })
       end
-    end,
-    ---@module 'roslyn.config'
-    ---@type RoslynNvimConfig
-    opts = {
-      filewatching = 'roslyn',
-      ---@diagnostic disable-next-line: missing-fields
-      broad_search = true,
-      choose_target = function(targets)
-        local current_sln = vim.g.roslyn_nvim_selected_solution
-        if current_sln == nil or not vim.tbl_contains(targets, current_sln) then
-          local enumerated_target = { 'Choose a target to start: ' }
-          for i, v in ipairs(targets) do
-            enumerated_target[i + 1] = tostring(i) .. ' - ' .. v
-          end
-          local choice = vim.fn.inputlist(enumerated_target)
-          current_sln = targets[choice]
-          vim.g.roslyn_nvim_selected_solution = current_sln
-        end
-        return current_sln
-      end,
-    },
-    config = function(_, opts)
-      require('roslyn').setup(opts)
-
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = { '%__virtual.cs$', '__virtual%.cs$', '%_cshtml.g.cs$' },
