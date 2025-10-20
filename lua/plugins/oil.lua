@@ -4,6 +4,21 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = {
     delete_to_trash = true,
+    float = {
+      border = 'rounded'
+    },
+    confirmation = {
+      border = 'rounded'
+    },
+    progress = {
+      border = 'rounded'
+    },
+    ssh = {
+      border = 'rounded'
+    },
+    keymaps_help = {
+      border = 'rounded'
+    },
     skip_confirm_for_simple_edits = true,
     watch_for_changes = false,
     view_options = {
