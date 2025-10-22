@@ -16,7 +16,6 @@ return {
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},
-      cond = use_dap_ui,
     },
     {
       'igorlfs/nvim-dap-view',
@@ -178,6 +177,11 @@ return {
       desc = 'List Breakpoints',
     },
     {
+      '<leader>dL',
+      '<cmd>DapShowLog<cr>',
+      desc = 'Show dap logs',
+    },
+    {
       '<leader>dk',
       function()
         require('dap').up()
@@ -300,7 +304,7 @@ return {
 
     -- this is here because sometimes the netcoredbg dapper can't seem to find the breakpoint because of windows
     if vim.fn.has 'win32' then
-      vim.opt.shellslash = false
+      vim.opt.shellslash = true
     end
   end,
 }
