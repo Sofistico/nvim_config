@@ -304,7 +304,7 @@ return {
 
     -- this is here because sometimes the netcoredbg dapper can't seem to find the breakpoint because of windows
     if vim.fn.has 'win32' then
-      vim.opt.shellslash = true
+      vim.opt.shellslash = false
     end
   end,
 }
