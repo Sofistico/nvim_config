@@ -67,6 +67,7 @@ vim.keymap.set('n', '<leader><leader>', '<cmd>e #<cr>', { desc = 'Switch to Othe
 vim.keymap.set('n', '<leader>bS', '<cmd>sp#<cr>', { desc = 'Split alternate buffer' })
 vim.keymap.set('n', '<leader>bV', '<cmd>vs#<cr>', { desc = 'Vertical split alternate buffer' })
 vim.keymap.set('n', '<leader>bD', '<cmd>:bd!<cr>', { desc = 'Delete Buffer and Window' })
+vim.keymap.set('n', '<leader>bo', '<cmd>:%bd|e#|normal`"<cr>', { desc = 'Delete Other Buffer' })
 vim.keymap.set('n', '<leader>br', '<cmd>:e!<cr>', { desc = 'Reload current buffer' })
 vim.keymap.set('n', '<leader>bR', function()
   local input = vim.fn.input('File: ', '')

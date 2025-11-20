@@ -9,6 +9,11 @@ return {
       desc = 'Task: Run',
     },
     {
+      '<leader>os',
+      '<cmd>OverseerShell<cr>',
+      desc = 'Task: Shell',
+    },
+    {
       '<leader>ot',
       '<cmd>OverseerToggle<cr>',
       desc = 'Task: Open',
