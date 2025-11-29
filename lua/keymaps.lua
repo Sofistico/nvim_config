@@ -73,6 +73,7 @@ vim.keymap.set('n', '<leader>bR', function()
   local input = vim.fn.input('File: ', '')
   vim.cmd.file(input)
 end, { desc = 'Rename current buffer' })
+vim.keymap.set('n', '<leader>bq', '<cmd>w|bd<cr>', { desc = 'Save and close buffer' })
 
 -- save file
 vim.keymap.set({ 'n', 'i' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })

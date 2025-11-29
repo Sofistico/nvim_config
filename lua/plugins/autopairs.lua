@@ -6,7 +6,11 @@ return {
   event = 'InsertEnter',
   lazy = true,
   opts = function()
-    require('nvim-autopairs').setup {
+    local npairs = require 'nvim-autopairs'
+    local Rule = require 'nvim-autopairs.rule'
+    local cond = require 'nvim-autopairs.conds'
+
+    npairs.setup {
       fast_wrap = {
         map = '<M-e>',
         chars = { '{', '[', '(', '"', "'" },
@@ -21,6 +25,8 @@ return {
         highlight = 'Search',
         highlight_grey = 'Comment',
       },
+      check_ts = true,
+      enable_check_bracket_line = false,
     }
   end,
 }

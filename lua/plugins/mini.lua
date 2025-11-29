@@ -1,17 +1,6 @@
 local self_mini = require 'util.self_mini'
 local self_init = require 'util.self_init'
 return {
-  -- { -- Collection of various small independent plugins/modules
-  --   'echasnovski/mini.nvim',
-  --   lazy = true,
-  --   event = 'VeryLazy',
-  --   config = function()
-  --     -- ... and there is more!
-  --     --  Check out: https://github.com/echasnovski/mini.nvim
-  --     local misc = require 'mini.misc'
-  --     vim.keymap.set('n', '<Leader>bz', misc.zoom, { desc = 'zoom on buffer' })
-  --   end,
-  -- },
   {
     'nvim-mini/mini.statusline',
     lazy = true,
