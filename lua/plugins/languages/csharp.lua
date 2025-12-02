@@ -180,7 +180,7 @@ return {
           }
 
           local command = commands[action]() .. '\r'
-          vim.cmd 'vsplit'
+          vim.cmd 'tabe'
           vim.cmd('term ' .. command)
         end,
         secrets = {

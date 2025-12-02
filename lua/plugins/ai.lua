@@ -14,7 +14,7 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'zbirenbaum/copilot.lua',
     },
-    config = true,
+    cmd = { 'CodeCompanion', 'CodeCompanionActions', 'CodeCompanionChat' },
     opts = {
       strategies = {
         chat = {
