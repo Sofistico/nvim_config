@@ -1,4 +1,4 @@
-local use_nvim_notify = true
+local use_nvim_notify = false
 
 return {
   {
@@ -8,9 +8,7 @@ return {
     keys = (use_nvim_notify and {}) or {
       {
         '<leader>nh',
-        function()
-          require('fidget.notification').show_history()
-        end,
+        '<cmd>Telescope fidget<cr>',
         desc = 'Show notification history',
       },
     },
