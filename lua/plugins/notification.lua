@@ -7,7 +7,7 @@ return {
     opts = { notification = { override_vim_notify = not use_nvim_notify } },
     keys = (use_nvim_notify and {}) or {
       {
-        '<leader>nh',
+        '<leader>sh',
         '<cmd>Telescope fidget<cr>',
         desc = 'Show notification history',
       },
