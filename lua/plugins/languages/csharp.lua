@@ -215,6 +215,9 @@ return {
         picker = 'telescope',
         background_scanning = true,
         lsp = { enabled = false },
+        debugger = {
+          apply_value_converters = true,
+        },
       }
     end,
   },
