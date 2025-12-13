@@ -3,14 +3,14 @@ return {
     'tamton-aquib/duck.nvim',
     keys = {
       {
-        '<leader>Nh',
+        '<leader>nh',
         function()
           require('duck').hatch()
         end,
         desc = 'Hatch duck',
       },
       {
-        '<leader>Na',
+        '<leader>na',
         function ()
           require('duck').cook_all()
         end,

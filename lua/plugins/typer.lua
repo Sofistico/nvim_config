@@ -5,12 +5,12 @@ return {
   cmd = { 'Typr', 'TyprStats' },
   keys = {
     {
-      '<leader>Nt',
+      '<leader>nt',
       '<cmd>Typr<cr>',
       desc = 'Typr'
     },
     {
-      '<leader>NT',
+      '<leader>nT',
       '<cmd>TyprStats<cr>',
       desc = 'Typr Stats'
     },

@@ -155,16 +155,7 @@ return {
             end
 
             --- Guard against servers without the signatureHelper capability
-            if client.server_capabilities.signatureHelpProvider then
-              ------@diagnostic disable-next-line: missing-fields
-              ---require('lsp-overloads').setup(client, {
-              ---  ---@diagnostic disable-next-line: missing-fields
-              ---  keymaps = {
-              ---    close_signature = '<A-i>',
-              ---  },
-              ---})
-              ---map('<leader>tO', '<cmd>LspOverloadsSignatureAutoToggle<CR>', 'Toggle Lsp Signature Auto')
-              ---map('<A-i>', '<cmd>LspOverloadsSignature<CR>', 'Show Signature Overloads', { 'i', 'n' }, true)
+            if client.server_capabilities.signatureHelpProvider and vim.fn.expand('%:e') ~= 'cshtml' then -- razor doesn't play well with this plugin
               local signature = require 'lsp_signature'
               signature.on_attach({
                 bind = true,

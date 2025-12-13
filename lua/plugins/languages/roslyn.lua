@@ -1,37 +1,16 @@
 local lsp = require 'util.self_lsp'
-local rzls_enabled = true
 
 return {
   {
     'seblyng/roslyn.nvim',
-    event = "BufAdd *.cs",
+    event = 'BufAdd *.cs',
     keys = {
       {
-        '<leader>tT',
+        '<leader>tt',
         '<cmd>Roslyn target<cr>',
         desc = 'Target solution C#',
       },
     },
-    dependencies = {
-      {
-        -- By loading as a dependencies, we ensure that we are available to set
-        -- the handlers for roslyn
-        'tris203/rzls.nvim',
-        config = true,
-        enabled = rzls_enabled,
-      },
-    },
-    init = function()
-      -- we add the razor filetypes before the plugin loads
-      if rzls_enabled then
-        vim.filetype.add {
-          extension = {
-            razor = 'razor',
-            cshtml = 'razor',
-          },
-        }
-      end
-    end,
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
     opts = {
@@ -53,34 +32,9 @@ return {
       end,
     },
     config = function(_, opts)
-      require("roslyn").setup(opts)
-
-      ---@type string[]
-      local cmd = {}
-
-      local mason_registry = require 'mason-registry'
-
-      local roslyn_package = mason_registry.get_package 'roslyn'
-      local rzls_package = mason_registry.get_package 'rzls'
-      if roslyn_package:is_installed() then
-        vim.list_extend(cmd, {
-          'roslyn',
-          '--stdio',
-          '--logLevel=Information',
-          '--extensionLogDirectory=' .. vim.fs.dirname(vim.lsp.get_log_path()),
-        })
-
-        if rzls_enabled and rzls_package:is_installed() then
-          local rzls_path = vim.fn.expand '$MASON/packages/rzls/libexec'
-          table.insert(cmd, '--razorSourceGenerator=' .. vim.fs.joinpath(rzls_path, 'Microsoft.CodeAnalysis.Razor.Compiler.dll'))
-          table.insert(cmd, '--razorDesignTimePath=' .. vim.fs.joinpath(rzls_path, 'Targets', 'Microsoft.NET.Sdk.Razor.DesignTime.targets'))
-          table.insert(cmd, '--extension')
-          table.insert(cmd, vim.fs.joinpath(rzls_path, 'RazorExtension', 'Microsoft.VisualStudioCode.RazorExtension.dll'))
-        end
-      end
+      require('roslyn').setup(opts)
 
       vim.lsp.config('roslyn', {
-        cmd = cmd,
         capabilities = {
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
@@ -99,7 +53,6 @@ return {
             lsp.apply_vs_text_edit(result._vs_textEdit)
           end,
         },
-        filetypes = { 'cs' },
         settings = {
           ['csharp|inlay_hints'] = {
             csharp_enable_inlay_hints_for_implicit_object_creation = true,
@@ -141,9 +94,6 @@ return {
         },
       })
 
-      if rzls_enabled and rzls_package:is_installed() then
-        vim.lsp.config('roslyn', { handlers = require 'rzls.roslyn_handlers' })
-      end
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = { '%__virtual.cs$', '__virtual%.cs$', '%_cshtml.g.cs$' },
@@ -165,16 +115,6 @@ return {
         group = vim.api.nvim_create_augroup('roslyn-lsp-attach', { clear = true }),
         callback = function(event)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          -- this is a workaround for a weird behavior that is happening where two clients are being spawned, one with a null root marker and the correct one
-          -- local other_roslyn_clients = vim.lsp.get_clients { name = 'roslyn' }
-          -- for key, _ in pairs(other_roslyn_clients) do
-          --   if key ~= event.data.client_id then
-          --     local client_to_be_stoped = vim.lsp.get_client_by_id(key)
-          --     if client_to_be_stoped then
-          --       client_to_be_stoped:stop()
-          --     end
-          --   end
-          -- end
           if client and (client.name ~= 'roslyn' or client.name == 'roslyn_ls') then
             return
           end

@@ -122,7 +122,7 @@ vim.keymap.set('n', '<leader>ct', function()
 end, { desc = 'Open Terminal in Split' })
 
 -- messagess
-vim.keymap.set('n', '<leader>nH', '<cmd>messages<cr>', { desc = 'Show Nvim Messages' })
+vim.keymap.set('n', '<leader>sH', '<cmd>messages<cr>', { desc = 'Show Nvim Messages' })
 
 -- Signature | info
 vim.keymap.set({ 'n', 'i' }, '<A-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { desc = 'Show Signature' })
