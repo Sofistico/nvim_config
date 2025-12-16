@@ -16,8 +16,7 @@ return {
     },
     lazy = true,
     opts = {
-      -- ignore_warnings = true,
-      strategies = {
+      interactions = {
         chat = {
           adapter = 'copilot',
         },

@@ -216,6 +216,7 @@ return {
         background_scanning = true,
         lsp = { enabled = false },
         debugger = {
+          bin_path = vim.fn.stdpath 'data' .. '/mason/bin/netcoredbg', -- Required,
           apply_value_converters = true,
         },
       }

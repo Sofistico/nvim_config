@@ -12,10 +12,17 @@ return {
   lazy = true,
   dependencies = {
     -- Creates a beautiful debugger UI
-    { 'rcarriga/nvim-dap-ui', cond = use_dap_ui },
+    -- { 'rcarriga/nvim-dap-ui', cond = use_dap_ui },
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},
+      keys = {
+        {
+          'DapVirtualTextToggle',
+          '<leader>dv',
+          desc = 'Toggle Virtual Text'
+        }
+      }
     },
     {
       'igorlfs/nvim-dap-view',
