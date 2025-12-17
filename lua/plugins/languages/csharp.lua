@@ -57,18 +57,18 @@ return {
           dap.configurations[lang] = {
             {
               type = 'coreclr',
+              name = 'Attach to C# Process',
+              request = 'attach',
+              processId = require('dap.utils').pick_process,
+              cwd = '${workspaceFolder}',
+            },
+            {
+              type = 'coreclr',
               name = 'Select C# Dll',
               request = 'launch',
               cwd = get_dll_csproj_path,
               env = get_dll_env,
               program = select_dll_csharp,
-            },
-            {
-              type = 'coreclr',
-              name = 'Attach to C# Process',
-              request = 'attach',
-              processId = require('dap.utils').pick_process,
-              cwd = '${workspaceFolder}',
             },
             -- Divider for the launch.json derived configs
             {

@@ -18,8 +18,8 @@ return {
       opts = {},
       keys = {
         {
-          'DapVirtualTextToggle',
           '<leader>dv',
+          'DapVirtualTextToggle',
           desc = 'Toggle Virtual Text'
         }
       }
@@ -142,20 +142,6 @@ return {
         end
       end,
       desc = 'Eval',
-      mode = { 'n', 'v' },
-    },
-    {
-      '<leader>dE',
-      function()
-        if use_dap_ui then
-          local ui = require 'dapui'
-          ui.eval()
-          ui.eval()
-        else
-          vim.notify 'Keymap not configured!'
-        end
-      end,
-      desc = 'Eval and jump to window',
       mode = { 'n', 'v' },
     },
     {
