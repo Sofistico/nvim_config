@@ -3,7 +3,7 @@ return {
   -- event = 'InsertLeave',
   keys = {
     {
-      '<leader>tu',
+      '<leader>u',
       vim.cmd.UndotreeToggle,
       desc = 'Undotree Toggle',
     },
