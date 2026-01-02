@@ -106,7 +106,7 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
+          -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           map('gra', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
