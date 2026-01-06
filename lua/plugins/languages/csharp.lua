@@ -202,11 +202,11 @@ return {
         },
         csproj_mappings = true,
         fsproj_mappings = true,
-        auto_bootstrap_namespace = {
-          --block_scoped, file_scoped
-          type = 'block_scoped',
-          enabled = true,
-        },
+        -- auto_bootstrap_namespace = {
+        --   --block_scoped, file_scoped
+        --   type = 'block_scoped',
+        --   enabled = true,
+        -- },
         -- choose which picker to use with the plugin
         -- possible values are "telescope" | "fzf" | "snacks" | "basic"
         -- if no picker is specified, the plugin will determine
@@ -218,7 +218,9 @@ return {
         debugger = {
           bin_path = vim.fn.stdpath 'data' .. '/mason/bin/netcoredbg', -- Required,
           apply_value_converters = true,
+          auto_register_dap = false,
         },
+        diagnostics = nil,
       }
     end,
   },

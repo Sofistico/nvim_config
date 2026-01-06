@@ -1,11 +1,7 @@
 vim.cmd 'comp! dotnet'
 vim.cmd 'setlocal et sw=4'
-if vim.g.roslyn_nvim_selected_solution then
-  local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
-  vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary'
-else
-  vim.bo.mp = 'dotnet build -v q --nologo /clp:NoSummary'
-end
+
+vim.bo.mp = 'dotnet build -v q --nologo /clp:NoSummary'
 
 local dotnet = require 'easy-dotnet'
 

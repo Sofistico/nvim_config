@@ -136,6 +136,9 @@ return {
             end,
           })
 
+          local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
+          vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary'
+
           local bufnr = event.buf
           -- vs_text_edit
           vim.api.nvim_create_autocmd('InsertCharPre', {
