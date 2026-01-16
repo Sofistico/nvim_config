@@ -1,5 +1,7 @@
 local M = {}
 M.dll = nil
+M.tail = nil
+M.proj_name = nil
 
 function M.search_for(glob)
   return vim.fn.globpath(vim.fn.getcwd(), glob, false, false)
@@ -18,6 +20,8 @@ function M.select_execution(glob)
         return nil
       else
         M.dll = choice
+        M.tail = vim.fn.fnamemodify(M.dll, ':t:r')
+        M.proj_name = vim.fn.fnamemodify(M.search_for('**/' .. M.tail .. '.csproj'), ':p:h')
         coroutine.resume(dap_run_co, choice)
       end
     end

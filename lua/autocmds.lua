@@ -120,16 +120,29 @@ if vim.fn.filereadable(vim.fn.getcwd() .. '/project.godot') == 1 then
   vim.notify('Neovim server started on ' .. addr)
 end
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "BlinkCmpMenuOpen",
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'BlinkCmpMenuOpen',
   callback = function()
     vim.b.copilot_suggestion_hidden = true
   end,
 })
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "BlinkCmpMenuClose",
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'BlinkCmpMenuClose',
   callback = function()
     vim.b.copilot_suggestion_hidden = false
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+  group = augroup 'cs',
+  pattern = { '*.cs' },
+  once = true,
+  callback = function()
+    local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
+    if sln and sln ~= 'v:null' then
+      vim.notify("Worked! " .. sln)
+      vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary'
+    end
   end,
 })

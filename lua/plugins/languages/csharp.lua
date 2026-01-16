@@ -1,29 +1,28 @@
 local dap_helper = require 'util.self_dap'
+
 local function select_dll_csharp()
   return dap_helper.select_execution '**/bin/Debug/**/*.dll'
 end
 
-local function get_dll_proj_name()
-  if not dap_helper.dll then
-    select_dll_csharp()
-  end
-  local dll = dap_helper.dll
-  local tail = vim.fn.fnamemodify(dll, ':t:r')
-  return tail
-end
-
 local function get_dll_csproj_path()
-  local proj_name = get_dll_proj_name()
-  if not proj_name then
+  select_dll_csharp()
+  if not dap_helper.proj_name or dap_helper.proj_name == 'null' then
+    vim.notify(dap_helper.proj_name)
+    vim.notify 'using workspace folder as path'
     return '${workspaceFolder}'
   end
-  return vim.fn.fnamemodify(dap_helper.search_for('**/' .. proj_name .. '.csproj'), ':p:h')
+  vim.notify('using the path for the project: ' .. dap_helper.proj_name)
+  return dap_helper.proj_name
 end
 
 local function get_dll_env()
   local dotnet = require 'easy-dotnet'
   local vars = dotnet.get_environment_variables(dap_helper.dll, get_dll_csproj_path(), false)
   return vars or nil
+end
+
+local function select_last_dll_csharp()
+  return dap_helper.dll
 end
 
 return {
@@ -66,9 +65,17 @@ return {
               type = 'coreclr',
               name = 'Select C# Dll',
               request = 'launch',
+              program = select_dll_csharp,
               cwd = get_dll_csproj_path,
               env = get_dll_env,
-              program = select_dll_csharp,
+            },
+            {
+              type = 'coreclr',
+              name = 'Reuse Dll',
+              request = 'launch',
+              cwd = get_dll_csproj_path,
+              env = get_dll_env,
+              program = select_last_dll_csharp,
             },
             -- Divider for the launch.json derived configs
             {
@@ -202,11 +209,11 @@ return {
         },
         csproj_mappings = true,
         fsproj_mappings = true,
-        -- auto_bootstrap_namespace = {
-        --   --block_scoped, file_scoped
-        --   type = 'block_scoped',
-        --   enabled = true,
-        -- },
+        auto_bootstrap_namespace = {
+          --block_scoped, file_scoped
+          type = 'block_scoped',
+          enabled = false,
+        },
         -- choose which picker to use with the plugin
         -- possible values are "telescope" | "fzf" | "snacks" | "basic"
         -- if no picker is specified, the plugin will determine

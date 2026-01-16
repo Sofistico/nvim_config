@@ -1,8 +1,6 @@
 vim.cmd 'comp! dotnet'
 vim.cmd 'setlocal et sw=4'
 
-vim.bo.mp = 'dotnet build -v q --nologo /clp:NoSummary'
-
 local dotnet = require 'easy-dotnet'
 
 vim.keymap.set('n', '<leader>cn', function()
