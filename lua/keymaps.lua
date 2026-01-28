@@ -159,3 +159,6 @@ if vim.fn.has 'win32' then
     vim.cmd 'set fenc=utf-8'
   end, { desc = 'Set fileformat to DOS' })
 end
+
+-- just get the keymap inside whickkey
+vim.keymap.set('n', 'g<C-g>', 'g<C-g>', { desc = 'Show character count' })
