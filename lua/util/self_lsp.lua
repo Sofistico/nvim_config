@@ -6,13 +6,6 @@ local M = {
     'nushell',
   },
   ensure_installed_lsp = { 'lua_ls' },
-  ensure_installed_tools = {
-    'stylua', -- Used to format Lua code
-    'csharpier', -- used to format c# code
-    'netcoredbg', -- used to debug c#
-    'markdownlint',
-    'prettier',
-  },
   -- Enable the following language servers
   --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
   --
@@ -111,8 +104,6 @@ function M.config_lsp_diagnostic(has_nerd_font, icons, plugins)
     end
   end
 end
-
-M.ensure_installed_all = vim.tbl_extend('keep', M.ensure_installed_lsp, M.ensure_installed_tools)
 
 -- add any global capabilities here
 -- @class lsp.ClientCapabilities

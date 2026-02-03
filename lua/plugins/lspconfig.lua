@@ -24,7 +24,6 @@ return {
       -- Mason must be loaded before its dependents so we need to set it up here.
       'mason-org/mason.nvim',
       'mason-org/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
       -- 'hinell/lsp-timeout.nvim',
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -241,8 +240,6 @@ return {
           end
         end,
       })
-
-      require('mason-tool-installer').setup { ensure_installed = lsp_configs.ensure_installed_all, automatic_installation = true }
 
       require('mason-lspconfig').setup {
         handlers = {
