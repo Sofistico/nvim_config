@@ -2,7 +2,7 @@ return {
   'stevearc/overseer.nvim',
   cmd = { 'OverseerRun', 'OverseerToggle' },
   opts = { dap = false },
-  version = '1.6.0',
+  -- version = '1.6.0',
   keys = {
     {
       '<leader>or',
