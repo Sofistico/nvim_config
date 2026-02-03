@@ -9,7 +9,7 @@ return {
       rename = { enabled = true },
       toggle = { enabled = true },
       input = { enabled = true },
-      image = { enabled = true, force = true },
+      image = { enabled = false, force = true },
       styles = {
         input = {
           relative = 'cursor',
