@@ -106,11 +106,7 @@ vim.keymap.set('i', '<A-k>', '<esc><cmd>m .-2<cr>==gi', { desc = 'Move Up' })
 vim.keymap.set('v', '<A-j>', ":m '>+1<cr>gv=gv", { desc = 'Move Down' })
 vim.keymap.set('v', '<A-k>', ":m '<-2<cr>gv=gv", { desc = 'Move Up' })
 
--- vim.keymap.set('n', '<A-l>', '<cmd>><cr>', { desc = 'Move Right' })
--- vim.keymap.set('n', '<A-h>', '<cmd><<cr>', { desc = 'Move Left' })
-
 -- code
-vim.keymap.set('n', '<leader>cm', '<cmd>Mason<cr>', { desc = 'Mason' })
 vim.keymap.set('n', '<leader>tS', '<cmd>lua vim.g.autoformat = not vim.g.autoformat<cr>', { desc = 'Toggle autoformat' })
 
 vim.keymap.set('n', '<leader>cT', '<cmd>startinsert| term<cr>', { desc = 'Open Terminal in new buffer' })
@@ -155,7 +151,7 @@ end, { desc = 'Toggle backup' })
 
 if vim.fn.has 'win32' then
   vim.keymap.set('n', '<leader>tE', function()
-    vim.cmd 'set fileformat=dos'
+    vim.cmd 'e ++ff=dos'
     vim.cmd 'set fenc=utf-8'
   end, { desc = 'Set fileformat to DOS' })
 end

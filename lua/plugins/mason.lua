@@ -8,4 +8,7 @@ return {
       'github:Crashdummyy/mason-registry',
     },
   },
+  keys = {
+    { mode = 'n', '<leader>cm', '<cmd>Mason<cr>', desc = 'Mason' },
+  },
 }

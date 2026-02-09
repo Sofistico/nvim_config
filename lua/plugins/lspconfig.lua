@@ -170,7 +170,6 @@ return {
                 end,
               }
               signature.setup(cfg, event.buf)
-              -- map('<A-i>', signature.toggle_float_win, 'Toggle Signature')
             end
 
             if client.server_capabilities.declarationProvider then
