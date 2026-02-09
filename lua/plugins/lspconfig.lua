@@ -154,9 +154,9 @@ return {
             end
 
             --- Guard against servers without the signatureHelper capability
-            if client.server_capabilities.signatureHelpProvider and vim.fn.expand('%:e') ~= 'cshtml' then -- razor doesn't play well with this plugin
+            if client.server_capabilities.signatureHelpProvider and vim.fn.expand '%:e' ~= 'cshtml' then -- razor doesn't play well with this plugin
               local signature = require 'lsp_signature'
-              signature.on_attach({
+              local cfg = {
                 bind = true,
                 handler_opts = {
                   border = 'rounded',
@@ -165,7 +165,11 @@ return {
                 select_signature_key = '<M-n>', -- cycle to next signature, e.g. '<M-n>' function overloading
                 close_timeout = 10000,
                 hint_prefix = icons.fun .. ' ',
-              }, event.buf)
+                hint_inline = function()
+                  return 'eol'
+                end,
+              }
+              signature.setup(cfg, event.buf)
               -- map('<A-i>', signature.toggle_float_win, 'Toggle Signature')
             end
 
