@@ -1,14 +1,36 @@
-local self_init = require 'util.self_init'
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     main = 'nvim-treesitter.configs',
     branch = 'main',
     config = function()
-      require('nvim-treesitter').setup()
-      local filetypes =
-        { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'json', 'c_sharp', 'yaml', 'xml', 'json' }
-      require('nvim-treesitter').install(filetypes)
+      local ts = require 'nvim-treesitter'
+      ts.setup()
+      -- if i want new highlights for any language that i dont have, i will need to add this in here
+      local filetypes = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'json',
+        'c_sharp',
+        'yaml',
+        'xml',
+        'json',
+        'css',
+        'javascript',
+        'rust',
+        'cpp',
+      }
+      ts.install(filetypes)
+
       vim.api.nvim_create_autocmd('FileType', {
         pattern = filetypes,
         callback = function()
