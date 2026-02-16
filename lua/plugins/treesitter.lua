@@ -134,6 +134,12 @@ return {
       vim.keymap.set({ 'n', 'x', 'o' }, ']z', function()
         require('nvim-treesitter-textobjects.move').goto_next_start('@fold', 'folds')
       end, { desc = 'Next fold start' })
+      vim.keymap.set({ 'n', 'x', 'o' }, ']a', function()
+        require('nvim-treesitter-textobjects.move').goto_next_start('@parameter.outer')
+      end, { desc = 'Next parameter start' })
+      vim.keymap.set({ 'n', 'x', 'o' }, ']A', function()
+        require('nvim-treesitter-textobjects.move').goto_next_end('@parameter.outer')
+      end, { desc = 'Next parameter end' })
 
       vim.keymap.set({ 'n', 'x', 'o' }, ']M', function()
         require('nvim-treesitter-textobjects.move').goto_next_end('@function.outer', 'textobjects')
@@ -159,6 +165,13 @@ return {
       vim.keymap.set({ 'n', 'x', 'o' }, '[]', function()
         require('nvim-treesitter-textobjects.move').goto_previous_end('@class.outer', 'textobjects')
       end, { desc = 'Previous class end' })
+
+      vim.keymap.set({ 'n', 'x', 'o' }, '[a', function()
+        require('nvim-treesitter-textobjects.move').goto_previous_start('@parameter.outer')
+      end, { desc = 'Previous parameter start' })
+      vim.keymap.set({ 'n', 'x', 'o' }, '[A', function()
+        require('nvim-treesitter-textobjects.move').goto_previous_end('@parameter.outer')
+      end, { desc = 'Previous parameter end' })
 
       -- Go to either the start or the end, whichever is closer.
       -- Use if you want more granular movements

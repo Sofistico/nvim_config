@@ -158,3 +158,5 @@ end
 
 -- just get the keymap inside whickkey
 vim.keymap.set('n', 'g<C-g>', 'g<C-g>', { desc = 'Show character count' })
+
+vim.keymap.set('n', '<leader>i', '<cmd>Inspect<cr>', { desc = 'Inspect' })
