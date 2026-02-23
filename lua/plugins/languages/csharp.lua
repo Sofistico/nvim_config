@@ -1,9 +1,11 @@
 local dap_helper = require 'util.self_dap'
 
+-- dll third
 local function select_dll_csharp()
   return dap_helper.select_execution '**/bin/Debug/**/*.dll'
 end
 
+-- path second
 local function get_dll_csproj_path()
   select_dll_csharp()
   if not dap_helper.proj_name or dap_helper.proj_name == 'null' then
@@ -15,9 +17,9 @@ local function get_dll_csproj_path()
   return dap_helper.proj_name
 end
 
+-- env goes first
 local function get_dll_env()
-  local dotnet = require 'easy-dotnet'
-  local vars = dotnet.get_environment_variables(dap_helper.dll, get_dll_csproj_path(), false)
+  local vars = dap_helper.get_environment_variables(get_dll_csproj_path(), false)
   return vars or nil
 end
 

@@ -19,7 +19,7 @@ return {
       keys = {
         {
           '<leader>dv',
-          'DapVirtualTextToggle',
+          '<cmd>DapVirtualTextToggle<cr>',
           desc = 'Toggle Virtual Text'
         }
       }
