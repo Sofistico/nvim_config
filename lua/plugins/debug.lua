@@ -20,9 +20,9 @@ return {
         {
           '<leader>dv',
           '<cmd>DapVirtualTextToggle<cr>',
-          desc = 'Toggle Virtual Text'
-        }
-      }
+          desc = 'Toggle Virtual Text',
+        },
+      },
     },
     {
       'igorlfs/nvim-dap-view',
@@ -35,6 +35,7 @@ return {
             hide = { 'go', 'coreclr', 'netcoredbg', 'cs' }, -- `go` is known to not use the terminal.
           },
         },
+        winbar = { sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'sessions', 'threads', 'repl', 'console' } },
       },
       cond = not use_dap_ui,
     },
@@ -209,6 +210,12 @@ return {
       end,
       desc = 'Toggle repl',
     },
+    {
+      '<leader>dh',
+      function ()
+        require("dap.ui.widgets").hover()
+      end
+    }
   },
   config = function()
     local dap = require 'dap'

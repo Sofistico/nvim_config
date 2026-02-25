@@ -48,6 +48,8 @@ return {
         markdown = { 'markdownlint' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
         html = { 'prettier', 'prettierd', stop_after_first = true },
+        razor = { lsp_format = 'fallback' },
+        cshtml = { lsp_format = 'fallback' },
       },
     },
   },
