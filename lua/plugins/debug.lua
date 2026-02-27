@@ -5,14 +5,11 @@
 -- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
-local use_dap_ui = false
 
 return {
   'mfussenegger/nvim-dap',
   lazy = true,
   dependencies = {
-    -- Creates a beautiful debugger UI
-    -- { 'rcarriga/nvim-dap-ui', cond = use_dap_ui },
     {
       'theHamsta/nvim-dap-virtual-text',
       opts = {},
@@ -32,12 +29,11 @@ return {
         windows = {
           terminal = {
             -- Use the actual names for the adapters you want to hide
-            hide = { 'go', 'coreclr', 'netcoredbg', 'cs' }, -- `go` is known to not use the terminal.
+            hide = { 'go',   }, -- `go` is known to not use the terminal.
           },
         },
         winbar = { sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'sessions', 'threads', 'repl', 'console' } },
       },
-      cond = not use_dap_ui,
     },
 
     -- Required dependency for nvim-dap-ui
@@ -212,10 +208,18 @@ return {
     },
     {
       '<leader>dh',
-      function ()
-        require("dap.ui.widgets").hover()
-      end
-    }
+      function()
+        require('dap.ui.widgets').hover('<cexpr>', { border = 'rounded' })
+      end,
+      desc = 'Hover var',
+    },
+    {
+      '<leader>dx',
+      function()
+        require('dap').run_last()
+      end,
+      desc = 'Re-run last',
+    },
   },
   config = function()
     local dap = require 'dap'

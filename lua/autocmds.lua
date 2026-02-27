@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'fugitive',
     'gitcommit',
     'copilot',
+    'dap-float'
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

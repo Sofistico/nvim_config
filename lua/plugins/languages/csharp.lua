@@ -49,7 +49,7 @@ return {
           command = vim.fn.exepath 'netcoredbg',
           args = { '--interpreter=vscode' },
           options = {
-            detached = false,
+            detached = false, -- Will put the output in the REPL.
           },
         }
       end

@@ -18,12 +18,29 @@ return {
     opts = {
       interactions = {
         chat = {
+          tools = {
+            opts = {
+              default_tools = {
+                'files',
+                'cmd_runner',
+              },
+            },
+          },
+          acp = {
+            adapter = 'copilot',
+          },
           adapter = 'copilot',
         },
         inline = {
+          acp = {
+            adapter = 'copilot',
+          },
           adapter = 'copilot',
         },
         cmd = {
+          acp = {
+            adapter = 'copilot',
+          },
           adapter = 'copilot',
         },
       },

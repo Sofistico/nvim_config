@@ -3,7 +3,7 @@ local lsp = require 'util.self_lsp'
 return {
   {
     'seblyng/roslyn.nvim',
-    event = 'BufEnter *.cs',
+    event = 'BufAdd *.cs',
     keys = {
       {
         '<leader>cn',
