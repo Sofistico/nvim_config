@@ -21,8 +21,7 @@ return {
           tools = {
             opts = {
               default_tools = {
-                'files',
-                'cmd_runner',
+                'agent',
               },
             },
           },
