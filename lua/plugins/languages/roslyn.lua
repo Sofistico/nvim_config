@@ -6,7 +6,7 @@ return {
     event = 'BufAdd *.cs',
     keys = {
       {
-        '<leader>cn',
+        '<leader>ca',
         '<cmd>Roslyn target<cr>',
         desc = 'Target solution C#',
       },

@@ -32,6 +32,7 @@ return {
             hide = { 'go',   }, -- `go` is known to not use the terminal.
           },
         },
+        default_section = 'scopes',
         winbar = { sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'sessions', 'threads', 'repl', 'console' } },
       },
     },
