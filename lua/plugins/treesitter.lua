@@ -28,6 +28,8 @@ return {
         'javascript',
         'rust',
         'cpp',
+        'razor',
+        'nu'
       }
       ts.install(filetypes)
 
