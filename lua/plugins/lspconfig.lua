@@ -154,7 +154,7 @@ return {
             end
 
             --- Guard against servers without the signatureHelper capability
-            if client.server_capabilities.signatureHelpProvider and vim.fn.expand '%:e' ~= 'cshtml' then -- razor doesn't play well with this plugin
+            if client.server_capabilities.signatureHelpProvider then -- razor doesn't play well with this plugin
               local signature = require 'lsp_signature'
               local cfg = {
                 bind = true,
@@ -168,7 +168,24 @@ return {
                 hint_inline = function()
                   return 'eol'
                 end,
+                ignore_error = function(err, ctx, config) -- provide your ignore callback here
+                  -- ignore error for some clients
+                  -- this will also make it a bit harder to track issues
+                  -- if ctx and ctx.client_id then
+                  --   -- ignore error for some clients
+                  --   -- get client name by id
+                  --   local client = vim.lsp.get_client_by_id(ctx.client_id)
+                  --   if client and vim.tbl_contains({ 'roslyn' }, client.name) then
+                  --     return true
+                  --   end
+                  -- end
+                  -- other examples:
+                  if err.code == '-32000' then return true end
+                  if err.data.code == '-2146233088' then return true end
+                  if err.data.type == 'System.Text.Json.JsonException' then return true end
+                end,
               }
+---@diagnostic disable-next-line: redundant-parameter
               signature.setup(cfg, event.buf)
             end
 
