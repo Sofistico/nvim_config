@@ -26,14 +26,16 @@ return {
       ---@module 'dap-view'
       ---@type dapview.Config
       opts = {
-        windows = {
-          terminal = {
-            -- Use the actual names for the adapters you want to hide
-            hide = { 'go',   }, -- `go` is known to not use the terminal.
-          },
+        -- windows = {
+        --   terminal = {
+        --     -- Use the actual names for the adapters you want to hide
+        --     hide = { 'go' }, -- `go` is known to not use the terminal.
+        --   },
+        -- },
+        winbar = {
+          sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'sessions', 'threads', 'repl', 'console' },
+          default_section = 'scopes',
         },
-        default_section = 'scopes',
-        winbar = { sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'sessions', 'threads', 'repl', 'console' } },
       },
     },
 
