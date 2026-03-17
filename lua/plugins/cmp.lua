@@ -6,6 +6,7 @@ return {
     -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
     build = 'cargo build --release',
     event = 'InsertEnter',
+    version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -28,7 +29,6 @@ return {
         ['<C-h>'] = { 'snippet_backward' },
         ['<C-j>'] = { 'show', 'hide' },
         ['<Tab>'] = { 'select_and_accept', 'fallback' },
-        -- ['<c-d>'] = { 'show_documentation', 'hide_documentation' },
       },
 
       appearance = {
