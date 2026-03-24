@@ -64,6 +64,7 @@ return {
           { pattern = 'home', icon = icon.house, color = 'blue' },
           { pattern = 'refactoring', icon = icon.init, color = 'violet' },
           { pattern = 'harpoon', icon = icon.harpoon, color = 'violet' },
+          { pattern = 'inspect', icon = icon.inspect, color = 'violet' },
         },
         mappings = vim.g.have_nerd_font,
       },

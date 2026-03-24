@@ -105,11 +105,9 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          -- map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           map('gra', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          -- map('<leader>cr', vim.lsp.buf.rename, '[r]ename')
           map('grn', vim.lsp.buf.rename, '[r]ename')
 
           -- The following two autocommands are used to highlight references of the
@@ -207,14 +205,12 @@ return {
               --  This is where a variable was first declared, or where a function is defined, etc.
               --  To jump back, press <C-t>.
               map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-              map('<F12>', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
             end
 
             if client.server_capabilities.implementationProvider then
               -- Jump to the implementation of the word under your cursor.
               --  Useful when your language has ways of declaring types without an actual implementation.
               map('gri', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-              map('<C-F12>', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
             end
 
             if client.server_capabilities.typeDefinitionProvider then
@@ -226,7 +222,7 @@ return {
 
             if client.server_capabilities.codeLensProvider then
               map('<leader>cc', vim.lsp.codelens.refresh, 'Refresh e Display [c]odelens')
-              map('<leader>cC', vim.lsp.codelens.run, 'Run [C]odelens', { 'n', 'v' })
+              map('<leader>cC', vim.lsp.codelens.run, 'Run [C]odelens')
             end
 
             if client.server_capabilities.documentSymbolProvider then

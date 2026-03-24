@@ -37,6 +37,7 @@ local M = {
     modified = ' ',
     removed = ' ',
   },
+  inspect = '󰍉',
   kinds = {
     Array = ' ',
     Boolean = '󰨙 ',
