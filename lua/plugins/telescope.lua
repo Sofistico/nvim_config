@@ -68,7 +68,7 @@ return {
           },
         },
         defaults = {
-          path_display = { 'filename_first' }, -- if it becomes to slow, consider switching to truncate or shorten. see telescope.setup
+          -- path_display = { 'filename_first' }, -- if it becomes to slow, consider switching to truncate or shorten. see telescope.setup
           -- path_display = function(_, path)
           --   local tail = require('telescope.utils').path_tail(path)
           --   return string.format('%s (%s)', tail, path)

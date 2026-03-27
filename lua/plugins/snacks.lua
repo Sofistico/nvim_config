@@ -43,6 +43,23 @@ return {
           { section = 'startup' },
         },
       },
+      scratch = {
+        win_by_ft = {
+          cs = {
+            keys = {
+              ['source'] = {
+                '<cr>',
+                function(self)
+                  local name = vim.api.nvim_buf_get_name(self.buf)
+                  vim.cmd('!dotnet run ' .. name)
+                end,
+                desc = 'Source buffer',
+                mode = { 'n', 'x' },
+              },
+            },
+          },
+        },
+      },
     },
     config = function(_, opts)
       local snacks = require 'snacks'
@@ -64,6 +81,20 @@ return {
           require('snacks').image.hover()
         end,
         desc = 'Toggle image hover',
+      },
+      {
+        '<leader>.',
+        function()
+          Snacks.scratch()
+        end,
+        desc = 'Toggle Scratch Buffer',
+      },
+      {
+        '<leader>S',
+        function()
+          Snacks.scratch.select()
+        end,
+        desc = 'Select Scratch Buffer',
       },
     },
   },

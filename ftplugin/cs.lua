@@ -12,7 +12,6 @@ vim.keymap.set('n', '<leader>cs', function()
   dotnet.secrets()
 end, { desc = 'Dotnet secrets', silent = true, buffer = true })
 
--- vim.keymap.set('n', '<leader>cN', '<cmd>DotnetUI file bootstrap<cr>', { desc = 'Bootstrap new file', silent = true, buffer = true })
 vim.keymap.set('n', '<leader>cp', function()
   dotnet.add_package()
 end, { desc = 'Add new nuget package', silent = true, buffer = true })

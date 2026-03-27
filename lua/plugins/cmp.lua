@@ -29,6 +29,7 @@ return {
         ['<C-h>'] = { 'snippet_backward' },
         ['<C-j>'] = { 'show', 'hide' },
         ['<Tab>'] = { 'select_and_accept', 'fallback' },
+        ['<C-e>'] = false,
       },
 
       appearance = {

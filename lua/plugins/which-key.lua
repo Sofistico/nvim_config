@@ -41,7 +41,7 @@ return {
         },
         { '<leader>g', group = 'git' },
         { '<leader>q', group = 'quit' },
-        { '<leader>x', group = 'diagnostics' },
+        -- { '<leader>x', group = 'diagnostics' },
         { '<leader>r', group = '+refactoring' },
         { '<leader>d', group = '+debug' },
         { 'gp', group = 'preview' },
