@@ -15,7 +15,7 @@ return {
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
     opts = {
-      filewatching = 'roslyn',
+      filewatching = 'auto',
       ---@diagnostic disable-next-line: missing-fields
       broad_search = true,
       choose_target = function(targets)
@@ -124,21 +124,21 @@ return {
           end
 
           -- diagnostic refresh
-          vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-            group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
-            pattern = '*',
-            callback = function()
-              local clients = vim.lsp.get_clients { name = 'roslyn' }
-              if not clients or #clients == 0 then
-                return
-              end
-
-              local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
-              for _, buf in ipairs(buffers) do
-                vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
-              end
-            end,
-          })
+          -- vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+          --   group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
+          --   pattern = '*',
+          --   callback = function()
+          --     local clients = vim.lsp.get_clients { name = 'roslyn' }
+          --     if not clients or #clients == 0 then
+          --       return
+          --     end
+          --
+          --     local buffers = vim.lsp.get_buffers_by_client_id(clients[1].id)
+          --     for _, buf in ipairs(buffers) do
+          --       vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
+          --     end
+          --   end,
+          -- })
 
           local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
           vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary'
@@ -232,3 +232,9 @@ return {
     end,
   },
 }
+
+--And in your roslyn LSP config's on_init you set the start_time variable:
+------@diagnostic disable-next-line: undefined-field
+---local seconds, microsecond = vim.uv.gettimeofday()
+---start_time = seconds + microsecond * 0.001 * 0.001
+---
