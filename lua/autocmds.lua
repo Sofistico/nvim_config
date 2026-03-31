@@ -24,7 +24,8 @@ vim.api.nvim_create_autocmd('FileType', {
     'fugitive',
     'gitcommit',
     'copilot',
-    'dap-float'
+    'dap-float',
+    'nvim-undotree',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

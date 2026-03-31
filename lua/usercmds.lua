@@ -61,3 +61,6 @@ end, {
   nargs = '*',
   bang = true,
 })
+
+
+vim.cmd 'packadd nvim.undotree'

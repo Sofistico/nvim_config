@@ -3,7 +3,7 @@
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR><Esc>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>x', vim.diagnostic.setloclist, { desc = 'Open diagnostic quickfix list' })
@@ -160,3 +160,8 @@ vim.keymap.set('n', 'g<C-g>', 'g<C-g>', { desc = 'Show character count' })
 vim.keymap.set('n', 'ga', 'ga', { desc = 'Print ascii in cursor' })
 
 vim.keymap.set('n', '<leader>i', '<cmd>Inspect<cr>', { desc = 'Inspect' })
+vim.keymap.set('n', '<leader>cR', '<cmd>lsp restart<cr>', { desc = 'Restart Lsp' })
+vim.keymap.set('n', '<leader>u', function ()
+  local undo = require('undotree')
+  undo.open({command = 'topleft 40vnew'})
+end, { desc = 'Undotree' })

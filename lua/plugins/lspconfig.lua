@@ -36,7 +36,6 @@ return {
     keys = {
       { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
       { '<leader>cI', '<cmd>LspInstall<cr>', desc = 'Install LSP by FileType' },
-      { '<leader>cR', '<cmd>LspRestart<cr>', desc = 'Restart Lsp' },
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -179,8 +178,8 @@ return {
                   -- end
                   -- other examples:
                   if err.code == '-32000' then return true end
-                  if err.data.code == '-2146233088' then return true end
-                  if err.data.type == 'System.Text.Json.JsonException' then return true end
+                  if err.data and err.data.code == '-2146233088' then return true end
+                  if err.data and err.data.type == 'System.Text.Json.JsonException' then return true end
                 end,
               }
 ---@diagnostic disable-next-line: redundant-parameter
@@ -221,8 +220,7 @@ return {
             end
 
             if client.server_capabilities.codeLensProvider then
-              map('<leader>cc', vim.lsp.codelens.refresh, 'Refresh e Display [c]odelens')
-              map('<leader>cC', vim.lsp.codelens.run, 'Run [C]odelens')
+              map('grx', vim.lsp.codelens.run, 'Run Codelens')
             end
 
             if client.server_capabilities.documentSymbolProvider then
