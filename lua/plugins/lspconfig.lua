@@ -34,7 +34,6 @@ return {
       'folke/snacks.nvim',
     },
     keys = {
-      { '<leader>cl', '<cmd>LspInfo<cr>', desc = 'Show Lsp Info' },
       { '<leader>cI', '<cmd>LspInstall<cr>', desc = 'Install LSP by FileType' },
     },
     config = function()

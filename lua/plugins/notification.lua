@@ -14,7 +14,6 @@ return {
   -- {
   --   'rcarriga/nvim-notify',
   --   lazy = false,
-  --   cond = use_nvim_notify,
   --   event = 'VeryLazy',
   --   keys = {
   --     {

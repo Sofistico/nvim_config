@@ -39,6 +39,10 @@ return {
         capabilities = {
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
+            -- for some reason this is duplicating my diagnostics
+            diagnostic = {
+              dynamicRegistration = false,
+            },
           },
           workspace = {
             didChangeWatchedFiles = {
@@ -101,19 +105,19 @@ return {
         },
       }
       --TODO: If i wont continue using trouble, need to kill this as well
-      if self.is_loaded 'trouble' then
-        require('trouble').setup {
-          modes = {
-            diagnostics = {
-              filter = function(items)
-                return vim.tbl_filter(function(item)
-                  return not string.match(item.basename, [[__virtual%.cs$]])
-                end, items)
-              end,
-            },
-          },
-        }
-      end
+      -- if self.is_loaded 'trouble' then
+      --   require('trouble').setup {
+      --     modes = {
+      --       diagnostics = {
+      --         filter = function(items)
+      --           return vim.tbl_filter(function(item)
+      --             return not string.match(item.basename, [[__virtual%.cs$]])
+      --           end, items)
+      --         end,
+      --       },
+      --     },
+      --   }
+      -- end
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('roslyn-lsp-attach', { clear = true }),

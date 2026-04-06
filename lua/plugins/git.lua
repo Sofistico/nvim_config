@@ -78,6 +78,9 @@ return {
         map('n', '<leader>gP', gitsigns.preview_hunk_inline, { desc = 'git show [P]review deleted' })
       end,
     },
+    keys = {
+      '<leader>g'
+    }
   },
   {
     'kdheepak/lazygit.nvim',
