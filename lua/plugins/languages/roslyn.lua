@@ -15,7 +15,7 @@ return {
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
     opts = {
-      filewatching = 'auto',
+      filewatching = 'roslyn',
       ---@diagnostic disable-next-line: missing-fields
       broad_search = true,
       choose_target = function(targets)
