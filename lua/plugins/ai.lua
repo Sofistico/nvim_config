@@ -22,7 +22,7 @@ return {
             opts = {
               default_tools = {
                 'agent',
-                'files',
+                -- 'files',
               },
             },
           },
