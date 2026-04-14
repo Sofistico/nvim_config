@@ -11,17 +11,6 @@ return {
   lazy = true,
   dependencies = {
     {
-      'theHamsta/nvim-dap-virtual-text',
-      opts = {},
-      keys = {
-        {
-          '<leader>dv',
-          '<cmd>DapVirtualTextToggle<cr>',
-          desc = 'Toggle Virtual Text',
-        },
-      },
-    },
-    {
       'igorlfs/nvim-dap-view',
       ---@module 'dap-view'
       ---@type dapview.Config
@@ -35,6 +24,21 @@ return {
         winbar = {
           sections = { 'watches', 'scopes', 'exceptions', 'breakpoints', 'sessions', 'threads', 'repl', 'console' },
           default_section = 'scopes',
+        },
+        virtual_text = {
+          -- Control with `DapViewVirtualTextToggle`
+          enabled = true,
+          format = function(variable, _, _)
+            -- Strip out excessive whitespace
+            return ' ' .. variable.value:gsub('%s+', ' ')
+          end,
+        },
+      },
+      keys = {
+        {
+          '<leader>dv',
+          '<cmd>DapViewVirtualTextToggle<cr>',
+          desc = 'Toggle Virtual Text',
         },
       },
     },
