@@ -39,10 +39,6 @@ return {
         capabilities = {
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
-            -- for some reason this is duplicating my diagnostics
-            diagnostic = {
-              dynamicRegistration = false,
-            },
           },
           workspace = {
             didChangeWatchedFiles = {
