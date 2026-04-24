@@ -1,5 +1,4 @@
 local lsp = require 'util.self_lsp'
-local self = require 'util.self_init'
 
 return {
   {
@@ -39,11 +38,6 @@ return {
         capabilities = {
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
-          },
-          workspace = {
-            didChangeWatchedFiles = {
-              dynamicRegistration = false,
-            },
           },
         },
         handlers = {
@@ -100,20 +94,6 @@ return {
           file_ignore_patterns = { '%__virtual.cs$', '__virtual%.cs$', '%_cshtml.g.cs$' },
         },
       }
-      --TODO: If i wont continue using trouble, need to kill this as well
-      -- if self.is_loaded 'trouble' then
-      --   require('trouble').setup {
-      --     modes = {
-      --       diagnostics = {
-      --         filter = function(items)
-      --           return vim.tbl_filter(function(item)
-      --             return not string.match(item.basename, [[__virtual%.cs$]])
-      --           end, items)
-      --         end,
-      --       },
-      --     },
-      --   }
-      -- end
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('roslyn-lsp-attach', { clear = true }),
