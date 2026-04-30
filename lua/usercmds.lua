@@ -62,5 +62,5 @@ end, {
   bang = true,
 })
 
-
 vim.cmd 'packadd nvim.undotree'
+vim.cmd.cnoreabbrev 'OS OverseerShell'
