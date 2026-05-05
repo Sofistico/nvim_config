@@ -31,6 +31,7 @@ return {
         { '<leader>n', group = 'fun', icon = icon.fun },
         { '<leader>a', group = 'ai' },
         { '<leader>o', group = 'overseer', icon = icon.cmd },
+        { '<leader>R', group = 'Rest', icon = icon.cmd },
         { '<leader><tab>', group = 'tabs' },
         {
           '<leader>b',

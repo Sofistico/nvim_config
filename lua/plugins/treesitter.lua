@@ -29,7 +29,8 @@ return {
         'rust',
         'cpp',
         'razor',
-        'nu'
+        'nu',
+        'http'
       }
       ts.install(filetypes)
 

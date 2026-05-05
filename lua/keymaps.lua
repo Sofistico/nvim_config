@@ -161,6 +161,7 @@ vim.keymap.set('n', 'ga', 'ga', { desc = 'Print ascii in cursor' })
 
 vim.keymap.set('n', '<leader>i', '<cmd>Inspect<cr>', { desc = 'Inspect' })
 vim.keymap.set('n', '<leader>cR', '<cmd>lsp restart<cr>', { desc = 'Restart Lsp' })
+vim.keymap.set('n', '<leader>cL', '<cmd>lsp enable<cr>', { desc = 'Start Lsp' })
 vim.keymap.set('n', '<leader>cl', '<cmd>checkhealth lsp<cr>', { desc = 'Lsp info' })
 vim.keymap.set('n', '<leader>u', function()
   local undo = require 'undotree'

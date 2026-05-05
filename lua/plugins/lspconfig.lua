@@ -219,7 +219,9 @@ return {
             end
 
             if client.server_capabilities.codeLensProvider then
-              map('grx', vim.lsp.codelens.run, 'Run Codelens')
+              map('grx', function ()
+                vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
+              end, 'Run Codelens')
             end
 
             if client.server_capabilities.documentSymbolProvider then
