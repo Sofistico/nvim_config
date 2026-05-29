@@ -6,7 +6,7 @@ return {
     'folke/flash.nvim',
     vscode = true,
     opts = { jump = {
-      autojump = true,
+      autojump = false,
     } },
     -- stylua: ignore
     keys = {
