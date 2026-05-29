@@ -30,7 +30,8 @@ return {
         'cpp',
         'razor',
         'nu',
-        'http'
+        'http',
+        'sql'
       }
       ts.install(filetypes)
 
