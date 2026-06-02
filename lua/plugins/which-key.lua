@@ -31,7 +31,7 @@ return {
         { '<leader>n', group = 'fun', icon = icon.fun },
         { '<leader>a', group = 'ai' },
         { '<leader>o', group = 'overseer', icon = icon.cmd },
-        { '<leader>R', group = 'Rest', icon = icon.cmd },
+        { '<leader>r', group = 'rest', icon = icon.cmd },
         { '<leader><tab>', group = 'tabs' },
         {
           '<leader>b',
@@ -43,7 +43,6 @@ return {
         { '<leader>g', group = 'git' },
         { '<leader>q', group = 'quit' },
         -- { '<leader>x', group = 'diagnostics' },
-        { '<leader>r', group = '+refactoring' },
         { '<leader>d', group = '+debug' },
         { 'gp', group = 'preview' },
         { '[', group = 'prev' },
