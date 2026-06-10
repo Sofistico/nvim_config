@@ -196,6 +196,9 @@ return {
           auto_register_dap = false,
         },
         diagnostics = nil,
+        projx_lsp = {
+          enabled = false,
+        },
       }
     end,
   },
