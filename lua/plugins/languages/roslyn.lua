@@ -115,7 +115,9 @@ return {
 
               local buffers = vim.lsp.get_client_by_id(clients[1].id).attached_buffers
               for _, buf in ipairs(buffers) do
-                vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
+                --vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
+                local params = { textDocument = vim.lsp.util.make_text_document_params(buf) }
+                client:request('textDocument/diagnostic', params, nil, buf)
               end
             end,
           })

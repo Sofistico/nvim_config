@@ -15,6 +15,7 @@ return -- snippets
       { '<leader>rs', desc = 'Send request' },
       { '<leader>ra', desc = 'Send all requests' },
       { '<leader>rb', desc = 'Open scratchpad' },
+      { '<leader>ro', desc = 'Open kulala' },
     },
     ft = { 'http', 'rest' },
     opts = {
