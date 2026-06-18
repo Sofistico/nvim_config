@@ -123,7 +123,7 @@ return {
           })
 
           local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
-          vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary'
+          vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary --tl:off'
 
           local bufnr = event.buf
           -- vs_text_edit
