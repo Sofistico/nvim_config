@@ -215,9 +215,10 @@ return {
     },
     {
       '<leader>dh',
-      function()
-        require('dap.ui.widgets').hover('<cexpr>', { border = 'rounded' })
-      end,
+      -- function()
+      --   require('dap.ui.widgets').hover('<cexpr>', { border = 'rounded' })
+      -- end,
+      '<cmd>DapViewHover!<cr>',
       desc = 'Hover var',
     },
     {
