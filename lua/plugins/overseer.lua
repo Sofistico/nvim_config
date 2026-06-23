@@ -15,7 +15,7 @@ return {
       desc = 'Task: Shell',
     },
     {
-      '<leader>ot',
+      '<leader>O',
       '<cmd>OverseerToggle<cr>',
       desc = 'Task: Open',
     },
