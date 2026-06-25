@@ -17,7 +17,7 @@ return {
     {
       '<leader>O',
       '<cmd>OverseerToggle<cr>',
-      desc = 'Task: Open',
+      desc = 'Overseer',
     },
     {
       'm<cr>',

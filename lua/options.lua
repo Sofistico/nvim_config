@@ -123,7 +123,7 @@ if vim.fn.executable 'nu' == 1 then
   vim.o.shell = 'nu' -- Replace with your Nushell path
   vim.o.shellcmdflag = '--login --stdin --no-newline -c'
   vim.o.shellredir = 'out+err> %s'
-  vim.o.shellpipe = '| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record'
+  vim.o.shellpipe = '| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s }'
   vim.o.shelltemp = false
   vim.o.shellxescape = ''
   vim.o.shellxquote = ''

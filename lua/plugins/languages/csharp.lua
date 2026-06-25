@@ -53,6 +53,16 @@ return {
           },
         }
       end
+      -- if not dap.adapters['sharpdbg'] then
+      --   require('dap').adapters['sharpdbg'] = {
+      --     type = 'executable',
+      --     command = vim.fn.stdpath('data') .. '/sharpdbg/SharpDbg.Cli.exe',
+      --     args = { '--interpreter=vscode' },
+      --     options = {
+      --       detached = false, -- Will put the output in the REPL.
+      --     },
+      --   }
+      -- end
       for _, lang in ipairs { 'cs', 'fsharp', 'vb' } do
         if not dap.configurations[lang] then
           dap.configurations[lang] = {
@@ -191,9 +201,11 @@ return {
         background_scanning = true,
         lsp = { enabled = false },
         debugger = {
-          bin_path = vim.fn.stdpath 'data' .. '/mason/bin/netcoredbg', -- Required,
-          apply_value_converters = true,
+          bin_path = nil,
+          --apply_value_converters = true,
           auto_register_dap = false,
+          engine = 'sharpdbg',
+          console = 'integratedTerminal',
         },
         diagnostics = nil,
         projx_lsp = {
