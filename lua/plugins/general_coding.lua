@@ -8,20 +8,4 @@ return -- snippets
   },
   -- library used by other plugins
   { 'nvim-lua/plenary.nvim', lazy = true },
-  {
-    'mistweaverco/kulala.nvim',
-    lazy = true,
-    keys = {
-      { '<leader>rs', desc = 'Send request' },
-      { '<leader>ra', desc = 'Send all requests' },
-      { '<leader>rb', desc = 'Open scratchpad' },
-      { '<leader>ro', desc = 'Open kulala' },
-    },
-    ft = { 'http', 'rest' },
-    opts = {
-      global_keymaps = true,
-      global_keymaps_prefix = '<leader>r',
-      kulala_keymaps_prefix = '',
-    },
-  },
 }

@@ -33,6 +33,7 @@ return {
             return ' ' .. variable.value:gsub('%s+', ' ')
           end,
         },
+        hover = { border = 'rounded' },
       },
       keys = {
         {
