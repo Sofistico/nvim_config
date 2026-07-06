@@ -142,7 +142,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   once = true,
   callback = function()
     local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
-    if sln and sln ~= 'v:null' then
+    if sln and sln ~= 'v:/null' then
       vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary --tl:off'
     end
   end,
