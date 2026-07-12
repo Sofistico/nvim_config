@@ -251,6 +251,7 @@ function M.enable_lsps_not_in_mason()
 end
 
 function M.configure_lsp_overrides()
+  -- vim.lsp.log.set_level(0)
   for name, config in pairs(M.servers) do
     vim.lsp.config(name, config or {})
   end
