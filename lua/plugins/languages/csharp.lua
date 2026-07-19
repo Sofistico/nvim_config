@@ -106,7 +106,7 @@ return {
     -- lazy = true,
     -- event = 'VeryLazy',
     dependencies = {
-      'Issafalcon/neotest-dotnet',
+      'citizenharris/neotest-dotnet',
     },
     opts = {
       adapters = {
