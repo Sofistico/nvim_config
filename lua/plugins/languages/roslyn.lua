@@ -113,11 +113,26 @@ return {
                 return
               end
 
+              local capabilities = vim
+                .iter(client.dynamic_capabilities.capabilities.diagnosticProvider)
+                :map(function(cap)
+                  return cap.registerOptions.identifier
+                end)
+                :totable()
+
               local buffers = vim.lsp.get_client_by_id(clients[1].id).attached_buffers
               for _, buf in ipairs(buffers) do
                 --vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
-                local params = { textDocument = vim.lsp.util.make_text_document_params(buf) }
-                client:request('textDocument/diagnostic', params, nil, buf)
+                -- local params = { textDocument = vim.lsp.util.make_text_document_params(buf) }
+                -- client:request('textDocument/diagnostic', params, nil, buf)
+                if vim.api.nvim_buf_is_loaded(buf) then
+                  for _, cap in pairs(capabilities) do
+                    client:request(vim.lsp.protocol.Methods.textDocument_diagnostic, {
+                      identifier = cap,
+                      textDocument = vim.lsp.util.make_text_document_params(buf),
+                    }, nil, buf)
+                  end
+                end
               end
             end,
           })
