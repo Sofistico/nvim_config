@@ -44,7 +44,6 @@ NVIM_APPNAME=Sofistico/nvim_config/ nvim
 
 + [theHamsta/nvim-dap-virtual-text](https://dotfyle.com/plugins/theHamsta/nvim-dap-virtual-text)
 + [mfussenegger/nvim-dap](https://dotfyle.com/plugins/mfussenegger/nvim-dap)
-+ [rcarriga/nvim-dap-ui](https://dotfyle.com/plugins/rcarriga/nvim-dap-ui)
 + [igorlfs/nvim-dap-view](https://dotfyle.com/plugins/igorlfs/nvim-dap-view)
 ### dependency-management
 
@@ -61,6 +60,9 @@ NVIM_APPNAME=Sofistico/nvim_config/ nvim
 ### file-explorer
 
 + [stevearc/oil.nvim](https://dotfyle.com/plugins/stevearc/oil.nvim)
+### folding
+
++ [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
 ### formatting
 
 + [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
@@ -92,6 +94,8 @@ NVIM_APPNAME=Sofistico/nvim_config/ nvim
 + [p00f/clangd_extensions.nvim](https://dotfyle.com/plugins/p00f/clangd_extensions.nvim)
 + [hinell/lsp-timeout.nvim](https://dotfyle.com/plugins/hinell/lsp-timeout.nvim)
 + [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
++ [seblyng/roslyn.nvim](https://dotfyle.com/plugins/seblyng/roslyn.nvim)
++ [mason-org/mason.nvim](https://dotfyle.com/plugins/mason-org/mason.nvim)
 + [j-hui/fidget.nvim](https://dotfyle.com/plugins/j-hui/fidget.nvim)
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 ### lsp-installer
@@ -138,10 +142,8 @@ NVIM_APPNAME=Sofistico/nvim_config/ nvim
 + [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
 ### utility
 
-+ [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
 + [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
 + [echasnovski/mini.nvim](https://dotfyle.com/plugins/echasnovski/mini.nvim)
-+ [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
 ## Language Servers
 
 + clangd
