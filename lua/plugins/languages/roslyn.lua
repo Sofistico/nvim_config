@@ -104,7 +104,7 @@ return {
           end
 
           -- diagnostic refresh
-          vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+          vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
             group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
             pattern = '*',
             callback = function()
