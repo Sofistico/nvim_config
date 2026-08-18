@@ -52,10 +52,13 @@ vim.api.nvim_create_user_command('Make', function(params)
     cmd = vim.fn.expandcmd(cmd),
     components = {
       {
-        'on_output_quickfix',
+        'on_output_parse',
+        errorformat = vim.o.errorformat,
+      },
+      {
+        'on_result_diagnostics_quickfix',
         open = not params.bang,
         open_height = 8,
-        errorformat = vim.o.errorformat,
       },
       'default',
     },

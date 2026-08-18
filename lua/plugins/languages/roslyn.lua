@@ -138,7 +138,8 @@ return {
           })
 
           local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
-          vim.bo.mp = 'dotnet build ' .. sln .. ' -v q' .. ' --nologo /clp:NoSummary --tl:off'
+          vim.bo.mp = 'dotnet build --nologo --verbosity:minimal --tl:off ' .. sln
+          vim.bo.errorformat = '%E%f(%l\\,%c): %trror %m,%W%f(%l\\,%c): %tarning %m,%-G%.%#'
 
           local bufnr = event.buf
           -- vs_text_edit
