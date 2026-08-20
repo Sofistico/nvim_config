@@ -44,6 +44,7 @@ end, {})
 
 vim.api.nvim_create_user_command('Make', function(params)
   -- Insert args at the '$*' in the makeprg
+  vim.notify 'Starting the Make command'
   local cmd, num_subs = vim.o.makeprg:gsub('%$%*', params.args)
   if num_subs == 0 then
     cmd = cmd .. ' ' .. params.args

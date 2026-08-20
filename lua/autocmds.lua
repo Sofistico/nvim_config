@@ -143,7 +143,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   callback = function()
     local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
     if sln and sln ~= 'v:/null' then
-      vim.bo.mp = 'dotnet build --nologo --verbosity:minimal --tl:off ' .. sln
+      vim.bo.mp = 'dotnet build --nologo -v q --tl:off ' .. sln
     end
     vim.bo.errorformat = '%E%f(%l\\,%c): %trror %m,%W%f(%l\\,%c): %tarning %m,%-G%.%#'
   end,
