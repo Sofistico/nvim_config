@@ -167,3 +167,5 @@ vim.keymap.set('n', '<leader>u', function()
   local undo = require 'undotree'
   undo.open { command = 'topleft 40vnew' }
 end, { desc = 'Undotree' })
+
+vim.keymap.set('n', 'g<', 'g<', { desc = 'Show last cmd output' })

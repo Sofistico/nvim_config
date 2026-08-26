@@ -64,7 +64,7 @@ return {
             dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
           },
           ['csharp|background_analysis'] = {
-            dotnet_analyzer_diagnostics_scope = 'openFiles',
+            dotnet_analyzer_diagnostics_scope = 'default',
             dotnet_compiler_diagnostics_scope = 'openFiles',
           },
           ['csharp|code_lens'] = {
@@ -85,6 +85,7 @@ return {
           },
           ['csharp|type_members'] = {
             dotnet_member_insertion_location = 'with_other_members_of_the_same_kind',
+            dotnet_property_generation_behavior = 'preferAutoProperties',
           },
         },
       })
@@ -104,38 +105,39 @@ return {
           end
 
           -- diagnostic refresh
-          vim.api.nvim_create_autocmd({ 'InsertEnter' }, {
-            group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
-            pattern = '*',
-            callback = function()
-              local clients = vim.lsp.get_clients { name = 'roslyn' }
-              if not clients or #clients == 0 then
-                return
-              end
-
-              local capabilities = vim
-                .iter(client.dynamic_capabilities.capabilities.diagnosticProvider)
-                :map(function(cap)
-                  return cap.registerOptions.identifier
-                end)
-                :totable()
-
-              local buffers = vim.lsp.get_client_by_id(clients[1].id).attached_buffers
-              for _, buf in ipairs(buffers) do
-                --vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
-                -- local params = { textDocument = vim.lsp.util.make_text_document_params(buf) }
-                -- client:request('textDocument/diagnostic', params, nil, buf)
-                if vim.api.nvim_buf_is_loaded(buf) then
-                  for _, cap in pairs(capabilities) do
-                    client:request(vim.lsp.protocol.Methods.textDocument_diagnostic, {
-                      identifier = cap,
-                      textDocument = vim.lsp.util.make_text_document_params(buf),
-                    }, nil, buf)
-                  end
-                end
-              end
-            end,
-          })
+          -- delete this if no more slowdown happens
+          -- vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
+          --   group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
+          --   pattern = '*',
+          --   callback = function()
+          --     local clients = vim.lsp.get_clients { name = 'roslyn' }
+          --     if not clients or #clients == 0 then
+          --       return
+          --     end
+          --
+          --     local capabilities = vim
+          --       .iter(client.dynamic_capabilities.capabilities.diagnosticProvider)
+          --       :map(function(cap)
+          --         return cap.registerOptions.identifier
+          --       end)
+          --       :totable()
+          --
+          --     local buffers = vim.lsp.get_client_by_id(clients[1].id).attached_buffers
+          --     for _, buf in ipairs(buffers) do
+          --       --vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
+          --       -- local params = { textDocument = vim.lsp.util.make_text_document_params(buf) }
+          --       -- client:request('textDocument/diagnostic', params, nil, buf)
+          --       if vim.api.nvim_buf_is_loaded(buf) then
+          --         for _, cap in pairs(capabilities) do
+          --           client:request(vim.lsp.protocol.Methods.textDocument_diagnostic, {
+          --             identifier = cap,
+          --             textDocument = vim.lsp.util.make_text_document_params(buf),
+          --           }, nil, buf)
+          --         end
+          --       end
+          --     end
+          --   end,
+          -- })
 
           local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
           vim.bo.mp = 'dotnet build --nologo -v q --tl:off ' .. sln
@@ -235,4 +237,3 @@ return {
 ------@diagnostic disable-next-line: undefined-field
 ---local seconds, microsecond = vim.uv.gettimeofday()
 ---start_time = seconds + microsecond * 0.001 * 0.001
----
