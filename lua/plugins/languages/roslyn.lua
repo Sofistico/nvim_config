@@ -90,12 +90,6 @@ return {
         },
       })
 
-      require('telescope').setup {
-        defaults = {
-          file_ignore_patterns = { '%__virtual.cs$', '__virtual%.cs$', '%_cshtml.g.cs$' },
-        },
-      }
-
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('roslyn-lsp-attach', { clear = true }),
         callback = function(event)
@@ -103,41 +97,6 @@ return {
           if client and (client.name ~= 'roslyn' or client.name == 'roslyn_ls') then
             return
           end
-
-          -- diagnostic refresh
-          -- delete this if no more slowdown happens
-          -- vim.api.nvim_create_autocmd({ 'InsertLeave' }, {
-          --   group = vim.api.nvim_create_augroup('roslyn-proper-diag-change', { clear = true }),
-          --   pattern = '*',
-          --   callback = function()
-          --     local clients = vim.lsp.get_clients { name = 'roslyn' }
-          --     if not clients or #clients == 0 then
-          --       return
-          --     end
-          --
-          --     local capabilities = vim
-          --       .iter(client.dynamic_capabilities.capabilities.diagnosticProvider)
-          --       :map(function(cap)
-          --         return cap.registerOptions.identifier
-          --       end)
-          --       :totable()
-          --
-          --     local buffers = vim.lsp.get_client_by_id(clients[1].id).attached_buffers
-          --     for _, buf in ipairs(buffers) do
-          --       --vim.lsp.util._refresh('textDocument/diagnostic', { bufnr = buf })
-          --       -- local params = { textDocument = vim.lsp.util.make_text_document_params(buf) }
-          --       -- client:request('textDocument/diagnostic', params, nil, buf)
-          --       if vim.api.nvim_buf_is_loaded(buf) then
-          --         for _, cap in pairs(capabilities) do
-          --           client:request(vim.lsp.protocol.Methods.textDocument_diagnostic, {
-          --             identifier = cap,
-          --             textDocument = vim.lsp.util.make_text_document_params(buf),
-          --           }, nil, buf)
-          --         end
-          --       end
-          --     end
-          --   end,
-          -- })
 
           local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
           vim.bo.mp = 'dotnet build --nologo -v q --tl:off ' .. sln
@@ -234,6 +193,6 @@ return {
 }
 
 --And in your roslyn LSP config's on_init you set the start_time variable:
-------@diagnostic disable-next-line: undefined-field
----local seconds, microsecond = vim.uv.gettimeofday()
----start_time = seconds + microsecond * 0.001 * 0.001
+--@diagnostic disable-next-line: undefined-field
+--local seconds, microsecond = vim.uv.gettimeofday()
+--start_time = seconds + microsecond * 0.001 * 0.001

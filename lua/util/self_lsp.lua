@@ -110,7 +110,7 @@ M = {
           dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
         },
         ['csharp|background_analysis'] = {
-          dotnet_analyzer_diagnostics_scope = 'openFiles',
+          dotnet_analyzer_diagnostics_scope = 'default',
           dotnet_compiler_diagnostics_scope = 'openFiles',
         },
         ['csharp|code_lens'] = {
@@ -131,6 +131,7 @@ M = {
         },
         ['csharp|type_members'] = {
           dotnet_member_insertion_location = 'with_other_members_of_the_same_kind',
+          dotnet_property_generation_behavior = 'preferAutoProperties',
         },
       },
     },
