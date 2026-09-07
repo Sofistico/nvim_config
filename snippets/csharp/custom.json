@@ -16,11 +16,13 @@
   },
   "imethod": {
     "prefix": "imethod",
-    "body": [ "public ${1:type} ${2:Name}(${3:parameter});$0" ]
+    "body": ["public ${1:type} ${2:Name}(${3:parameter});$0"]
   },
   "buipop": {
     "prefix": "buipop",
-    "body": ["builder.Property(i => i.${1:property}).HasColumnName(\"${2:name}\")$0;"]
+    "body": [
+      "builder.Property(i => i.${1:property}).HasColumnName(\"${2:name}\")$0;"
+    ]
   },
   "cln": {
     "prefix": "cln",
@@ -28,6 +30,18 @@
       "namespace a",
       "{",
       "\t${1:public} ${2:class} ${3:$TM_FILENAME_BASE}",
+      "\t{",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ]
+  },
+  "cli": {
+    "prefix": "cli",
+    "body": [
+      "namespace a",
+      "{",
+      "\t${1:public} ${2:interface} ${3:$TM_FILENAME_BASE}",
       "\t{",
       "\t\t$0",
       "\t}",
