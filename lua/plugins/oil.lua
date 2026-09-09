@@ -1,23 +1,34 @@
 return {
   'stevearc/oil.nvim',
   lazy = true,
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+    {
+      'malewicz1337/oil-git.nvim',
+      dependencies = { 'stevearc/oil.nvim' },
+      opts = {
+        show_file_highlights = true,
+        show_directory_highlights = false,
+        show_ignored_files = true,
+      },
+    },
+  },
   opts = {
     delete_to_trash = true,
     float = {
-      border = 'rounded'
+      border = 'rounded',
     },
     confirmation = {
-      border = 'rounded'
+      border = 'rounded',
     },
     progress = {
-      border = 'rounded'
+      border = 'rounded',
     },
     ssh = {
-      border = 'rounded'
+      border = 'rounded',
     },
     keymaps_help = {
-      border = 'rounded'
+      border = 'rounded',
     },
     skip_confirm_for_simple_edits = true,
     watch_for_changes = false,
