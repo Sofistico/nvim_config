@@ -79,13 +79,14 @@ return {
       end,
     },
     keys = {
-      '<leader>g'
-    }
+      '<leader>g',
+    },
   },
   {
     'kdheepak/lazygit.nvim',
     cmd = {
       'LazyGit',
+      'LazyGitLog',
       'LazyGitConfig',
       'LazyGitCurrentFile',
       'LazyGitFilter',
@@ -93,6 +94,8 @@ return {
     },
     keys = {
       { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+      { '<leader>gF', '<cmd>LazyGitFilterCurrentFile<cr>', desc = 'LazyGit current file' },
+      { '<leader>gl', '<cmd>LazyGitLog<cr>', desc = 'LazyGit Log' },
     },
   },
   {
