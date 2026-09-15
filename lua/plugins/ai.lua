@@ -1,92 +1,23 @@
 return {
-  -- {
-  --   'zbirenbaum/copilot.lua',
-  --   lazy = true,
-  --   cmd = 'Copilot',
-  --   config = function()
-  --     require('copilot').setup {}
-  --   end,
-  -- },
-  -- {
-  --   'olimorris/codecompanion.nvim',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'nvim-treesitter/nvim-treesitter',
-  --     'zbirenbaum/copilot.lua',
-  --   },
-  --   lazy = true,
-  --   opts = {
-  --     interactions = {
-  --       chat = {
-  --         tools = {
-  --           opts = {
-  --             default_tools = {
-  --               'agent',
-  --               -- 'files',
-  --             },
-  --           },
-  --         },
-  --         acp = {
-  --           adapter = 'copilot',
-  --         },
-  --         adapter = 'copilot',
-  --       },
-  --       inline = {
-  --         acp = {
-  --           adapter = 'copilot',
-  --         },
-  --         adapter = 'copilot',
-  --       },
-  --       cmd = {
-  --         acp = {
-  --           adapter = 'copilot',
-  --         },
-  --         adapter = 'copilot',
-  --       },
-  --     },
-  --   },
-  --   keys = {
-  --     {
-  --       '<leader>aa',
-  --       vim.cmd.CodeCompanionActions,
-  --       desc = 'Code Companion Actions',
-  --     },
-  --     {
-  --       '<leader>ai',
-  --       vim.cmd.CodeCompanion,
-  --       desc = 'Code Companion Inline',
-  --     },
-  --     {
-  --       '<leader>ai',
-  --       function()
-  --         vim.cmd "'<,'>CodeCompanion"
-  --       end,
-  --       desc = 'Code Companion Inline',
-  --       mode = 'v',
-  --     },
-  --     {
-  --       '<leader>ac',
-  --       function()
-  --         vim.cmd "'<,'>CodeCompanionChat"
-  --       end,
-  --       desc = 'Code Companion Chat',
-  --       mode = 'v',
-  --     },
-  --     {
-  --       '<leader>aa',
-  --       function()
-  --         vim.cmd "'<,'>CodeCompanionActions"
-  --       end,
-  --       desc = 'Code Companion Actions',
-  --       mode = 'v',
-  --     },
-  --     {
-  --       '<leader>ac',
-  --       function()
-  --         require('codecompanion').chat()
-  --       end,
-  --       desc = 'Code Companion Chat',
-  --     },
-  --   },
-  -- },
+    {
+      'coder/claudecode.nvim',
+      opts = {},
+      keys = {
+        { '<leader>ac', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
+        { '<leader>af', '<cmd>ClaudeCodeFocus<cr>', desc = 'Focus Claude' },
+        { '<leader>ar', '<cmd>ClaudeCode --resume<cr>', desc = 'Resume Claude' },
+        { '<leader>aC', '<cmd>ClaudeCode --continue<cr>', desc = 'Continue Claude' },
+        { '<leader>ab', '<cmd>ClaudeCodeAdd %<cr>', desc = 'Add current buffer' },
+        { '<leader>as', '<cmd>ClaudeCodeSend<cr>', mode = 'v', desc = 'Send to Claude' },
+        {
+          '<leader>as',
+          '<cmd>ClaudeCodeTreeAdd<cr>',
+          desc = 'Add file',
+          ft = { 'NvimTree', 'neo-tree', 'oil' },
+        },
+        -- Diff management
+        { '<leader>aa', '<cmd>ClaudeCodeDiffAccept<cr>', desc = 'Accept diff' },
+        { '<leader>ad', '<cmd>ClaudeCodeDiffDeny<cr>', desc = 'Deny diff' },
+      },
+    },
 }
