@@ -76,6 +76,7 @@ return {
         -- Toggles
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
         map('n', '<leader>gP', gitsigns.preview_hunk_inline, { desc = 'git show [P]review deleted' })
+        map('n', '<leader>gB', gitsigns.blame, { desc = 'git [B]lame buffer' })
       end,
     },
     keys = {
