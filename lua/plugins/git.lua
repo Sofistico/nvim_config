@@ -69,12 +69,12 @@ return {
         map('n', '<leader>gR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
         map('n', '<leader>gp', gitsigns.preview_hunk, { desc = 'git [P]review hunk' })
         map('n', '<leader>gb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>gd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
+        map('n', '<leader>gd', gitsigns.diff, { desc = 'git [d]iff' })
         map('n', '<leader>gD', function()
-          gitsigns.diffthis '@'
+          gitsigns.diff '~'
         end, { desc = 'git [D]iff against last commit' })
+        map('n', '<leader>gf', gitsigns.diffthis, { desc = 'git diff [f]ile' })
         -- Toggles
-        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
         map('n', '<leader>gP', gitsigns.preview_hunk_inline, { desc = 'git show [P]review deleted' })
         map('n', '<leader>gB', gitsigns.blame, { desc = 'git [B]lame buffer' })
       end,
@@ -104,18 +104,18 @@ return {
     lazy = true,
     cmd = { 'Git', 'Gedit', 'Gsplit', 'Gread', 'Gwrite', 'GMove', 'GDelete', 'GRename', 'GRemove', 'GBrowse', 'G' },
   },
-  {
-    'sindrets/diffview.nvim',
-    opts = {},
-    cmd = { 'DiffviewFileHistory', 'DiffviewFileHistory %', 'DiffviewOpen' },
-    keys = {
-      { '<leader>go', '<cmd>DiffviewOpen<cr>', desc = 'Open DiffView' },
-      { '<leader>gf', '<cmd>DiffviewFileHistory %<cr>', desc = 'Diffview this File' },
-      { mode = 'v', '<leader>gf', "<cmd>'<,'>DiffviewFileHistory<cr>", desc = 'Diffview this line/s' },
-      { '<leader>gB', '<cmd>DiffviewFileHistory<cr>', desc = 'Diffview this Branch' },
-      { '<leader>gT', ':DiffviewOpen ', desc = 'Diffview branch against this Branch' },
-      { '<leader>gO', '<cmd>DiffviewClose<cr>', desc = 'Close diff view' },
-    },
-  },
+  -- {
+  --   'sindrets/diffview.nvim',
+  --   opts = {},
+  --   cmd = { 'DiffviewFileHistory', 'DiffviewFileHistory %', 'DiffviewOpen' },
+  --   keys = {
+  --     { '<leader>go', '<cmd>DiffviewOpen<cr>', desc = 'Open DiffView' },
+  --     { '<leader>gf', '<cmd>DiffviewFileHistory %<cr>', desc = 'Diffview this File' },
+  --     { mode = 'v', '<leader>gf', "<cmd>'<,'>DiffviewFileHistory<cr>", desc = 'Diffview this line/s' },
+  --     { '<leader>gB', '<cmd>DiffviewFileHistory<cr>', desc = 'Diffview this Branch' },
+  --     { '<leader>gT', ':DiffviewOpen ', desc = 'Diffview branch against this Branch' },
+  --     { '<leader>gO', '<cmd>DiffviewClose<cr>', desc = 'Close diff view' },
+  --   },
+  -- },
 }
 -- vim: ts=2 sts=2 sw=2 et

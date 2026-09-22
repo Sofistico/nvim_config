@@ -19,7 +19,7 @@ return {
     -- Main LSP Configuration
     'neovim/nvim-lspconfig',
     lazy = true,
-    event = 'BufAdd',
+    event = { 'BufAdd', 'InsertEnter' },
     dependencies = {
       -- Mason must be loaded before its dependents so we need to set it up here.
       'mason-org/mason.nvim',
@@ -176,12 +176,18 @@ return {
                   --   end
                   -- end
                   -- other examples:
-                  if err.code == '-32000' then return true end
-                  if err.data and err.data.code == '-2146233088' then return true end
-                  if err.data and err.data.type == 'System.Text.Json.JsonException' then return true end
+                  if err.code == '-32000' then
+                    return true
+                  end
+                  if err.data and err.data.code == '-2146233088' then
+                    return true
+                  end
+                  if err.data and err.data.type == 'System.Text.Json.JsonException' then
+                    return true
+                  end
                 end,
               }
----@diagnostic disable-next-line: redundant-parameter
+              ---@diagnostic disable-next-line: redundant-parameter
               signature.setup(cfg, event.buf)
             end
 
@@ -219,7 +225,7 @@ return {
             end
 
             if client.server_capabilities.codeLensProvider then
-              map('grx', function ()
+              map('grx', function()
                 vim.lsp.codelens.enable(not vim.lsp.codelens.is_enabled())
               end, 'Run Codelens')
             end

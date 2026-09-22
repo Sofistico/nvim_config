@@ -30,7 +30,6 @@ return {
         { '<leader>t', group = 'toggle' },
         { '<leader>n', group = 'fun', icon = icon.fun },
         { '<leader>a', group = 'ai' },
-        { '<leader>o', group = 'overseer', icon = icon.cmd },
         -- { '<leader>r', group = 'rest', icon = icon.cmd },
         { '<leader><tab>', group = 'tabs' },
         {
@@ -65,6 +64,7 @@ return {
           { pattern = 'refactoring', icon = icon.init, color = 'violet' },
           { pattern = 'harpoon', icon = icon.harpoon, color = 'violet' },
           { pattern = 'inspect', icon = icon.inspect, color = 'violet' },
+          { pattern = 'overseer', icon = icon.goat, color = 'violet' },
         },
         mappings = vim.g.have_nerd_font,
       },

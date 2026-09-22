@@ -79,6 +79,7 @@ local M = {
     Value = ' ',
     Variable = '󰀫 ',
   },
+  goat = '🐐'
 }
 
 return M
