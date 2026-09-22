@@ -65,14 +65,9 @@ return {
         map('n', '<leader>gs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk / undo' })
         map('n', '<leader>gr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
         map('n', '<leader>gS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
-        -- map('n', '<leader>gu', gitsigns.undo_stage_hunk, { desc = 'git [u]ndo stage hunk' })
         map('n', '<leader>gR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
         map('n', '<leader>gp', gitsigns.preview_hunk, { desc = 'git [P]review hunk' })
         map('n', '<leader>gb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>gd', gitsigns.diff, { desc = 'git [d]iff' })
-        map('n', '<leader>gD', function()
-          gitsigns.diff '~'
-        end, { desc = 'git [D]iff against last commit' })
         map('n', '<leader>gf', gitsigns.diffthis, { desc = 'git diff [f]ile' })
         -- Toggles
         map('n', '<leader>gP', gitsigns.preview_hunk_inline, { desc = 'git show [P]review deleted' })
@@ -81,6 +76,8 @@ return {
     },
     keys = {
       '<leader>g',
+      { '<leader>gd', '<cmd>Gitsigns diff<cr>', { desc = 'git [d]iff' } },
+      { '<leader>gD', '<cmd>Gitsigns diff ~<cr>', { desc = 'git [d]iff against last commit' } },
     },
   },
   {
