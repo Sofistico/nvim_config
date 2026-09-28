@@ -135,6 +135,7 @@ M = {
         },
       },
     },
+    dcm = {},
   },
 }
 
@@ -248,6 +249,7 @@ end
 function M.enable_lsps_not_in_mason()
   for _, server_name in ipairs(M.ensure_lsps_not_in_mason) do
     vim.lsp.config(server_name, M.servers[server_name] or {})
+    vim.lsp.enable(server_name)
   end
 end
 
