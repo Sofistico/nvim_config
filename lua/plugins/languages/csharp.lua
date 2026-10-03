@@ -68,14 +68,7 @@ return {
           dap.configurations[lang] = {
             {
               type = 'coreclr',
-              name = 'Attach to C# Process',
-              request = 'attach',
-              processId = require('dap.utils').pick_process,
-              cwd = '${workspaceFolder}',
-            },
-            {
-              type = 'coreclr',
-              name = 'Select C# Dll',
+              name = '1 - Select C# Dll',
               request = 'launch',
               program = select_dll_csharp,
               cwd = get_dll_csproj_path,
@@ -83,7 +76,14 @@ return {
             },
             {
               type = 'coreclr',
-              name = 'Reuse Dll',
+              name = '2 - Attach to C# Process',
+              request = 'attach',
+              processId = require('dap.utils').pick_process,
+              cwd = '${workspaceFolder}',
+            },
+            {
+              type = 'coreclr',
+              name = '3 - Reuse Dll',
               request = 'launch',
               cwd = get_dll_csproj_path,
               env = get_dll_env,
