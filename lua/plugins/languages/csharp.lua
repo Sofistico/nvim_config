@@ -106,11 +106,11 @@ return {
     -- lazy = true,
     -- event = 'VeryLazy',
     dependencies = {
-      'citizenharris/neotest-dotnet',
+      'nsidorenco/neotest-vstest',
     },
     opts = {
       adapters = {
-        ['neotest-dotnet'] = {
+        ['neotest-vstest'] = {
           -- Here we can set options for neotest-dotnet
         },
       },
