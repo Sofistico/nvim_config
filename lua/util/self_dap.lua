@@ -139,9 +139,14 @@ function M.get_environment_variables(project_path, autoselect)
       -- Add ASPNETCORE_URLS from applicationUrl if present
       if profile.applicationUrl then
         env_vars['ASPNETCORE_URLS'] = profile.applicationUrl
+        env_vars['DOTNET_URLS'] = profile.applicationUrl
+        env_vars['applicationUrl'] = profile.applicationUrl
       end
       if profile.DOTNET_ENVIRONMENT then
-        env_vars['DOTNET_ENVIRONMENT'] = profile.applicationUrl
+        env_vars['DOTNET_ENVIRONMENT'] = profile.DOTNET_ENVIRONMENT
+      end
+      if profile.ASPNETCORE_ENVIRONMENT then
+        env_vars['ASPNETCORE_ENVIRONMENT'] = profile.ASPNETCORE_ENVIRONMENT
       end
 
       coroutine.resume(dap_run_co, env_vars)
