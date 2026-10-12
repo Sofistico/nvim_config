@@ -108,6 +108,7 @@ return {
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '\\', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sd', function()
         builtin.find_files { cwd = vim.fn.expand '%:p:h' }
       end, { desc = '[S]earch Current File Directory' })
@@ -119,7 +120,7 @@ return {
         builtin.oldfiles {
           cwd_only = true,
         }
-      end, { desc = '[S]earch Recent Files ("." for repeat)' })
+      end, { desc = '[S]earch Recent Files' })
       vim.keymap.set('n', '<leader>sl', builtin.resume, { desc = '[S]earch Last Telescope' })
       vim.keymap.set('n', '<leader>sb', function()
         builtin.buffers { ignore_current_buffer = true, sort_mru = true, path_display = { 'smart' } }
@@ -131,7 +132,7 @@ return {
       vim.keymap.set('n', '<leader>sc', builtin.colorscheme, { desc = '[S]earch [C]olorscheme' })
 
       -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set('n', '\\', function()
+      vim.keymap.set('n', '<leader>s<space>', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
           winblend = 10,
@@ -154,6 +155,7 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
 
       vim.keymap.set('n', '<leader>sm', require('util.self_telescope').live_multigrep, { desc = '[S]earch [M]ultiGrep' })
+      vim.keymap.set('n', '<leader>so', builtin.help_tags, { desc = '[S]earch [M]ultiGrep' })
     end,
   },
 }

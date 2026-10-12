@@ -138,7 +138,7 @@ vim.api.nvim_create_autocmd('User', {
 
 vim.api.nvim_create_autocmd({ 'BufEnter' }, {
   group = augroup 'cs',
-  pattern = { '*.cs' },
+  pattern = { '*.cs', '*.csproj' },
   once = true,
   callback = function()
     local sln = vim.fn.fnamemodify(vim.g.roslyn_nvim_selected_solution, ':.')
