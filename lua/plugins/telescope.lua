@@ -125,7 +125,7 @@ return {
       vim.keymap.set('n', '<leader>sb', function()
         builtin.buffers { ignore_current_buffer = true, sort_mru = true, path_display = { 'smart' } }
       end, { desc = '[S]earch existing [B]uffers' })
-      vim.keymap.set('n', ';', function()
+      vim.keymap.set('n', 'ç', function()
         builtin.buffers { ignore_current_buffer = true, sort_mru = true, path_display = { 'smart' } }
       end, { desc = '[S]earch existing [B]uffers' })
       vim.keymap.set('n', '<leader>sG', builtin.git_status, { desc = '[S]earch [G]it Status' })
@@ -155,7 +155,7 @@ return {
       end, { desc = '[S]earch [N]eovim files' })
 
       vim.keymap.set('n', '<leader>sm', require('util.self_telescope').live_multigrep, { desc = '[S]earch [M]ultiGrep' })
-      vim.keymap.set('n', '<leader>so', builtin.help_tags, { desc = '[S]earch [M]ultiGrep' })
+      vim.keymap.set('n', '<leader>so', builtin.help_tags, { desc = '[S]earch Help-Tags' })
     end,
   },
 }
