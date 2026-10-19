@@ -136,6 +136,7 @@ M = {
       },
     },
     dcm = {},
+    postgres_lsp = { workspace_required = true },
   },
 }
 
