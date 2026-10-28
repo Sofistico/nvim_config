@@ -2,12 +2,19 @@ local M = {}
 M.dll = nil
 M.tail = nil
 M.proj_name = nil
+local project_selection = { pending = false, resolved = false, candidate = nil, waiters = {} }
 
 function M.search_for(glob)
   return vim.fn.globpath(vim.fn.getcwd(), glob, false, false)
 end
 
-function M.select_execution(glob)
+function M.select_execution(glob, project_only)
+  if project_only then
+    return M.select_project_value(glob, function(candidate)
+      return candidate.dll
+    end)
+  end
+
   return coroutine.create(function(dap_run_co)
     local items = vim.fn.globpath(vim.fn.getcwd(), glob, false, true)
     local opts = {
@@ -27,6 +34,101 @@ function M.select_execution(glob)
     end
 
     vim.ui.select(items, opts, cont)
+  end)
+end
+
+function M.reset_project_selection()
+  project_selection = { pending = false, resolved = false, candidate = nil, waiters = {} }
+end
+
+function M.with_project_selection(glob, callback)
+  if project_selection.resolved then
+    callback(project_selection.candidate)
+    return
+  end
+
+  if project_selection.pending then
+    project_selection.waiters[#project_selection.waiters + 1] = callback
+    return
+  end
+
+  project_selection.pending = true
+  project_selection.waiters = { callback }
+
+  local function finish(candidate)
+    project_selection.pending = false
+    project_selection.resolved = true
+    project_selection.candidate = candidate
+    if candidate then
+      M.dll = candidate.dll
+      M.tail = vim.fn.fnamemodify(candidate.dll, ':t:r')
+      M.proj_name = candidate.project
+    end
+
+    local waiters = project_selection.waiters
+    project_selection.waiters = {}
+    for _, waiter in ipairs(waiters) do
+      waiter(candidate)
+    end
+  end
+
+  local root = vim.fn.getcwd()
+  local projects = vim.fn.globpath(root, '**/*.csproj', false, true)
+  local candidates = {}
+
+  for _, project in ipairs(projects) do
+    local project_name = vim.fn.fnamemodify(project, ':t:r')
+    local project_root = vim.fn.fnamemodify(project, ':p:h')
+    local dlls = vim.fn.globpath(project_root, glob, false, true)
+    local matching_dlls = {}
+
+    -- Keep only this project's output assembly; ignore dependency DLLs.
+    for _, dll in ipairs(dlls) do
+      if vim.fn.fnamemodify(dll, ':t:r'):lower() == project_name:lower() then
+        matching_dlls[#matching_dlls + 1] = dll
+      end
+    end
+
+    if #matching_dlls > 0 then
+      -- Multi-target projects can produce several copies. Prefer the most
+      -- recently built output, with a stable path tie-breaker.
+      table.sort(matching_dlls, function(a, b)
+        local a_time, b_time = vim.fn.getftime(a), vim.fn.getftime(b)
+        if a_time == b_time then
+          return a < b
+        end
+        return a_time > b_time
+      end)
+
+      candidates[#candidates + 1] = {
+        dll = matching_dlls[1],
+        project = project_root,
+        project_name = project_name,
+        project_relative = vim.fn.fnamemodify(project_root, ':.'):gsub('\\', '/'),
+        project_file = vim.fn.fnamemodify(project, ':t'),
+      }
+    end
+  end
+
+  if #candidates == 0 then
+    vim.notify('No Debug DLLs associated with a .csproj were found', vim.log.levels.WARN)
+    finish(nil)
+    return
+  end
+
+  vim.ui.select(candidates, {
+    prompt = 'Select .NET project',
+    format_item = function(candidate)
+      return string.format('%s  [%s]', candidate.project_file, candidate.project_relative)
+    end,
+  }, finish)
+end
+
+function M.select_project_value(glob, value_for_project)
+  return coroutine.create(function(dap_run_co)
+    M.with_project_selection(glob, function(candidate)
+      coroutine.resume(dap_run_co, candidate and value_for_project(candidate) or nil)
+    end)
   end)
 end
 

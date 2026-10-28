@@ -118,7 +118,7 @@ return {
       vim.keymap.set('n', '<leader>sD', builtin.diagnostics, { desc = '[S]earch Diagnostics' })
       vim.keymap.set('n', '<leader>s.', function()
         builtin.oldfiles {
-          cwd_only = true,
+          cwd_only = false,
         }
       end, { desc = '[S]earch Recent Files' })
       vim.keymap.set('n', '<leader>sl', builtin.resume, { desc = '[S]earch Last Telescope' })

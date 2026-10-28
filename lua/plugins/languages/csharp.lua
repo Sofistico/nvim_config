@@ -1,12 +1,18 @@
 local dap_helper = require 'util.self_dap'
 
 -- dll third
-local function select_dll_csharp()
-  return dap_helper.select_execution '**/bin/Debug/**/*.dll'
+local function select_dll_csharp(project_only)
+  return dap_helper.select_execution('**/bin/Debug/**/*.dll', project_only)
 end
 
 -- path second
-local function get_dll_csproj_path()
+local function get_dll_csproj_path(project_only)
+  if project_only then
+    return dap_helper.select_project_value('**/bin/Debug/**/*.dll', function(candidate)
+      return candidate.project
+    end)
+  end
+
   select_dll_csharp()
   if not dap_helper.proj_name or dap_helper.proj_name == 'null' then
     vim.notify(dap_helper.proj_name)
@@ -18,7 +24,21 @@ local function get_dll_csproj_path()
 end
 
 -- env goes first
-local function get_dll_env()
+local function get_dll_env(project_only)
+  if project_only then
+    return coroutine.create(function(dap_run_co)
+      dap_helper.with_project_selection('**/bin/Debug/**/*.dll', function(candidate)
+        if not candidate then
+          coroutine.resume(dap_run_co, nil)
+          return
+        end
+
+        local env_co = dap_helper.get_environment_variables(candidate.project, false)
+        coroutine.resume(env_co, dap_run_co)
+      end)
+    end)
+  end
+
   local vars = dap_helper.get_environment_variables(get_dll_csproj_path(), false)
   return vars or nil
 end
@@ -43,6 +63,15 @@ return {
     optional = true,
     opts = function()
       local dap = require 'dap'
+      dap.listeners.after.event_initialized['dotnet_project_picker'] = function()
+        dap_helper.reset_project_selection()
+      end
+      dap.listeners.after.event_terminated['dotnet_project_picker'] = function()
+        dap_helper.reset_project_selection()
+      end
+      dap.listeners.after.event_exited['dotnet_project_picker'] = function()
+        dap_helper.reset_project_selection()
+      end
       if not dap.adapters['netcoredbg'] then
         require('dap').adapters['netcoredbg'] = {
           type = 'executable',
@@ -68,11 +97,17 @@ return {
           dap.configurations[lang] = {
             {
               type = 'coreclr',
-              name = '1 - Select C# Dll',
+              name = '1 - Smart Picker',
               request = 'launch',
-              program = select_dll_csharp,
-              cwd = get_dll_csproj_path,
-              env = get_dll_env,
+              program = function()
+                return select_dll_csharp(true)
+              end,
+              cwd = function()
+                return get_dll_csproj_path(true)
+              end,
+              env = function()
+                return get_dll_env(true)
+              end,
             },
             {
               type = 'coreclr',
@@ -83,7 +118,15 @@ return {
             },
             {
               type = 'coreclr',
-              name = '3 - Reuse Dll',
+              name = '3 - Select C# Dll',
+              request = 'launch',
+              program = select_dll_csharp,
+              cwd = get_dll_csproj_path,
+              env = get_dll_env,
+            },
+            {
+              type = 'coreclr',
+              name = '4 - Reuse Dll',
               request = 'launch',
               cwd = get_dll_csproj_path,
               env = get_dll_env,
