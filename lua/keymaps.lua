@@ -170,3 +170,5 @@ end, { desc = 'Undotree' })
 
 vim.keymap.set('n', 'g<', 'g<', { desc = 'Show last cmd output' })
 vim.keymap.set('n', '<leader>qr', '<cmd>restart<cr>', { desc = 'Restart Nvim' })
+
+vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Escape Insert Mode' })

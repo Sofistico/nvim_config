@@ -13,7 +13,7 @@ return {
       {
         '<leader>cd',
         '<cmd>DBUIToggle<cr>',
-        desc = 'Toggle dadbod ui',
+        desc = 'Dadbod ui',
       },
     },
     init = function()
