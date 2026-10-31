@@ -250,6 +250,10 @@ function M.get_environment_variables(project_path, autoselect)
       if profile.ASPNETCORE_ENVIRONMENT then
         env_vars['ASPNETCORE_ENVIRONMENT'] = profile.ASPNETCORE_ENVIRONMENT
       end
+      if profile.commandLineArgs then
+        -- This needs to be another function to get the args as well to pass to the adapter
+        env_vars['commandLineArgs'] = profile.commandLineArgs
+      end
 
       coroutine.resume(dap_run_co, env_vars)
     end
