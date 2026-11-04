@@ -122,13 +122,13 @@ vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
 if vim.fn.executable 'nu' == 1 then
   vim.o.shell = 'nu' -- Replace with your Nushell path
   vim.o.shellcmdflag = '--login --stdin --no-newline -c'
-  vim.o.shellredir = 'out+err> %s'
-  vim.o.shellpipe = '| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s }'
+  vim.o.shellredir = 'o+e> %s'
+  vim.o.shellpipe = 'o+e>| tee {save --force --raw %s}'
   vim.o.shelltemp = false
   vim.o.shellxescape = ''
   vim.o.shellxquote = ''
   vim.o.shellquote = ''
-  vim.o.shellslash = true
+  -- vim.o.shellslash = true
 end
 
 require('util.colors').apply_custom_colors()
@@ -140,7 +140,7 @@ end
 
 vim.o.shortmess = vim.o.shortmess .. 'A'
 
-require('vim._core.ui2').enable({
+require('vim._core.ui2').enable {
   enable = true, -- Whether to enable or disable the UI.
   -- msg = { -- Options related to the message module.
   --   ---@type 'cmd'|'msg' Default message target, either in the
@@ -162,6 +162,6 @@ require('vim._core.ui2').enable({
   --     height = 1, -- Maximum height.
   --   },
   -- },
-})
+}
 
 -- vim: ts=2 sts=2 sw=2 et
