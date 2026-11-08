@@ -89,13 +89,6 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
-vim.g.root_spec = { 'lsp', { '.git', 'lua' }, 'cwd' }
-vim.g.lazygit_config = true
-vim.g.lazyvim_statuscolumn = {
-  folds_open = false, -- show fold sign when fold is open
-  folds_githl = false, -- highlight fold sign with git sign color
-}
-
 vim.opt.fillchars = {
   foldopen = '',
   foldclose = '',

@@ -269,4 +269,17 @@ function M.get_environment_variables(project_path, autoselect)
   end)
 end
 
+---@param line integer?
+---@return dap.bp?
+function M.get_breakpoint_by_line(line)
+  local line_ = line or vim.api.nvim_win_get_cursor(0)[1]
+  local buf = vim.api.nvim_get_current_buf()
+  local breakpoints = require('dap.breakpoints').get(buf)
+  local breakpoint = vim.iter(breakpoints[buf] or {}):find(function(bp)
+    return bp.line == line_
+  end)
+
+  return breakpoint
+end
+
 return M

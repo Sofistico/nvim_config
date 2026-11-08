@@ -1,0 +1,9 @@
+vim.wo[0][0].wrap = true
+
+-- disable blink completion
+vim.b.completion = false
+
+vim.bo[0].autocomplete = true
+vim.bo[0].complete = ".,o"
+
+-- require("dap-repl-highlights").attach(0, require("dap").session())

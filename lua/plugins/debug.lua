@@ -5,6 +5,7 @@
 -- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
+local self_dap = require 'util.self_dap'
 
 return {
   'mfussenegger/nvim-dap',
@@ -99,9 +100,37 @@ return {
     {
       '<leader>db',
       function()
-        require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+        local default = self_dap.get_breakpoint_by_line()
+
+        vim.ui.input({
+          prompt = 'Breakpoint condition: ',
+          -- Note that the function is not called directly
+          completion = "customlist,v:lua.require'dap-view'.complete",
+          default = default and default.condition,
+        }, function(input)
+          if input then
+            require('dap').set_breakpoint(input)
+          end
+        end)
       end,
       desc = 'Debug: Set Breakpoint',
+    },
+    {
+      '<leader>dB',
+      function()
+        local default = self_dap.get_breakpoint_by_line()
+
+        vim.ui.input({
+          prompt = 'Log point message: ',
+          completion = "customlist,v:lua.require'dap-view'.complete",
+          default = default and default.logMessage,
+        }, function(input)
+          if input then
+            require('dap').set_breakpoint(nil, nil, input)
+          end
+        end)
+      end,
+      desc = 'Debug: Set Log Point',
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
@@ -174,11 +203,11 @@ return {
       end,
       desc = 'List Breakpoints',
     },
-    {
-      '<leader>dL',
-      '<cmd>DapShowLog<cr>',
-      desc = 'Show dap logs',
-    },
+    -- {
+    --   '<leader>dL',
+    --   '<cmd>DapShowLog<cr>',
+    --   desc = 'Show dap logs',
+    -- },
     {
       '<leader>dk',
       function()
