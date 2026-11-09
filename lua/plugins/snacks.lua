@@ -8,7 +8,12 @@ return {
       bufdelete = { enabled = true },
       rename = { enabled = true },
       toggle = { enabled = true },
-      input = { enabled = true },
+      input = {
+        enabled = true,
+        b = {
+          completion = true, -- disable blink completions in input
+        },
+      },
       image = { enabled = false, force = true },
       styles = {
         input = {
