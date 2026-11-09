@@ -14,7 +14,7 @@ return {
     ---@module 'roslyn.config'
     ---@type RoslynNvimConfig
     opts = {
-      filewatching = 'auto',
+      filewatching = 'roslyn',
       ---@diagnostic disable-next-line: missing-fields
       broad_search = true,
       choose_target = function(targets)
@@ -36,11 +36,11 @@ return {
 
       vim.lsp.config('roslyn', {
         capabilities = {
-          -- workspace = {
-          --   didChangeWatchedFiles = {
-          --     dynamicRegistration = false,
-          --   },
-          -- },
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = false,
+            },
+          },
           textDocument = {
             _vs_onAutoInsert = { dynamicRegistration = false },
           },
