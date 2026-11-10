@@ -53,7 +53,7 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.spelllang = { 'en' }
+vim.opt.spelllang = { 'en', 'pt_br' }
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitkeep = 'cursor'
 vim.opt.splitright = true -- Put new windows right of current
