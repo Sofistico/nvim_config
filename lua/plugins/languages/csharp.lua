@@ -72,6 +72,7 @@ return {
       dap.listeners.after.event_exited['dotnet_project_picker'] = function()
         dap_helper.reset_project_selection()
       end
+      local type = 'coreclr'
       if not dap.adapters['netcoredbg'] then
         require('dap').adapters['netcoredbg'] = {
           type = 'executable',
@@ -82,21 +83,22 @@ return {
           },
         }
       end
-      -- if not dap.adapters['sharpdbg'] then
-      --   require('dap').adapters['sharpdbg'] = {
-      --     type = 'executable',
-      --     command = vim.fn.stdpath('data') .. '/sharpdbg/SharpDbg.Cli.exe',
-      --     args = { '--interpreter=vscode' },
-      --     options = {
-      --       detached = false, -- Will put the output in the REPL.
-      --     },
-      --   }
-      -- end
+      if not dap.adapters['sharpdbg'] and not dap.adapters[type] then
+        require('dap').adapters['sharpdbg'] = {
+          type = 'executable',
+          command = vim.fn.stdpath 'data' .. '/sharpdbg/SharpDbg.Cli.exe',
+          args = { '--interpreter=vscode' },
+          options = {
+            detached = false, -- Will put the output in the REPL.
+          },
+        }
+        type = 'sharpdbg'
+      end
       for _, lang in ipairs { 'cs', 'fsharp', 'vb' } do
         if not dap.configurations[lang] then
           dap.configurations[lang] = {
             {
-              type = 'coreclr',
+              type = type,
               name = '1 - Smart Picker',
               request = 'launch',
               program = function()
@@ -110,14 +112,14 @@ return {
               end,
             },
             {
-              type = 'coreclr',
+              type = type,
               name = '2 - Attach to C# Process',
               request = 'attach',
               processId = require('dap.utils').pick_process,
               cwd = '${workspaceFolder}',
             },
             {
-              type = 'coreclr',
+              type = type,
               name = '3 - Select C# Dll',
               request = 'launch',
               program = select_dll_csharp,
@@ -125,7 +127,7 @@ return {
               env = get_dll_env,
             },
             {
-              type = 'coreclr',
+              type = type,
               name = '4 - Reuse Dll',
               request = 'launch',
               cwd = get_dll_csproj_path,

@@ -31,7 +31,8 @@ return {
         'razor',
         'nu',
         'http',
-        'sql'
+        'sql',
+        'fsharp'
       }
       ts.install(filetypes)
 
