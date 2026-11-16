@@ -38,9 +38,33 @@ return {
       },
       keys = {
         {
-          '<leader>dv',
+          '<leader>dV',
           '<cmd>DapViewVirtualTextToggle<cr>',
           desc = 'Toggle Virtual Text',
+        },
+        {
+          '<leader>dw',
+          function()
+            require('dap-view').open()
+            require('dap-view').jump_to_view 'watches'
+          end,
+          desc = 'Jump to Watch View',
+        },
+        {
+          '<leader>ds',
+          function()
+            require('dap-view').open()
+            require('dap-view').jump_to_view 'scopes'
+          end,
+          desc = 'Jump to Scopes View',
+        },
+        {
+          '<leader>dz',
+          function()
+            require('dap-view').open()
+            require('dap-view').jump_to_view 'repl'
+          end,
+          desc = 'Jump to REPL View',
         },
       },
     },
