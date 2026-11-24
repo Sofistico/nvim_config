@@ -179,7 +179,7 @@ local global_capabilities = {
       willRename = true,
     },
     didChangeWatchedFiles = {
-      dynamicRegistration = true,
+      dynamicRegistration = false,
       relativePatternSupport = true,
     },
   },
